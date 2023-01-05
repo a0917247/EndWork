@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-7">
-                <h1 class="text-white font-weight-bold">課程管理</h1>
+                <h1 class="text-white font-weight-bold">會員登入</h1>
             </div>
         </div>
     </div>
@@ -62,24 +62,28 @@
                 </nav>
             </div>
             <!-- Above is sidebar -->
-            <div class="col-xs-12 col-md-12 col-lg-8 mt-lg-5">
-                <form action="#" class="mx-0 box context p-4">
+            <div class="col-12 col-lg-8 mt-lg-5">
+                <form action="#" class="mx-0 box context p-4 ">
                     <h2 class="font-weight-bolder py-3">會員登錄</h2>
-                    <div class="row form-group w-100">
+                    <div class="row form-group">
                         <div class="col-md-12 mb-3 mb-md-0">
                             <label class="text-body h5" for="fname">帳號</label>
-                            <input type="text" id="fname" class="form-control col-12"
+                            <input type="text" id="fname" class="form-control col-10"
                                    placeholder="Email address">
                         </div>
                     </div>
-                    <div class="row form-group w-100">
+                    <div class="row form-group">
                         <div class="col-md-12 mb-3 mb-md-0">
                             <label class="text-body h5" for="fname">密碼</label>
-                            <input type="password" id="fname" class="form-control col-12"
+                            <input type="password" id="fname" class="form-control  col-10"
                                    placeholder="Password">
                         </div>
                     </div>
-                    <div class="row form-group text-right">
+                    <div class="row form-group  text-right ">
+                        <span class="pl-3">
+                            <a href="" class="mr-3">忘記密碼</a>
+                            <a asp-controller="Home" asp-action="memberSignup" class="">註冊會員</a>
+                        </span>
                         <div class="col-md-12 ">
                             <input type="submit" value="清除" class="btn px-4 slide-button m-2">
                             <input type="submit" value="登入" class="btn px-4 slide-button m-2">

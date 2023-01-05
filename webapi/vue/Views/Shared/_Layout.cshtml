@@ -43,7 +43,7 @@
 			<div class="container-fluid">
 				<div class="row align-items-center">
 					<div class="site-logo col-6 col-lg-4">
-						<a href="index.html" class="">
+						<a asp-area="" asp-controller="Home" asp-action="index" class="">
 							<div class="mt-lg-5 mr-5">
                                 <img src="~/images/triangle_logo-removebg-preview.png"
 									 alt="Triangle"
@@ -54,7 +54,7 @@
 					<nav class="mx-auto site-navigation mt-5 col-lg-6">
 						<ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
 							<li>
-								<a href="index.html" class="nav-link active fs-3 h4">首頁</a>
+								<a asp-area="" asp-controller="Home" asp-action="index" class="nav-link active fs-3 h4">首頁</a>
 							</li>
 							<li>
 								<a  class="h4 active" asp-area="" asp-controller="Home" asp-action="jobList">找工作</a>
