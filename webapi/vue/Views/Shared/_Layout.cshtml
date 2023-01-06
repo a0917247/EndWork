@@ -8,7 +8,6 @@
 	<meta name="keywords" content="" />
 	<meta name="author" content="Free-Template.co" />
 	<link rel="shortcut icon" href="~/ftco-32x32.png" />
-
 	<link rel="stylesheet" href="~/css/custom-bs.css" />
 	<link rel="stylesheet" href="~/css/jquery.fancybox.min.css" />
 	<link rel="stylesheet" href="~/css/bootstrap-select.min.css" />
@@ -19,6 +18,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 	<!-- MAIN CSS -->
 	<link rel="stylesheet" href="~/css/style.css" />
+	@await RenderSectionAsync("Styles", required: false)
 </head>
 <body id="top">
 	<div id="overlayer"></div>
@@ -57,7 +57,7 @@
 								<a href="index.html" class="nav-link active fs-3 h4">首頁</a>
 							</li>
 							<li>
-								<a href="about.html" class="h4 active">找工作</a>
+								<a class="h4 active" asp-area="" asp-controller="Home" asp-action="findJob">找工作</a>
 							</li>
 							<li class="has-children">
 								<a href="job-listings.html" class="h4 active">資源</a>
@@ -211,5 +211,7 @@
 	<script src="~/js/bootstrap-select.min.js"></script>
 
 	<script src="~/js/custom.js"></script>
+	<script src="https://unpkg.com/vue@next"></script>
+	@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
