@@ -1,0 +1,54 @@
+﻿<!-- HOME -->
+<!-- HOME start-->
+<section class="section-hero overlay inner-page bg-image " style="background-image: url('~/images/hero_1.jpg');"
+         id="home-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1 class="text-white font-weight-bold">發文分享</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class=" block__18514 pt-lg-5 pt-3 pb-3" id="next-section">
+    <div class="container h-100">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10 col-12">
+                <form class="add-comment-form mt-4 mb-4">
+                    <div class="form-group col-12">
+                        <label for="nickname">
+                            <h3>公司名</h3>
+                        </label>
+                        <input class="form-control" name="nickname" aria-describedby="emailHelp">
+                        <script class="t1" type="text/javascript" text-align:right>
+                            var myDate = new Date();
+                            document.write(myDate.toLocaleString())
+                        </script>
+                    </div>
+                    <div class="form-group ">
+                        <div class="d-flex col-4 justify-content-between">
+                            <label>
+                                <input type="radio" name="radio" checked />
+                                <span>工作經驗</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="radio" />
+                                <span>面試經驗分享</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-12">
+                        <textarea rows="12" name="content" class="form-control" aria-label="With textarea"></textarea>
+                    </div>
+                    <div class="my-5 row justify-content-center">
+                        <button type="submit" class="btn btn-dark btn-JS mx-1 mx-lg-3" lay-filter="*">全部清除</button>
+                        <a asp-controller="Home" asp-action="platform" class="btn btn-primary btn-JS mx-1 mx-lg-3" lay-filter="*">發送</a>
+                       
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="comments"></div>
+    </div>
+</section>

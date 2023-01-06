@@ -103,7 +103,7 @@
          "ObjectType": 0
       }
    ],
-   "UiHint": "(localdb)\\ProjectModels.Triangle",
+   "UiHint": "triangle05.triangle",
    "UncountableWords": null,
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": false,
