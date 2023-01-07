@@ -1,4 +1,5 @@
 ﻿<!-- HOME start-->
+<div id="appVue">
 <section class="section-hero overlay inner-page bg-image " style="background-image: url('images/hero_1.jpg');"
          id="home-section">
     <div class="container">
@@ -66,7 +67,7 @@
 </section>
 <!-- home end -->
 <!-- content start -->
-<section class="site-section block__18514 pt-4" id="appVue">
+<section class="site-section block__18514 pt-4">
     <div class="container h-100">
         <div class="d-lg-flex row">
             <div class="col-lg-8 mt-lg-5 mt-3 order-lg-1 order-2">
@@ -89,15 +90,13 @@
                                         </li>
                                     </ul>
                                     <p class="ml-3 card-text">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime,
-                                        corrupti
-                                        distinctio dolore repellat corporis nulla consequuntur nostrum laboriosam
+                                        {{data.info}}
                                     </p>
                                 </div>
                             </div>
                             <div class="right col-lg-3 col-12 mt-3 ml-2 ml-lg-o ml-sm-4 xs-row">
                                 <div class="py-1 d-lg-flex d-inline px-lg-0 px-sm-2">
-                                    <i class="fa-solid fa-user"></i><span class="fs-6 ml-2">全職</span>
+                                    <i class="fa-solid fa-user"></i><span class="fs-6 ml-2" v-if="data.fullPartTime == true">全職</span><span class="fs-6 ml-2" v-else>兼職</span>
                                 </div>
                                 <div class="py-1 d-lg-flex d-inline px-lg-0 px-sm-2">
                                     <i class="fa-solid fa-location-dot"></i><span class="fs-6 ml-2">{{data.workPlace}}</span>
@@ -106,10 +105,10 @@
                                     <i class="fa-solid fa-sack-dollar"></i><span class="fs-6 ml-2">{{data.salary}}</span>
                                 </div>
                                 <div class="py-1 d-lg-flex d-inline px-lg-0 px-sm-2">
-                                    <i class="fa-solid fa-briefcase"></i><span class="fs-6 ml-2">不限年資</span>
+                                    <i class="fa-solid fa-briefcase"></i><span class="fs-6 ml-2">{{data.seniority}}</span>
                                 </div>
                                 <div class="py-1 d-lg-flex d-inline px-lg-0 px-sm-2">
-                                    <i class="fa-solid fa-share-nodes"></i><span class="fs-6 ml-2">需輪班</span>
+                                    <i class="fa-solid fa-share-nodes"></i><span class="fs-6 ml-2">{{data.shift}}</span>
                                 </div>
                             </div>
                         </div>
@@ -300,6 +299,7 @@
         </div>
     </div>
 </section>
+</div>
 <!-- content end -->
 @section Scripts{
 
@@ -312,17 +312,6 @@
             name: "appVue",
             data: {
                 datas: [],
-                address: null,
-                category: null,
-                companyName: null,
-                fullPartTim: null,
-                info: null,
-                salary: null,
-                seniority: null,
-                shift: null,
-                workContent: null,
-                workName: null,
-                workPlace: null,
             },
             mounted: function () {
                 let _this = this;
@@ -334,7 +323,7 @@
                     axios.get(`${webApi}/api/Vacancies`)
                         .then(response => {
                             appVue.datas = response.data;
-                            console.log(_this.datas)
+                            console.log(_this.datas);
                         })
                         .catch(err => console.log(err))
                         .finally(console.log('完成'))
