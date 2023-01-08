@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row mt-1 job-row d-flex justify-content-center">
                 <div class="col-12 col-lg-5 col-md-6 col-sm-6 text-center">
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" placeholder="搜尋職稱、公司或任何關鍵字" v-model="inputvalue" @@keydown.enter="add" id="input">
                 </div>
                 <div class="col-12 col-lg-1 col-md-1 col-sm-4 mr-lg-5 d-flex">
                     <a href="#">
@@ -56,9 +56,6 @@
                 <div class="col-lg-2 col-md-3 mt-lg-3 mt-md-2 text-sm-right">
                     <div>
                         <span class="fw-bold text-white">
-                            <a href="#" class="text-decoration-none text-white">
-                                修改會員資料<i class="fa-solid fa-chevron-right"></i>
-                            </a>
                             <a class="text-decoration-none text-white" asp-controller="Home" asp-action="memberDetail">
                                 修改會員資料 <i class="fa-solid fa-chevron-right"></i>
                             </a>
@@ -251,6 +248,7 @@
             name: "appVue",
             data: {
                 datas: [],
+                inputvalue: "", //第八行
             },
             mounted: function () {
                 let _this = this;
@@ -267,7 +265,20 @@
                         .catch(err => console.log(err))
                         .finally(console.log('完成'))
                 },
-            }
+                add() {
+                    const _this = this;
+                    if (this.inputvalue) {
+                        let ans = _this.inputvalue.replace(/[\W_]+/g, "")
+                        axios.get(`${webApi}/api/Vacancies/${ans}`)
+                            .then(res => {
+                                console.log(res.data)
+                            })
+                        console.log(ans);
+                    } else {
+                       $('input').blur();
+                    }
+                },
+            },
         })
     </script>
     }

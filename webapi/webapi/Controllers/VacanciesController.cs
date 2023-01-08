@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using webapi.Models;
 
 namespace webapi.Controllers
@@ -58,12 +59,13 @@ namespace webapi.Controllers
                              WorkContent = van.WorkContent,
                              Seniority = van.Seniority,
                          };*/
-            return result;
+            return await Task.FromResult(result);
             /*return _context.Vacancy.Select(x => new VacancyDTO
             {
                 
             });*/
         }
+
 
         // GET: api/Vacancies/5
         [HttpGet("{id}")]
