@@ -33,6 +33,7 @@ namespace webapi.Models
         public virtual DbSet<InterestedCv> InterestedCv { get; set; }
         public virtual DbSet<InterestedEnterprise> InterestedEnterprise { get; set; }
         public virtual DbSet<InterestedPlatformArticle> InterestedPlatformArticle { get; set; }
+        public virtual DbSet<LoginInformation> LoginInformation { get; set; }
         public virtual DbSet<Platform> Platform { get; set; }
         public virtual DbSet<Reply> Reply { get; set; }
         public virtual DbSet<Result> Result { get; set; }
@@ -223,6 +224,19 @@ namespace webapi.Models
                 entity.HasKey(e => new { e.CandidateId, e.PlatformArticleId });
 
                 entity.HasIndex(e => new { e.CandidateId, e.PlatformArticleId }, "IX_InterestedPlatformArticle");
+
+                entity.Property(e => e.Status).HasColumnName("status");
+            });
+
+            modelBuilder.Entity<LoginInformation>(entity =>
+            {
+                entity.Property(e => e.Account).HasMaxLength(15);
+
+                entity.Property(e => e.Email).HasMaxLength(20);
+
+                entity.Property(e => e.Password).HasMaxLength(15);
+
+                entity.Property(e => e.Phone).HasMaxLength(10);
 
                 entity.Property(e => e.Status).HasColumnName("status");
             });

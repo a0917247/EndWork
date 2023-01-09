@@ -1,21 +1,17 @@
 ﻿<!-- HOME -->
-<section class="section-hero overlay inner-page bg-image" style="background-image: url('images/hero_1.jpg')"
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('/images/hero_1.jpg')"
          id="home-section">
     <div class="container">
         <div class="row">
             <div class="col-md-7">
-                <h1 class="text-white font-weight-bold">About Us</h1>
-                <div class="custom-breadcrumbs">
-                    <a href="#">Home</a> <span class="mx-2 slash">/</span>
-                    <span class="text-white"><strong>About Us</strong></span>
-                </div>
+                <h1 class="text-white font-weight-bold">關於我們</h1>
             </div>
         </div>
     </div>
 </section>
 
 <section class="py-5 bg-image overlay-primary fixed overlay" id="next-section"
-         style="background-image: url('images/hero_1.jpg')">
+         style="background-image: url('/images/hero_1.jpg')">
     <div class="container">
         <div class="row mb-5 justify-content-center">
             <div class="col-md-7 text-center">
@@ -64,11 +60,11 @@
             <div class="col-lg-6 mb-5 mb-lg-0">
                 <a data-fancybox data-ratio="2" href="https://vimeo.com/317571768" class="block__96788">
                     <span class="play-icon"><span class="icon-play"></span></span>
-                    <img src="images/sq_img_6.jpg" alt="Image" class="img-fluid img-shadow" />
+                    <img src="/images/sq_img_6.jpg" alt="Image" class="img-fluid img-shadow" />
                 </a>
             </div>
             <div class="col-lg-5 ml-auto">
-                <h2 class="section-title mb-3">我們有提供履歷樣板的功能</h2>
+                <h2 class="section-title mb-3">我們提豐富的工作</h2>
                 <p class="lead">
                     Eveniet voluptatibus voluptates suscipit minima, cum voluptatum ut dolor, sed facere
                     corporis qui, ea quisquam quis odit minus nulla vitae. Sit, voluptatem.
@@ -78,7 +74,7 @@
                     deserunt eligendi officia modi consectetur. Expedita tempora quos nobis earum hic ex
                     asperiores quisquam optio nostrum sit!
                 </p>
-                <button>來去試試</button>
+                <a asp-area="" asp-controller="Home" asp-action="jobList" class="btn btn-secondary rounded-pill px-4">來去找找<i class="fa-solid fa-angle-right ml-3"></i></a>
             </div>
         </div>
     </div>
@@ -90,7 +86,7 @@
             <div class="col-lg-6 mb-5 mb-lg-0 order-md-2">
                 <a data-fancybox data-ratio="2" href="https://vimeo.com/317571768" class="block__96788">
                     <span class="play-icon"><span class="icon-play"></span></span>
-                    <img src="images/sq_img_8.jpg" alt="Image" class="img-fluid img-shadow" />
+                    <img src="/images/sq_img_8.jpg" alt="Image" class="img-fluid img-shadow" />
                 </a>
             </div>
             <div class="col-lg-5 mr-auto order-md-1 mb-5 mb-lg-0">
@@ -104,7 +100,7 @@
                     deserunt eligendi officia modi consectetur. Expedita tempora quos nobis earum hic ex
                     asperiores quisquam optio nostrum sit!
                 </p>
-                <button>來去看看</button>
+                <a asp-area="" asp-controller="Home" asp-action="source" class="btn btn-secondary rounded-pill px-4">來去看看<i class="fa-solid fa-angle-right ml-3"></i></a>
             </div>
         </div>
     </div>
@@ -114,17 +110,17 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-12 text-center" data-aos="fade">
-                <h2 class="section-title mb-3">Our Teacher</h2>
+                <h2 class="section-title mb-3">讓我們為你準備更多</h2>
             </div>
         </div>
 
         <div class="row align-items-center block__69944">
             <div class="col-md-6">
-                <img src="images/person_6.jpg" alt="Image" class="img-fluid mb-4 rounded" />
+                <img src="/images/person_6.jpg" alt="Image" class="img-fluid mb-4 rounded" />
             </div>
 
             <div class="col-md-6">
-                <h3>Teacher Name: Elisabeth Smith</h3>
+                <h3>請試試我們為你準備的模擬面試</h3>
                 <p class="text-muted">Title: Creative Director</p>
                 <p>
                     Experience: Soluta quasi cum delectus eum facilis recusandae nesciunt molestias
@@ -139,13 +135,13 @@
                     <a href="#"><span class="icon-linkedin"></span></a>
                 </div>
                 <div id="service" class="my-3">
-                    <button class="mr-3 rounded">Curriculum Checking</button>
-                    <button class="rounded">Try to Interview</button>
+                    <a asp-area="" asp-controller="Home" asp-action="psychologicalTest" class="btn btn-secondary px-2">去做適性測驗<i class="fa-solid fa-angle-right ml-3"></i></a>
+                    <a asp-area="" asp-controller="Home" asp-action="psychologicalTest" class="btn btn-secondary px-2">去做模擬面試<i class="fa-solid fa-angle-right ml-3"></i></a>
                 </div>
             </div>
 
             <div class="col-md-6 order-md-2 ml-md-auto">
-                <img src="images/person_5.jpg" alt="Image" class="img-fluid mb-4 rounded" />
+                <img src="/images/person_5.jpg" alt="Image" class="img-fluid mb-4 rounded" />
             </div>
 
             <div class="col-md-6">
@@ -164,8 +160,7 @@
                     <a href="#"><span class="icon-linkedin"></span></a>
                 </div>
                 <div id="service" class="my-3">
-                    <button class="mr-3 rounded">Curriculum Checking</button>
-                    <button class="rounded">Try to Interview</button>
+                    <a asp-area="" asp-controller="Home" asp-action="courseShop" class="btn btn-secondary px-2">找找適合你的課程<i class="fa-solid fa-angle-right ml-3"></i></a>
                 </div>
             </div>
         </div>

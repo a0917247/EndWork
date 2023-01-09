@@ -15,6 +15,7 @@ namespace vue.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.mark = "首頁";
             return View();
         }
 
@@ -39,7 +40,7 @@ namespace vue.Controllers
             return View();
         }
 
-        public IActionResult mockInterview()
+        public IActionResult aboutUs()
         {
             return View();
         }
@@ -113,6 +114,7 @@ namespace vue.Controllers
         //找工作
         public IActionResult jobList()
         {
+            ViewBag.mark = "找工作";
             return View();
         }
         public IActionResult jobSingle()

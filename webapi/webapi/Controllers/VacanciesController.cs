@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using webapi.Models;
+using static System.Net.WebRequestMethods;
 
 namespace webapi.Controllers
 {
@@ -26,7 +26,49 @@ namespace webapi.Controllers
 
         // GET: api/Vacancies
         [HttpGet]
-        public async Task<IEnumerable<VacancyDTO>> GetVacancy()
+        public async Task<IEnumerable<VacancyDTO>> Get()
+        {
+            var result = _context.Vacancy.Join(_context.Enterprise, x => x.EnterpriseId, y => y.EnterpriseId, (van, etp) => new VacancyDTO
+            {
+                WorkName = van.WorkName,
+                WorkPlace = van.WorkPlace,
+                Salary = van.Salary,
+                FullPartTime = van.FullPartTime,
+                Shift = van.Shift,
+                WorkContent = van.WorkContent,
+                updatetime = van.Updatetime,
+                Seniority = van.Seniority,
+                Category = van.Category,
+                CompanyName = etp.CompanyName,
+                Address = etp.Address,
+                Info = etp.Info,
+                img = etp.Img,
+                UniformNumbers = etp.UniformNumbers
+
+            });
+            return await Task.FromResult(result);
+
+            /*var result = from van in _context.Vacancy
+                         join etp in _context.Enterprise
+                         on van.EnterpriseId equals etp.EnterpriseId
+                         select new VacancyDTO {
+                             WorkName = van.WorkName,
+                             WorkPlace = van.WorkPlace,
+                             Salary = van.Salary,
+                             FullPartTime = van.FullPartTime,
+                             Shift = van.Shift,
+                             WorkContent = van.WorkContent,
+                             Seniority = van.Seniority,
+                         };*/
+            /*return _context.Vacancy.Select(x => new VacancyDTO
+            {
+                
+            });*/
+        } //完成
+
+        // GET: api/Vacancies/5
+        [HttpGet("{name}")]
+        public async Task<IEnumerable<VacancyDTO>> Getsearch(string name)
         {
             var result = _context.Vacancy.Join(_context.Enterprise, x => x.VacancyId, y => y.EnterpriseId, (van, etp) => new VacancyDTO
             {
@@ -46,40 +88,12 @@ namespace webapi.Controllers
                 UniformNumbers = etp.UniformNumbers
 
             });
-            
-            /*var result = from van in _context.Vacancy
-                         join etp in _context.Enterprise
-                         on van.EnterpriseId equals etp.EnterpriseId
-                         select new VacancyDTO {
-                             WorkName = van.WorkName,
-                             WorkPlace = van.WorkPlace,
-                             Salary = van.Salary,
-                             FullPartTime = van.FullPartTime,
-                             Shift = van.Shift,
-                             WorkContent = van.WorkContent,
-                             Seniority = van.Seniority,
-                         };*/
-            return await Task.FromResult(result);
-            /*return _context.Vacancy.Select(x => new VacancyDTO
+            if (!string.IsNullOrWhiteSpace(name)) 
             {
-                
-            });*/
-        }
-
-
-        // GET: api/Vacancies/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Vacancy>> GetVacancy(int id)
-        {
-            var vacancy = await _context.Vacancy.FindAsync(id);
-
-            if (vacancy == null)
-            {
-                return NotFound();
+                result = result.Where(a => a.WorkName.Contains(name) || a.CompanyName.Contains(name));
             }
-
-            return vacancy;
-        }
+            return result;
+        } //完成
 
         // PUT: api/Vacancies/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

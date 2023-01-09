@@ -129,7 +129,9 @@
                                     </a>
                                     <a href="#">
                                         <button class="btn btn-primary mx-1">
-                                            <i class="fa-solid fa-arrow-up-right-from-square"></i><span class="ml-2">立即應徵</span>
+                                            <a class="text-decoration-none text-white" asp-controller="Home" asp-action="jobSingle">
+                                                <i class="fa-solid fa-arrow-up-right-from-square"></i><span class="ml-2">立即應徵</span>
+                                            </a>
                                         </button>
                                     </a>
                                 </div>
@@ -257,7 +259,7 @@
             methods: {
                 Vacancy: function () {
                     let _this = this;
-                    axios.get(`${webApi}/api/Vacancies`)
+                    axios.get(`${webApi}/api/vacancies`)
                         .then(response => {
                             appVue.datas = response.data;
                             console.log(_this.datas);
@@ -268,17 +270,28 @@
                 add() {
                     const _this = this;
                     if (this.inputvalue) {
-                        let ans = _this.inputvalue.replace(/[\W_]+/g, "")
-                        axios.get(`${webApi}/api/Vacancies/${ans}`)
+                        let name = _this.inputvalue.replace(/[\ !@@#$%^&*()_+|}{":?>~+\-*\/.';[\]\\]+/g, "");
+                        axios.get(`${webApi}/api/vacancies/${name}`)
                             .then(res => {
-                                console.log(res.data)
+                                appVue.datas = [];
+                                appVue.datas = res.data;
                             })
-                        console.log(ans);
+                        $('input').blur();
                     } else {
-                       $('input').blur();
+                        $('input').blur();
                     }
                 },
             },
+            watch: {
+                inputvalue:{
+                    handler(newval){
+                        if (appVue.inputvalue == "") {
+                            this.Vacancy();
+                        }
+                    },
+                    deep:true
+                }
+            }
         })
     </script>
     }

@@ -75,6 +75,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[LoginInformation]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[Platform]",
          "ObjectType": 0
       },
