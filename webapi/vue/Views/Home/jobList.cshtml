@@ -13,8 +13,8 @@
                     </a>
                 </div>
                 <div class="wrapper col-12 col-lg-3 d-flex col-md-6 justify-content-center text-center">
-                    <input type="radio" name="select" id="option-1" checked>
-                    <input type="radio" name="select" id="option-2">
+                    <input type="radio" name="select" id="option-1" v-model="picked" value="職缺" checked>
+                    <input type="radio" name="select" id="option-2" v-model="picked" value="公司">
                     <label for="option-1" class="option option-1">
                         <div class="dot"></div>
                         <span>職缺</span>
@@ -251,6 +251,7 @@
             data: {
                 datas: [],
                 inputvalue: "", //第八行
+                picked: "職缺"
             },
             mounted: function () {
                 let _this = this;
@@ -281,6 +282,16 @@
                         $('input').blur();
                     }
                 },
+                Enterprise: function () {
+                    let _this = this;
+                    axios.get(`${webApi}/api/vacancies`)
+                        .then(response => {
+                            appVue.datas = response.data;
+                            console.log(_this.datas);
+                        })
+                        .catch(err => console.log(err))
+                        .finally(console.log('完成'))
+                },
             },
             watch: {
                 inputvalue:{
@@ -290,6 +301,11 @@
                         }
                     },
                     deep:true
+                },
+                picked:{
+                    handler(newval){
+                        console.log(newval)
+                    }
                 }
             }
         })
