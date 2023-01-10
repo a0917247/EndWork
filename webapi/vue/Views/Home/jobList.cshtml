@@ -28,23 +28,21 @@
             <div class="row mt-1 job-row2 d-flex justify-content-center">
                 <div class="col-lg-3 col-md-6 ">
                     <div class="form-group">
-                        <select name="cause-category" class="form-control cause-category">
-                            <option value="0">行業別</option>
-                            <option value="1">服務業</option>
-                            <option value="2">商業</option>
-                            <option value="3">科技</option>
-                            <option value="4">製造</option>
-                            <option value="5">法律保險</option>
-                            <option value="6">藝文</option>
-                            <option value="7">餐飲</option>
-                            <option value="8">農林漁牧</option>
+                        <select name="cause-category" class="form-control cause-category" v-model="selectedCategory">
+                            <option value="">行業別</option>
+                            <option value="服務">服務</option>
+                            <option value="科技">科技</option>
+                            <option value="藝文">藝文</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="form-group">
-                        <select name="cause-category" class="form-control cause-category">
-                            <option value="0">地區</option>
+                        <select name="cause-category" class="form-control cause-category" v-model="selectedArea">
+                            <option value="">地區</option>
+                            <option value="台北">台北</option>
+                            <option value="新北">新北</option>
+                            <option value="高雄">高雄</option>
                         </select>
                     </div>
                 </div>
@@ -74,7 +72,7 @@
                     <!-- leftslide start -->
                     <div class="row">
                         <!-- 一個card start -->
-                        <div class="card context row p-3 mb-4 mx-1" v-for="data in datas">
+                        <div class="card context row p-3 mb-4 mx-1" v-if="boolean == false" v-for="data in datas">
                             <div class="d-lg-flex sm-row justify-content-between">
                                 <div class="left col-lg-9 col-12 d-sm-flex xs-row">
                                     <div class="img col-xs-12">
@@ -134,6 +132,71 @@
                                             </a>
                                         </button>
                                     </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 一個card end -->
+                        <!-- 一個 公司 card start -->
+                        <div class="card context row p-3 mb-4 mx-1" v-if="boolean == true" v-for="data in datas">
+                            <div class="d-lg-flex sm-row justify-content-between">
+                                <div class="left col-lg-9 col-12 d-sm-flex xs-row">
+                                    <div class="img col-xs-12">
+                                        <img :src="data.img" alt="">
+                                    </div>
+                                    <div class="job-context">
+                                        <ul class="list-unstyled block__47528 mb-0 ">
+                                            <li class="ml-3 d-flex row mt-2">
+                                                <!--{{data.companyName}}-->
+                                            </li>
+                                            <li>
+                                                <a class="ml-3 font-weight-bold active" asp-area="" asp-controller="Home" asp-action="jobSingle">{{data.companyName}}</a>
+                                            </li>
+                                        </ul>
+                                        <p class="ml-3 card-text">
+                                            {{data.info}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="right col-lg-3 col-12 mt-3 ml-2 ml-lg-o ml-sm-4 xs-row">
+                                    <div class="py-1 d-lg-flex d-inline px-lg-0 px-sm-2">
+                                        <i class="fa-solid fa-location-dot"></i><span class="fs-6 ml-2">{{data.workPlace}}</span>
+                                    </div>
+                                    <div class="py-1 d-lg-flex d-inline px-lg-0 px-sm-2">
+                                        <i class="fa-solid fa-users"></i><span class="fs-6 ml-2">人數還在資料庫</span>
+                                    </div>
+                                    <!--<div class="py-1 d-lg-flex d-inline px-lg-0 px-sm-2">
+                                        <i class="fa-solid fa-sack-dollar"></i><span class="fs-6 ml-2">{{data.salary}}</span>
+                                    </div>-->
+                                    <div class="py-1 d-lg-flex d-inline px-lg-0 px-sm-2">
+                                        <i class="fa-solid fa-tag"></i><span class="fs-6 ml-2">{{data.category}}</span>
+                                    </div>
+                                    <!--<div class="py-1 d-lg-flex d-inline px-lg-0 px-sm-2">
+                                        <i class="fa-solid fa-share-nodes"></i><span class="fs-6 ml-2">{{data.shift}}</span>
+                                    </div>-->
+                                </div>
+                            </div>
+                            <div class="d-lg-flex sm-row mt-3">
+                                <div class="d-lg-flex ml-sm-2 mt-md-1 col-lg-6 col-12">
+                                    <div class="pl-5">
+                                        <i class="fa-regular fa-clock"></i><span class="fs-6 ml-2">幾小時前更新</span>
+                                    </div>
+                                    <div class="pl-5">
+                                        <i class="fa-regular fa-eye"></i><span class="fs-6 ml-2">1000+</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-12 text-right">
+                                    <a href="#">
+                                        <button class="btn btn-dark px-4 mx-1">
+                                            <i class="fa-regular fa-bookmark"></i><span class="ml-2">儲存</span>
+                                        </button>
+                                    </a>
+                                    <!--<a href="#">
+                                        <button class="btn btn-primary mx-1">
+                                            <a class="text-decoration-none text-white" asp-controller="Home" asp-action="jobSingle">
+                                                <i class="fa-solid fa-arrow-up-right-from-square"></i><span class="ml-2">立即應徵</span>
+                                            </a>
+                                        </button>
+                                    </a>-->
                                 </div>
                             </div>
                         </div>
@@ -251,7 +314,10 @@
             data: {
                 datas: [],
                 inputvalue: "", //第八行
-                picked: "職缺"
+                picked: "職缺",
+                boolean: false,
+                selectedCategory: "",
+                selectedArea: ""
             },
             mounted: function () {
                 let _this = this;
@@ -272,7 +338,7 @@
                     const _this = this;
                     if (this.inputvalue) {
                         let name = _this.inputvalue.replace(/[\ !@@#$%^&*()_+|}{":?>~+\-*\/.';[\]\\]+/g, "");
-                        axios.get(`${webApi}/api/vacancies/${name}`)
+                        axios.get(`${webApi}/api/vacancies?name=${name}`)
                             .then(res => {
                                 appVue.datas = [];
                                 appVue.datas = res.data;
@@ -282,32 +348,51 @@
                         $('input').blur();
                     }
                 },
-                Enterprise: function () {
+                search() {
                     let _this = this;
-                    axios.get(`${webApi}/api/vacancies`)
-                        .then(response => {
-                            appVue.datas = response.data;
-                            console.log(_this.datas);
+                    let name = _this.inputvalue.replace(/[\ !@@#$%^&*()_+|}{":?>~+\-*\/.';[\]\\]+/g, "");
+                    let category = _this.selectedCategory;
+                    let adress = _this.selectedArea;
+                    let url = `${webApi}/api/vacancies?name=${name}&category=${category}&adress=${adress}`;
+                    if (this.inputvalue == "" && this.selectedCategory == "" && this.selectedArea == "") {
+                        _this.Vacancy();
+                    }
+                    axios.get(url)
+                        .then(res => {
+                            appVue.datas = [];
+                            appVue.datas = res.data;
                         })
-                        .catch(err => console.log(err))
-                        .finally(console.log('完成'))
                 },
             },
             watch: {
-                inputvalue:{
-                    handler(newval){
-                        if (appVue.inputvalue == "") {
-                            this.Vacancy();
+                picked: {
+                    handler(newval) {
+                        if (newval == '公司') {
+                            this.boolean = true;
+                        } else {
+                            this.boolean = false;
                         }
-                    },
-                    deep:true
-                },
-                picked:{
-                    handler(newval){
-                        console.log(newval)
                     }
-                }
+                },
+                inputvalue: {
+                    handler(newval) {
+                        this.search();
+                    },
+                    deep: true
+                },
+                selectedCategory: {
+                    handler(newval) {
+                        this.search();
+                    },
+                    deep: true
+                },
+                selectedArea: {
+                    handler(newval) {
+                        this.search();
+                    },
+                    deep: true
+                },
             }
         })
     </script>
-    }
+}
