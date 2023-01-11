@@ -1,0 +1,185 @@
+﻿ <!-- HOME start-->
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('/images/hero_1.jpg')"
+         id="home-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1 class="text-white font-weight-bold">註冊會員</h1>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- home end -->
+
+<section class="site-section block__18514 " id="next-section">
+    <div class="container h-100">
+        <div class="row">
+            <!-- Below is sidebar -->
+            <div class="col-xs-12 col-md-10 col-lg-4">
+                <nav class="navbar navbar-expand-lg navbar-light pl-lg-5 py-0">
+                    <!-- <a class="navbar-brand" href="#">Liya rescue</a> -->
+                    <button class="navbar-toggler mb-2" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto flex-column">
+                            <li class="nav-item px-1 mx-1 mb-5">
+                                <div class="head "></div>
+                                <div class="border p-4 box mb-6 h-auto">
+                                    <ul class="list-unstyled block__47528 ">
+                                        <li><span class="active h2">廣告</span></li>
+                                        <figure class="w-100">
+                                            <img src="https://picsum.photos/100/100/?random=10"
+                                                 class="float-left mr-3">
+                                            <figcaption>
+                                                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                                Maxime, corrupti
+                                                distinctio dolore repellat corporis nulla consequuntur nostrum
+                                                laboriosam
+                                                molestiae doloribus perspiciatis totam esse veritatis expedita,
+                                                atque dicta,
+                                                ullam necessitatibus exercitationem.
+                                            </figcaption>
+                                        </figure>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="nav-item px-1 mx-1 mb-5">
+                                <div class="head mt-4"></div>
+                                <div class="border p-4 box mb-6 h-auto">
+                                    <ul class="list-unstyled block__47528 ">
+                                        <li><span class="active h2">廣告</span></li>
+                                        <figure class="w-100">
+                                            <img src="https://picsum.photos/100/100/?random=10"
+                                                 class="float-left mr-3">
+                                            <figcaption>
+                                                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                                Maxime, corrupti
+                                                distinctio dolore repellat corporis nulla consequuntur nostrum
+                                                laboriosam
+                                                molestiae doloribus perspiciatis totam esse veritatis expedita,
+                                                atque dicta,
+                                                ullam necessitatibus exercitationem.
+                                            </figcaption>
+                                        </figure>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- </div> -->
+                </nav>
+            </div>
+            <!-- Above is sidebar -->
+            <div class="col-lg-8 mt-lg-0 mt-5">
+                <form action="#" class="mx-0 box context p-4" id="appVue">
+                    <h2 class="font-weight-bolder py-3">加入會員</h2>
+                    <div class="row form-group">
+                        <div class="col-md-12 mb-3 mb-md-0">
+                            <label class="text-body h5" for="fname">帳號</label>
+                            <input type="text" id="fname" class="form-control col-md-7 col-12" placeholder="請輸入統一編號，例 : 5204101" v-model="account">
+                        </div>
+                        <div class="col-md-12 mb-3 mb-md-0 mt-3">
+                            <label class="text-body h5" for="fname">密碼</label>
+                            <input type="password" id="fname" class="form-control col-md-7 col-12"
+                                   placeholder="密碼需由6-20個英文字母或數字組成" v-model="password">
+                        </div>
+                        <div class="col-md-12 mb-3 mb-md-0 mt-3">
+                            <label class="text-body h5" for="fname">確認密碼</label>
+                            <input type="password" id="fname" class="form-control col-md-7 col-12" placeholder="請確認密碼">
+
+                        </div>
+                        <div class="col-md-12 mb-3 mb-md-0 mt-3">
+                            <label class="text-body h5" for="fname">產業類別</label>
+                        </div>
+                        <div class="w-75 ml-3 h-100">
+                            <select name="" id="" class="w-75 h5 rounded border text-body">
+                                <option value="hurr" class="h5" selected disabled>
+                                    請選擇產業類別
+                                </option>
+                                <option value="0" class="h5  text-body"> 服務業</option>
+                                <option value="1" class="h5  text-body"> 商業</option>
+                                <option value="2" class="h5  text-body"> 科技業</option>
+                                <option value="3" class="h5  text-body"> 製造業</option>
+                                <option value="4" class="h5  text-body"> 法律保險</option>
+                                <option value="5" class="h5  text-body"> 文藝產業</option>
+                                <option value="6" class="h5  text-body"> 餐飲業</option>
+                                <option value="7" class="h5  text-body"> 農林漁牧</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12 mb-3 mb-md-0 mt-3">
+                            <label class="text-body h5" for="fname">聯絡信箱</label>
+                            <input type="password" id="fname" class="form-control col-md-7 col-12"
+                                   placeholder="例:example@member.com" v-model="email">
+                        </div>
+                        <div class="col-md-12 mb-3 mb-md-0 mt-3">
+                            <label class="text-body h5" for="fname">聯絡電話</label>
+                            <input type="password" id="fname" class="form-control col-md-7 col-12" placeholder="例:0988123456" v-model="phone">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 d-flex justify-content-end">
+                            <button class="btn px-4 slide-button m-2 w-25">清除</button>
+
+                            <a class="btn px-4 slide-button m-2 w-25" @@click="Signup">註冊 </a>
+                           
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <a asp-controller="Home" asp-action="memberCenter">會員中心</a>
+
+        </div>
+    </div>
+</section>
+
+
+
+@section Scripts{
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
+    <script>
+        const webApi = "https://localhost:7240"
+        const appVue = new Vue({
+            el: "#appVue",
+            name: "appVue",
+            data: {
+                datas: [],
+                Id:null,
+                account:null,
+                password:null,
+                email:null,
+                phone:null,
+
+            },
+            mounted: function () {
+                let _this = this;
+                
+            },
+            methods: {
+                Signup: function () {
+                    let _this = this;
+                    var inf = {};
+                    inf.Id=0;
+                    inf.account = _this.account;
+                    inf.password = _this.password;
+                    inf.email = _this.email;
+                    inf.phone = _this.phone;
+                    axios.post(`${webApi}/api/LoginInformations`,inf)
+                        .then(response => {
+                            window.location = "/Home/memberLogin";
+                        })
+                        .catch(err => console.log(err))
+                        .finally(console.log('完成'))
+                },
+            }
+        })
+    </script>
+    }
+
+

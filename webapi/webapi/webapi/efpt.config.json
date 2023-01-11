@@ -1,0 +1,132 @@
+﻿{
+   "CodeGenerationMode": 2,
+   "ContextClassName": "TriangleContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Models",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "webapi",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "[dbo].[AptitudeTest]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Article]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Candidate]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[CandidateCV]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[CandidateSkill]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Course]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[CourseDetail]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[CourseOrder]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[CV]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Enterprise]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Interest]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[InterestedArticle]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[InterestedCourse]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[InterestedCV]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[InterestedEnterprise]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[InterestedPlatformArticle]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[LoginInformation]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Platform]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Reply]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Result]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Skill]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Teacher]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Vacancy]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[VacancySkill]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "triangle05.triangle",
+   "UncountableWords": null,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false,
+   "UseT4": false
+}
