@@ -8,8 +8,11 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\EnterprisesController.cs" />
-    <Compile Remove="Controllers\PlatformsController.cs" />
     <Compile Remove="DTO\EnterpriseDTO.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Controllers\.gitattributes" />
   </ItemGroup>
 
   <ItemGroup>

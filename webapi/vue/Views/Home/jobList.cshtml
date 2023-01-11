@@ -84,7 +84,10 @@
                                                 {{data.companyName}}
                                             </li>
                                             <li>
-                                                <a class="ml-3 font-weight-bold active" asp-area="" asp-controller="Home" asp-action="jobSingle" :id="data.vacancyId">{{data.workName}}</a>
+                                                <a class="ml-3 font-weight-bold active" asp-area="" asp-controller="Home" asp-action="jobSingle" :id="data.vacancyId" v-on:click="jobsingle(data.vacancyId)">{{data.workName}}</a>
+                                            </li>
+                                            <li>
+                                                <a class="ml-3 font-weight-bold active" :id="data.vacancyId" v-on:click="jobsingle(data.vacancyId)">{{data.workName}}           1</a>
                                             </li>
                                         </ul>
                                         <p class="ml-3 card-text">
@@ -298,6 +301,20 @@
                 </div>
                 <!-- Above is sidebar -->
             </div>
+            <div class="row pagination-wrap mt-5">
+                <div class="col-md-12 text-center">
+                    <div class="custom-pagination ml-auto">
+                        <a href="#" class="prev">Prev</a>
+                        <div class="d-inline-block">
+                            <a href="#" class="active">1</a>
+                            <a href="#">2</a>
+                            <a href="#">3</a>
+                            <a href="#">4</a>
+                        </div>
+                        <a href="#" class="next">Next</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </div>
@@ -329,10 +346,17 @@
                     axios.get(`${webApi}/api/vacancies`)
                         .then(response => {
                             appVue.datas = response.data;
-                            console.log(_this.datas);
+                            console.log(appVue.datas);
                         })
                         .catch(err => console.log(err))
                         .finally(console.log('完成'))
+                },
+                jobsingle: function (vacancyId) {
+                    window.localStorage.removeItem("vanId");
+                    window.localStorage.setItem("vanId", vacancyId);
+                    let key = window.localStorage.getItem("vanId");
+                    console.log('跳轉頁面');
+                    //window.location = "/Home/jobSingle";
                 },
                 add() {
                     const _this = this;

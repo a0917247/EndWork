@@ -79,11 +79,18 @@ namespace webapi.Controllers
         [HttpPost]
         public async Task<string> PostLoginInformation([FromBody] LoginInformation loginInformation)
         {
+            bool exists = _context.LoginInformation.Any(e => e.Account == loginInformation.Account);
+            if (exists == true)
+            {
+                return "此帳號已註冊";
+            }
+            else
+            { 
+                _context.LoginInformation.Add(loginInformation);
+                await _context.SaveChangesAsync();
 
-            _context.LoginInformation.Add(loginInformation);
-            await _context.SaveChangesAsync();
-
-            return "註冊成功";
+                return "註冊成功";
+            }
 
         }
 

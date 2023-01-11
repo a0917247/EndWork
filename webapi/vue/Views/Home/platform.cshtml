@@ -1,20 +1,20 @@
-﻿<section class="section-hero overlay inner-page bg-image" style="background-image: url('/images/hero_1.jpg');"
-         id="home-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7">
-                <h1 class="text-white font-weight-bold">論壇討論區</h1>
-                <div class="custom-breadcrumbs">
-                    <a href="#">Home</a> <span class="mx-2 slash">/</span>
-                    <span class="text-white"><strong>About Us</strong></span>
+﻿<div id="appVue">
+    <section class="section-hero overlay inner-page bg-image" style="background-image: url('/images/hero_1.jpg');"
+             id="home-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <h1 class="text-white font-weight-bold">論壇討論區</h1>
+                    <div class="custom-breadcrumbs">
+                        <a href="#">Home</a> <span class="mx-2 slash">/</span>
+                        <span class="text-white"><strong>About Us</strong></span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>                      
-</section>
+    </section>
 
 
-<div id="appVue">
     <section class="site-section block__18514 pt-4" id="next-section">
         <div class="container h-100">
             <div class="row">
@@ -122,14 +122,14 @@
                             <div class="col-12 justify-content-between">
                                 <li class="d-flex justify-content-between">
                                     <form action="" class="fly-search">
-                                        <input class="layui-input" autocomplete="off" placeholder="搜索内容" type="text" name="q">
+                                        <input class="layui-input" autocomplete="off" placeholder="搜索内容🔎" type="text" name="q">
                                     </form>
                                     <a asp-controller="Home" asp-action="platformPost" class="btn btn-primary">發文分享<i class="fa-solid fa-pen mx-2"></i></a>
                                 </li>
                             </div>
-                            <div class="col-12 py-5">
+                            <div class="col-12 py-5" style="height:35px" v-for="data in datas">
                                 <ul class="fly-list">
-                                    <li class="d-flex justify-content-between" v-for="data in datas">
+                                    <li id="posttitle" class="d-flex justify-content-between">
                                         <div>
                                             <h4 class="fly-tip">
                                                 <a class="a1" asp-controller="Home" asp-action="platformArticle">{{data.articleName}}</a>
@@ -138,7 +138,7 @@
                                         <div>
                                             <p>
                                                 <span>
-                                                   Date
+                                                    time
                                                 </span>
                                                 <span class="fly-list-hint">
                                                     <i class="un" title="回答">💬3</i>
@@ -146,218 +146,31 @@
                                             </p>
                                         </div>
                                     </li>
-                                    <hr>
-                                    <li class="d-flex justify-content-between">
-                                        <div>
-                                            <h4 class="fly-tip">
-                                                <a class="a1" asp-controller="Home" asp-action="platformArticle">奧斯曼數位行銷有限公司</a>
-                                            </h4>
-                                        </div>
-                                        <div>
-                                            <p>
-                                                <span>30分钟前</span>
-                                                <span class="fly-list-hint">
-                                                    <i class="un" title="回答">💬3</i>
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <hr>
-                                    <li class="d-flex justify-content-between">
-                                        <div>
-                                            <h4 class="fly-tip">
-                                                <a class="a1" asp-controller="Home" asp-action="platformArticle">緯謙科技股份有限公司</a>
-                                            </h4>
-                                        </div>
-                                        <div>
-                                            <p>
-                                                <span>30分钟前</span>
-                                                <span class="fly-list-hint">
-                                                    <i class="un" title="回答">💬3</i>
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <hr>
-                                    <li class="d-flex justify-content-between">
-                                        <div>
-                                            <h4 class="fly-tip">
-                                                <a class="a1" asp-controller="Home" asp-action="platformArticle">奧斯曼數位行銷有限公司</a>
-                                            </h4>
-                                        </div>
-                                        <div>
-                                            <p>
-                                                <span>30分钟前</span>
-                                                <span class="fly-list-hint">
-                                                    <i class="un" title="回答">💬3</i>
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <hr>
-                                    <li class="d-flex justify-content-between">
-                                        <div>
-                                            <h4 class="fly-tip">
-                                                <a class="a1" asp-controller="Home" asp-action="platformArticle">緯謙科技股份有限公司</a>
-                                            </h4>
-                                        </div>
-                                        <div>
-                                            <p>
-                                                <span>30分钟前</span>
-                                                <span class="fly-list-hint">
-                                                    <i class="un" title="回答">💬3</i>
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <hr>
-                                    <li class="d-flex justify-content-between">
-                                        <div>
-                                            <h4 class="fly-tip">
-                                                <a class="a1" asp-controller="Home" asp-action="platformArticle">奧斯曼數位行銷有限公司</a>
-                                            </h4>
-                                        </div>
-                                        <div>
-                                            <p>
-                                                <span>30分钟前</span>
-                                                <span class="fly-list-hint">
-                                                    <i class="un" title="回答">💬3</i>
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <hr>
-                                    <li class="d-flex justify-content-between">
-                                        <div>
-                                            <h4 class="fly-tip">
-                                                <a class="a1" asp-controller="Home" asp-action="platformArticle">緯謙科技股份有限公司</a>
-                                            </h4>
-                                        </div>
-                                        <div>
-                                            <p>
-                                                <span>30分钟前</span>
-                                                <span class="fly-list-hint">
-                                                    <i class="un" title="回答">💬3</i>
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <hr>
-                                    <li class="d-flex justify-content-between">
-                                        <div>
-                                            <h4 class="fly-tip">
-                                                <a class="a1" asp-controller="Home" asp-action="platformArticle">奧斯曼數位行銷有限公司</a>
-                                            </h4>
-                                        </div>
-                                        <div>
-                                            <p>
-                                                <span>30分钟前</span>
-                                                <span class="fly-list-hint">
-                                                    <i class="un" title="回答">💬3</i>
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <hr>
-                                    <li class="d-flex justify-content-between">
-                                        <div>
-                                            <h4 class="fly-tip">
-                                                <a class="a1" asp-controller="Home" asp-action="platformArticle">緯謙科技股份有限公司</a>
-                                            </h4>
-                                        </div>
-                                        <div>
-                                            <p>
-                                                <span>30分钟前</span>
-                                                <span class="fly-list-hint">
-                                                    <i class="un" title="回答">💬3</i>
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <hr>
-                                    <li class="d-flex justify-content-between">
-                                        <div>
-                                            <h4 class="fly-tip">
-                                                <a class="a1" asp-controller="Home" asp-action="platformArticle">奧斯曼數位行銷有限公司</a>
-                                            </h4>
-                                        </div>
-                                        <div>
-                                            <p>
-                                                <span>30分钟前</span>
-                                                <span class="fly-list-hint">
-                                                    <i class="un" title="回答">💬3</i>
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <hr>
-                                    <li class="d-flex justify-content-between">
-                                        <div>
-                                            <h4 class="fly-tip">
-                                                <a class="a1" asp-controller="Home" asp-action="platformArticle">緯謙科技股份有限公司</a>
-                                            </h4>
-                                        </div>
-                                        <div>
-                                            <p>
-                                                <span>30分钟前</span>
-                                                <span class="fly-list-hint">
-                                                    <i class="un" title="回答">💬3</i>
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <hr>
-                                    <li class="d-flex justify-content-between">
-                                        <div>
-                                            <h4 class="fly-tip">
-                                                <a class="a1" asp-controller="Home" asp-action="platformArticle">奧斯曼數位行銷有限公司</a>
-                                            </h4>
-                                        </div>
-                                        <div>
-                                            <p>
-                                                <span>30分钟前</span>
-                                                <span class="fly-list-hint">
-                                                    <i class="un" title="回答">💬3</i>
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <hr>
-                                    <li class="d-flex justify-content-between">
-                                        <div>
-                                            <h4 class="fly-tip">
-                                                <a class="a1" asp-controller="Home" asp-action="platformArticle">緯謙科技股份有限公司</a>
-                                            </h4>
-                                        </div>
-                                        <div>
-                                            <p>
-                                                <span>30分钟前</span>
-                                                <span class="fly-list-hint">
-                                                    <i class="un" title="回答">💬3</i>
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <hr>
-                                    <li class="d-flex justify-content-between">
-                                        <div>
-                                            <h4 class="fly-tip">
-                                                <a class="a1" asp-controller="Home" asp-action="platformArticle">奧斯曼數位行銷有限公司</a>
-                                            </h4>
-                                        </div>
-                                        <div>
-                                            <p>
-                                                <span>30分钟前</span>
-                                                <span class="fly-list-hint">
-                                                    <i class="un" title="回答">💬3</i>
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <hr>
                                 </ul>
+                                <hr>
                             </div>
+                            @* <div class="col-12 py-5" style="height:35px" v-for="data in datas">
+                            <ul class="fly-list">
+                            <li id="posttitle" class="d-flex justify-content-between">
+                            <div>
+                            <h4 class="fly-tip">
+                            <a class="a1" asp-controller="Home" asp-action="platformArticle">{{data.articleName}}</a>
+                            </h4>
+                            </div>
+                            <div>
+                            <p>
+                            <span>
+                            time
+                            </span>
+                            <span class="fly-list-hint">
+                            <i class="un" title="回答">💬3</i>
+                            </span>
+                            </p>
+                            </div>
+                            </li>
+                            </ul>
                             <hr>
+                            </div>*@
                         </div>
                     </div>
                 </div>
@@ -377,7 +190,7 @@
             name: "appVue",
             data: {
                 datas: [],
-                inputvalue: "", //第八行
+                inputvalue: "",
             },
             mounted: function () {
                 let _this = this;
@@ -388,26 +201,14 @@
                     let _this = this;
                     axios.get(`${webApi}/api/Platforms`)
                         .then(response => {
-                            appVue.datas = response.data;
+                            //appVue.datas = response.data; 比較慢
+                            _this.datas = response.data;
                             console.log(_this.datas);
                         })
                         .catch(err => console.log(err))
                         .finally(console.log('完成'))
                 },
-                add() {
-                    const _this = this;
-                    if (this.inputvalue) {
-                        let ans = _this.inputvalue.replace(/[\W_]+/g, "")
-                        axios.get(`${webApi}/api/Vacancies/${ans}`)
-                            .then(res => {
-                                console.log(res.data);
-                            })
-                        console.log(ans);
-                        $('input').blur();
-                    } else {
-                        $('input').blur();
-                    }
-                },
             }
+        })
     </script>
     }

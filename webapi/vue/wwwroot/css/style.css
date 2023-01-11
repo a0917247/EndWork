@@ -2813,3 +2813,78 @@ a:hover {
 .slide-button:hover a {
      color: white;
  }
+
+/* 輪播器 */
+.carousel-item {
+    max-height: 100vh;
+    min-height: 100px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: center;
+}
+
+.carousel-caption {
+    align-content: center;
+    top: 40%;
+}
+
+    .carousel-caption h5 {
+        font-size: 2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        margin-top: 2rem;
+    }
+
+.ca-btn {
+    border: 1px solid #fff;
+    padding: 14px 18px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    color: #fff;
+    text-decoration: none;
+    transition: all .2s ease;
+}
+
+    .ca-btn:hover {
+        background: #fff;
+        color: #000;
+    }
+
+.carousel-control-prev img,
+.carousel-control-next img {
+    width: 100px;
+    height: 160px;
+}
+
+@media screen and (max-width: 992px) {
+    .carousel-control-prev img,
+    .carousel-control-next img {
+        width: 50px;
+        height: 80px;
+    }
+
+    .carousel-caption {
+        top: 30%;
+    }
+
+        .carousel-caption h5 {
+            font-size: 1.2rem;
+            letter-spacing: 0.1rem;
+        }
+
+    .ca-btn {
+        border: 1px solid #fff;
+        padding: 7px 9px;
+        text-transform: uppercase;
+        font-size: 0.6rem;
+        letter-spacing: 3px;
+        color: #fff;
+        text-decoration: none;
+        transition: all .2s ease;
+    }
+}
+/* 輪播器 */

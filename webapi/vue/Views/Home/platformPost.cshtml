@@ -1,54 +1,115 @@
-﻿<!-- HOME -->
-<!-- HOME start-->
-<section class="section-hero overlay inner-page bg-image " style="background-image: url('~/images/hero_1.jpg');"
-         id="home-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7">
-                <h1 class="text-white font-weight-bold">發文分享</h1>
+﻿<!-- HOME start-->
+<div id="appVue">
+    <section class="section-hero overlay inner-page bg-image " style="background-image: url('~/images/hero_1.jpg');"
+             id="home-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <h1 class="text-white font-weight-bold">發文分享</h1>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class=" block__18514 pt-lg-5 pt-3 pb-3" id="next-section">
-    <div class="container h-100">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 col-md-10 col-12">
-                <form class="add-comment-form mt-4 mb-4">
-                    <div class="form-group col-12">
-                        <label for="nickname">
-                            <h3>公司名</h3>
-                        </label>
-                        <input class="form-control" name="nickname" aria-describedby="emailHelp">
-                        <script class="t1" type="text/javascript" text-align:right>
-                            var myDate = new Date();
-                            document.write(myDate.toLocaleString())
-                        </script>
-                    </div>
-                    <div class="form-group ">
-                        <div class="d-flex col-4 justify-content-between">
-                            <label>
-                                <input type="radio" name="radio" checked />
-                                <span>工作經驗</span>
+    <section class=" block__18514 pt-lg-5 pt-3 pb-3" id="next-section">
+        <div class="container h-100">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10 col-12">
+                    <form class="add-comment-form mt-4 mb-4">
+                        <div class="form-group col-12">
+                            <label for="nickname">
+                                <h3>公司名</h3>
                             </label>
-                            <label>
-                                <input type="radio" name="radio" />
-                                <span>面試經驗分享</span>
-                            </label>
+                            <input v-model="ArticleName" class="form-control" name="nickname" aria-describedby="emailHelp">
+                            @* <script id="time" class="t1" type="text/javascript" text-align:right>
+                            var myDate = document.createTextNode("發文時間" + getDate());
+                            spanDate.appendChild(myDate);
+                            p.appendChild(spanDate);
+                            </script>*@
                         </div>
-                    </div>
-                    <div class="form-group col-12">
-                        <textarea rows="12" name="content" class="form-control" aria-label="With textarea"></textarea>
-                    </div>
-                    <div class="my-5 row justify-content-center">
-                        <button type="submit" class="btn btn-dark btn-JS mx-1 mx-lg-3" lay-filter="*">全部清除</button>
-                        <a asp-controller="Home" asp-action="platform" class="btn btn-primary btn-JS mx-1 mx-lg-3" lay-filter="*">發送</a>
-                       
-                    </div>
-                </form>
-            </div>
+                        <div class="form-group ">
+                            <div class="d-flex col-4 justify-content-between">
+                                <label>
+                                    <input id="title" type="radio" name="radio" checked />
+                                    <span>工作經驗</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="radio" />
+                                    <span>面試經驗分享</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group col-12">
+                            <textarea id="content" rows="12" name="content" class="form-control" aria-label="With textarea" v-model="Contents"></textarea>
+                        </div>
+                        <div class="my-5 row justify-content-center">
+                            <button type="submit" class="btn btn-dark btn-JS mx-1 mx-lg-3" lay-filter="*" @@click="clean">全部清除</button>
+                            <button type="button" id="post" class="btn btn-primary btn-JS mx-1 mx-lg-3" lay-filter="*" @@click="insert">發送</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>item
+            <div class="comments"></div>
         </div>
-        <div class="comments"></div>
-    </div>
-</section>
+    </section>
+</div>
+
+@section Scripts{
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
+    <script>
+        const webApi = "https://localhost:7240"
+        const appVue = new Vue({
+            el: "#appVue",
+            name: "appVue",
+            data: {
+                //datas: [],
+                ArticleName: null,
+                Contents: null,
+                inputvalue: "",
+            },
+            mounted: function () {
+                let _this = this;
+                _this.Platforms();
+            },
+            methods: {
+                Platforms: function () {
+                    let _this = this;
+                    var request = {};
+                    request.ArticleName = _this.ArticleName;
+                    request.Contents = _this.Contents;
+
+                    axios.post(`${webApi}/api/Platforms`)
+                        .then(response => {
+                            appVue.datas = response.data;
+                            console.log(_this.datas);
+                        })
+                        .catch(err => console.log(err))
+                        .finally(console.log('完成'))
+                },
+                //add() {
+                //    alert('你好');
+                //},
+                showModal: function () {
+                    $("#insertModal").modal("show");
+                },
+                insert: function () {
+                    let _this = this;
+                    var request = {};
+                    request.ArticleName = _this.ArticleName;
+                    request.Contents = _this.Contents;
+                    axios.post(`${webApi}/api/Platforms`, request).then(response => {
+                        window.location = "/Home/platform";
+                    });
+                },
+                clean: function () {
+                    request.ArticleName = "";
+                    request.Contents = "";
+
+                },
+            }
+        })
+    </script>
+    }

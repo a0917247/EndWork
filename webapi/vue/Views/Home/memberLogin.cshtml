@@ -69,18 +69,18 @@
                 </nav>
             </div>
             <!-- Above is sidebar -->
-            <div class="col-lg-8 content mt-3 pt-lg-0 mt-lg-5 pb-2">
+            <div class="col-lg-8 content mt-3 pt-lg-0 mt-lg-5 pb-2" id="appVue">
                 <form action="#" class="mx-0 box context p-4">
                     <div class="row form-group ml-md-5">
                         <h3 class="font-weight-bolder py-3">會員登錄</h3>
                         <div class="col-md-12 mb-4">
                             <label class="text-body h5" for="fname">帳號</label>
-                            <input type="text" id="fname" class="form-control col-md-7 col-12" placeholder="Email address">
+                            <input type="text" id="fname" class="form-control col-md-7 col-12" placeholder="Email address" v-model="account">
                         </div>
                         <br><br>
                         <div class="col-md-12 mb-3 mb-md-0">
                             <label class="text-body h5" for="fname">密碼</label>
-                            <input type="password" id="fname" class="form-control col-md-7 col-12" placeholder="Password">
+                            <input type="password" id="fname" class="form-control col-md-7 col-12" placeholder="Password" v-model="password">
                         </div>
                     </div>
                     <div class="row form-group text-right">
@@ -102,5 +102,45 @@
 
         </div>
     </div>
-    </div>
+   
 </section>
+
+@section Scripts{
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
+    <script>
+        const webApi = "https://localhost:7240"
+        const appVue = new Vue({
+            el: "#appVue",
+            name: "appVue",
+            data: {
+                datas: [],
+                Id: null,
+                account: null,
+                password: null,
+
+            },
+            mounted: function () {
+                let _this = this;
+
+            },
+            methods: {
+                Signin: function () {
+                    let _this = this;
+                    var inf = {};
+                    inf.Id = 0;
+                    inf.account = _this.account;
+                    inf.password = _this.password;
+                    axios.post(`${webApi}/api/LoginInformations`, inf)
+                        .then(response => {
+                            window.location = "/Home/memberLogin";
+                        })
+                        .catch(err => console.log(err))
+                        .finally(console.log('完成'))
+                },
+            }
+        })
+    </script>
+    }
+

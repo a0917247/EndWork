@@ -1,73 +1,178 @@
 ﻿    <!-- HOME start-->
-<section class="section-hero overlay inner-page bg-image " style="background-image: url('/images/hero_1.jpg');"
-         id="home-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7">
-                <h1 class="text-white font-weight-bold">文章分享</h1>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="site-section">
-    <div class="container">
-        <div class="row mb-5">
-            <div class="col-md-6 col-lg-4 mb-5">
-                <a asp-controller="Home" asp-action="sourcePage"><img src="~/images/sq_img_1.jpg" alt="Image" class="img-fluid rounded mb-4" /></a>
-                <h3>
-                    <a asp-controller="Home" asp-action="sourcePage" class="text-black font-weight-bold">7 Factors for Choosing Between Two Jobs</a>
-                </h3>
-                <div>April 15, 2019 <span class="mx-2">|</span> <a href="#">2 Comments</a></div>
-            </div>
-            <div class="col-md-6 col-lg-4 mb-5">
-                <a asp-controller="Home" asp-action="sourcePage"><img src="~/images/sq_img_2.jpg" alt="Image" class="img-fluid rounded mb-4" /></a>
-                <h3>
-                    <a asp-controller="Home" asp-action="sourcePage" class="text-black font-weight-bold">How to Write a Creative Cover Letter</a>
-                </h3>
-                <div>April 15, 2019 <span class="mx-2">|</span> <a href="#">2 Comments</a></div>
-            </div>
-            <div class="col-md-6 col-lg-4 mb-5">
-                <a asp-controller="Home" asp-action="sourcePage"><img src="~/images/sq_img_4.jpg" alt="Image" class="img-fluid rounded mb-4" /></a>
-                <h3>
-                    <a asp-controller="Home" asp-action="sourcePage" class="text-black font-weight-bold">The Right Way to Quit a Job You Started</a>
-                </h3>
-                <div>April 15, 2019 <span class="mx-2">|</span> <a href="#">2 Comments</a></div>
-            </div>
-            <div class="col-md-6 col-lg-4 mb-5">
-                <a asp-controller="Home" asp-action="sourcePage"><img src="~/images/sq_img_7.jpg" alt="Image" class="img-fluid rounded mb-4" /></a>
-                <h3>
-                    <a asp-controller="Home" asp-action="sourcePage" class="text-black font-weight-bold">7 Factors for Choosing Between Two Jobs</a>
-                </h3>
-                <div>April 15, 2019 <span class="mx-2">|</span> <a href="#">2 Comments</a></div>
-            </div>
-            <div class="col-md-6 col-lg-4 mb-5">
-                <a asp-controller="Home" asp-action="sourcePage"><img src="~/images/sq_img_5.jpg" alt="Image" class="img-fluid rounded mb-4" /></a>
-                <h3>
-                    <a asp-controller="Home" asp-action="sourcePage" class="text-black font-weight-bold">How to Write a Creative Cover Letter</a>
-                </h3>
-                <div>April 15, 2019 <span class="mx-2">|</span> <a href="#">2 Comments</a></div>
-            </div>
-            <div class="col-md-6 col-lg-4 mb-5">
-                <a asp-controller="Home" asp-action="sourcePage"><img src="~/images/sq_img_6.jpg" alt="Image" class="img-fluid rounded mb-4" /></a>
-                <h3>
-                    <a asp-controller="Home" asp-action="sourcePage" class="text-black font-weight-bold">The Right Way to Quit a Job You Started</a>
-                </h3>
-                <div>April 15, 2019 <span class="mx-2">|</span> <a href="#">2 Comments</a></div>
-            </div>
-        </div>
-        <div class="row pagination-wrap mt-5">
-            <div class="col-md-12 text-center">
-                <div class="custom-pagination ml-auto">
-                    <a href="#" class="prev">Prev</a>
-                    <div class="d-inline-block">
-                        <a href="#" class="active">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                    </div>
-                    <a href="#" class="next">Next</a>
+<div id="appVue">
+    <section class="section-hero overlay inner-page bg-image " style="background-image: url('/images/hero_1.jpg');"
+             id="home-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <h1 class="text-white font-weight-bold">文章分享</h1>
                 </div>
             </div>
+
         </div>
-    </div>
-</section>
+    </section>
+    <section class="site-section block__18514 pt-4" id="next-section">
+        <div class="container h-100">
+            <div class="row">
+                <!-- Below is sidebar -->
+                <div class="col-xs-12 col-md-10 col-lg-4 mt-lg-5">
+                    <nav class="navbar navbar-expand-lg navbar-light pl-lg-5 py-0">
+                        <!-- <a class="navbar-brand" href="#">Liya rescue</a> -->
+                        <button class="navbar-toggler mb-2" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto flex-column">
+                                <li class="nav-item px-1 mx-1">
+                                    <div class="head"></div>
+                                    <div class="mb-3 border navbar-nav box">
+                                        <div class="p-3 w-100">
+                                            <figure class="figure ml-2">
+                                                <img src="https://picsum.photos/250/250/?random=10"
+                                                     class="figure-img img-fuild rounded-circle  w-50  ">
+                                                <h3 class="display-6 slide-h3 mt-1">使用者 您好</h3>
+                                            </figure>
+                                            <div>手機:</div>
+                                            <div>信箱:</div>
+                                            <div class="item text-end align-content-end mb-0">
+                                                <div class="text-right mr-3 fw-bold">
+                                                    <a asp-controller="Home" asp-action="memberDetail">
+                                                        修改會員資料 <i class="fa-solid fa-chevron-right"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <div>履歷總數：</div>
+                                            <div>預設履歷：</div>
+                                            <div class="item input-group">
+                                                <div class="d-flex">
+                                                    <p class="mr-1"> 開放設定：</p>
+                                                    <div>
+                                                        <div class="input-group-prepend ">
+                                                            <input type="radio" name="CV" id="CVON"><span class="font-weight-normal text-body">開放履歷</span>
+                                                        </div>
+                                                        <div class="input-group-prepend ">
+                                                            <input type="radio" name="CV" id="CVOFF"><span class="font-weight-normal text-body">關閉履歷</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-block text-right">
+                                                <div class="text-right mr-3 fw-bold">
+                                                    <a asp-controller="Home" asp-action="CV">
+                                                        瀏覽所有履歷 <i class="fa-solid fa-chevron-right"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item px-1 mx-1">
+                                    <div class="head mt-4 "></div>
+                                    <div class="border p-4 box mb-6">
+                                        <ul class="list-unstyled block__47528 ">
+                                            <li><span class="active h2 ">購買課程</span></li>
+                                            <li class="text-left">前往課程頁面學習更多</li>
+                                            <div class="w-100 text-center">
+                                                <button class="h-50 w-auto btn slide-button btn-lg">
+                                                    <a asp-controller="Home" asp-action="courseDetail"
+                                                       class="">課程管理</a>
+                                                </button>
+                                            </div>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-item px-1 mx-1 mb-5">
+                                    <div class="head mt-4"></div>
+                                    <div class="border p-4 box mb-6 h-auto">
+                                        <ul class="list-unstyled block__47528 ">
+                                            <li><span class="active h2">廣告</span></li>
+                                            <figure class="w-100">
+                                                <img src="https://picsum.photos/100/100/?random=10" class="float-left mr-3">
+                                                <figcaption>
+                                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                                    Maxime, corrupti
+                                                    distinctio dolore repellat corporis nulla consequuntur nostrum
+                                                    laboriosam
+                                                    molestiae doloribus perspiciatis totam esse veritatis expedita,
+                                                    atque dicta,
+                                                    ullam necessitatibus exercitationem.
+                                                </figcaption>
+                                            </figure>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- </div> -->
+                    </nav>
+                    <!-- Above is sidebar -->
+
+                </div>
+
+                <section class="site-section col-lg-8 content mt-3 pt-lg-0 mt-lg-5 pb-2">
+                    <div class="container ">
+                        <div class="row mb-5  ">
+                            <!--The first article-->
+                            <div class="col-md-6 col-lg-4 mb-5 " v-for="data in datas">
+                                <a asp-controller="Home" asp-action="sourcePage"><img :src="data.img" alt="Image" class="img-fluid rounded mb-4" /></a>
+
+                                </a>
+                                <h3>
+                                    <a href="blog-single.html" class="text-black">{{data.title}}</a>
+                                </h3>
+                                <div>{{data.update}} <span class="mx-2">|</span> <a href="#">{{data.author}}</a></div>
+                            </div>
+                            <!--Article finish-->
+                        </div>
+                        <div class="row pagination-wrap mt-5">
+                            <div class="col-md-12 text-center">
+                                <div class="custom-pagination ml-auto">
+                                    <a href="#" class="prev">Prev</a>
+                                    <div class="d-inline-block">
+                                        <a href="#" class="active">1</a>
+                                        <a href="#">2</a>
+                                        <a href="#">3</a>
+                                        <a href="#">4</a>
+                                    </div>
+                                    <a href="#" class="next">Next</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+    </section>
+</div>
+@section Scripts{
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
+    <script>
+        const webApi = "https://localhost:7240"
+        const appVue = new Vue({
+            el: "#appVue",
+            name: "appVue",
+            data: {
+                datas: [],
+            },
+            mounted: function () {
+                let _this = this;
+                _this.Source();
+            },
+            methods: {
+                Source: function () {
+                    let _this = this;
+                    axios.get(`${webApi}/api/Articles`)
+                        .then(response => {
+                            appVue.datas = response.data;
+                            console.log(_this.datas);
+                        })
+                        .catch(err => console.log(err))
+                        .finally(console.log('完成'))
+                },
+            }
+        })
+    </script>
+    }

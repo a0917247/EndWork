@@ -6,13 +6,14 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using webapi.DTO;
 using webapi.Models;
 
 namespace webapi.Controllers
 {
     [EnableCors("AllowAny")]
-    [Route("api/[controller]")] //地址
+    [Route("api/[controller]")] //資訊傳遞使用
     [ApiController]
     public class PlatformsController : ControllerBase
     {
@@ -25,15 +26,14 @@ namespace webapi.Controllers
 
         // GET: api/Platforms
         [HttpGet]
-        public async Task<IEnumerable<PlatformDTO>> Get()
+        public async Task<IEnumerable<PlatformsDTO>> Get()
         {
-            var result = _context.Platform.Select(x => new PlatformDTO
+            var result = _context.Platform.Select(x => new PlatformsDTO
             {
                 ArticleName = x.ArticleName,
                 Contents = x.Contents,
             });
-
-            return await Task.FromResult(result);
+            return result;
         }
 
         // GET: api/Platforms/5
@@ -84,12 +84,20 @@ namespace webapi.Controllers
         // POST: api/Platforms
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Platform>> PostPlatform(Platform platform)
+        //public async Task<IEnumerable<PlatformsDTO>> PostPlatform(Platform platform)
+        public async Task<Platform> PostPlatform(PlatformsDTO platform)
         {
-            _context.Platform.Add(platform);
+            Platform pf = new Platform
+            {
+                ArticleName = platform.ArticleName,
+                Contents = platform.Contents,
+            };
+            _context.Platform.Add(pf);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPlatform", new { id = platform.ArticleId }, platform);
+            return pf;
+
+            //return CreatedAtAction("GetPlatform", new { id = platform.ArticleId }, platform);
         }
 
         // DELETE: api/Platforms/5
