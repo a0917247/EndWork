@@ -84,7 +84,7 @@
                                                 {{data.companyName}}
                                             </li>
                                             <li>
-                                                <a class="ml-3 font-weight-bold active" asp-area="" asp-controller="Home" asp-action="jobSingle">{{data.workName}}</a>
+                                                <a class="ml-3 font-weight-bold active" asp-area="" asp-controller="Home" asp-action="jobSingle" :id="data.vacancyId">{{data.workName}}</a>
                                             </li>
                                         </ul>
                                         <p class="ml-3 card-text">
@@ -162,7 +162,7 @@
                                         <i class="fa-solid fa-location-dot"></i><span class="fs-6 ml-2">{{data.workPlace}}</span>
                                     </div>
                                     <div class="py-1 d-lg-flex d-inline px-lg-0 px-sm-2">
-                                        <i class="fa-solid fa-users"></i><span class="fs-6 ml-2">人數還在資料庫</span>
+                                        <i class="fa-solid fa-users"></i><span class="fs-6 ml-2">{{data.employee}}人</span>
                                     </div>
                                     <!--<div class="py-1 d-lg-flex d-inline px-lg-0 px-sm-2">
                                         <i class="fa-solid fa-sack-dollar"></i><span class="fs-6 ml-2">{{data.salary}}</span>
@@ -352,8 +352,8 @@
                     let _this = this;
                     let name = _this.inputvalue.replace(/[\ !@@#$%^&*()_+|}{":?>~+\-*\/.';[\]\\]+/g, "");
                     let category = _this.selectedCategory;
-                    let adress = _this.selectedArea;
-                    let url = `${webApi}/api/vacancies?name=${name}&category=${category}&adress=${adress}`;
+                    let workplace = _this.selectedArea;
+                    let url = `${webApi}/api/vacancies?name=${name}&category=${category}&workplace=${workplace}`;
                     if (this.inputvalue == "" && this.selectedCategory == "" && this.selectedArea == "") {
                         _this.Vacancy();
                     }
