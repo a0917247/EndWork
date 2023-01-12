@@ -48,16 +48,7 @@
                 </div>
                 <div class="col-lg-1 col-md-1 col-sm-2">
                     <div>
-                        <a href="#"><i class="fa-solid x-mark">×</i></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 mt-lg-3 mt-md-2 text-sm-right">
-                    <div>
-                        <span class="fw-bold text-white">
-                            <a class="text-decoration-none text-white" asp-controller="Home" asp-action="memberDetail">
-                                修改會員資料 <i class="fa-solid fa-chevron-right"></i>
-                            </a>
-                        </span>
+                        <a href="#" @@click="clear"><i class="fa-solid x-mark">×</i></a>
                     </div>
                 </div>
             </div>
@@ -85,9 +76,6 @@
                                             </li>
                                             <li>
                                                 <a class="ml-3 font-weight-bold active" asp-area="" asp-controller="Home" asp-action="jobSingle" :id="data.vacancyId" v-on:click="jobsingle(data.vacancyId)">{{data.workName}}</a>
-                                            </li>
-                                            <li>
-                                                <a class="ml-3 font-weight-bold active" :id="data.vacancyId" v-on:click="jobsingle(data.vacancyId)">{{data.workName}}           1</a>
                                             </li>
                                         </ul>
                                         <p class="ml-3 card-text">
@@ -226,7 +214,7 @@
                                                 <figure class="figure ml-2">
                                                     <img src="https://picsum.photos/250/250/?random=10"
                                                          class="figure-img img-fuild rounded-circle  w-50  ">
-                                                    <h3 class="display-6 slide-h3 mt-1">使用者 您好</h3>
+                                                    <h3 class="display-6 slide-h3 mt-1">使用者! 你好</h3>
                                                 </figure>
                                                 <div>手機:</div>
                                                 <div>信箱:</div>
@@ -387,6 +375,11 @@
                             appVue.datas = res.data;
                         })
                 },
+                clear() {
+                    this.selectedCategory = '';
+                    this.selectedArea = '';
+                    this.inputvalue = '';
+                },
             },
             watch: {
                 picked: {
@@ -418,5 +411,6 @@
                 },
             }
         })
+
     </script>
 }

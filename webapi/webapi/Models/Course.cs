@@ -13,7 +13,7 @@ namespace webapi.Models
         public int? Price { get; set; }
         public DateTime? Addedtime { get; set; }
         public string CourseVideo { get; set; }
-        public string Img { get; set; }
+        public string img { get; set; }
         public string Keyword { get; set; }
         public string CourseReqire { get; set; }
         public string CourseIntro { get; set; }

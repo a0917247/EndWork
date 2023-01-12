@@ -1,4 +1,4 @@
-﻿<section class="section-hero overlay inner-page bg-image" style="background-image: url('~/images/hero_1.jpg');" id="home-section">
+﻿<section class="section-hero overlay inner-page bg-image" style="background-image: url('~/images/hero_1-1.jpg');" id="home-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-5">
@@ -33,391 +33,28 @@
 </section>
 
 <section class="site-section">
-    <div class="container">
+    <div class="container" id="appVue">
         <div class="row mb-5">
-            <div class="col-md-6 col-lg-3 mb-5">
+            <div class="card-group col-12 col-xl-3 col-md-6 mb-3" v-for="item in dataList">
                 <div class="card">
-                    <a asp-controller="Home" asp-action="courseDetail">
-                        <img src="/images/sq_img_1.jpg" alt="Image" class="img-fluid rounded mb-3">
+                    <a v-bind:href="'https://localhost:7158/Home/courseDetail?id='+item.courseId">
+                        <img :src="item.courseImg" alt="Image" class="img-fluid rounded mb-3">
                     </a>
                     <div class="card-body">
-                        <h4><a asp-controller="Home" asp-action="courseDetail" class="text-black">ASP.Net Core6.0 從放棄到堅持放棄</a></h4>
-                        <div class="card-contentstyle">
-                            <p class="text-content">時數600小時</p>
-                            <p class="text-content">同學49人</p>
-                            <div class="teacher-content">
-                                <a href="#">
-                                    <div>
-                                        <img src="/images/img_2.jpg" alt="" class="img-littlelogo">
-                                        <span class="teacher-name">Liao</span>
-                                    </div>
-                                </a>
-                                <div class="price-content">
-                                    <p>NT$ 4900</p>
-                                </div>
-                            </div>
-                        </div>
+                        <h4><a v-bind:href="'https://localhost:7158/Home/courseDetail?id='+item.courseId" class="text-black font-weight-bold">{{item.courseName}}</a></h4>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 mb-5">
-                <div class="card">
-                    <a asp-controller="Home" asp-action="courseDetail">
-                        <img src="/images/sq_img_1.jpg" alt="Image" class="img-fluid rounded mb-3">
-                    </a>
-                    <div class="card-body">
-                        <h4><a asp-controller="Home" asp-action="courseDetail" class="text-black">ASP.Net Core6.0 從放棄到堅持放棄</a></h4>
-                        <div class="card-contentstyle">
-                            <p class="text-content">時數600小時</p>
-                            <p class="text-content">同學49人</p>
-                            <div class="teacher-content">
-                                <a href="#">
-                                    <div>
-                                        <img src="/images/img_2.jpg" alt="" class="img-littlelogo">
-                                        <span class="teacher-name">Liao</span>
-                                    </div>
-                                </a>
-                                <div class="price-content">
-                                    <p>NT$ 4900</p>
+                    <div class="card-footer">
+                        <p class="text-content">時數{{item.courseLength}}小時</p>
+                        <p class="text-content">同學49人</p>
+                        <div class="teacher-content">
+                            <a href="#">
+                                <div>
+                                    <img :src="item.teacherImg" alt="" class="img-littlelogo">
+                                    <span class="teacher-name">{{item.teacherName}}</span>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>          <div class="col-md-6 col-lg-3 mb-5">
-                <div class="card">
-                    <a asp-controller="Home" asp-action="courseDetail">
-                        <img src="/images/sq_img_1.jpg" alt="Image" class="img-fluid rounded mb-3">
-                    </a>
-                    <div class="card-body">
-                        <h4><a asp-controller="Home" asp-action="courseDetail" class="text-black">ASP.Net Core6.0 從放棄到堅持放棄</a></h4>
-                        <div class="card-contentstyle">
-                            <p class="text-content">時數600小時</p>
-                            <p class="text-content">同學49人</p>
-                            <div class="teacher-content">
-                                <a href="#">
-                                    <div>
-                                        <img src="/images/img_2.jpg" alt="" class="img-littlelogo">
-                                        <span class="teacher-name">Liao</span>
-                                    </div>
-                                </a>
-                                <div class="price-content">
-                                    <p>NT$ 4900</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>          <div class="col-md-6 col-lg-3 mb-5">
-                <div class="card">
-                    <a asp-controller="Home" asp-action="courseDetail">
-                        <img src="/images/sq_img_1.jpg" alt="Image" class="img-fluid rounded mb-3">
-                    </a>
-                    <div class="card-body">
-                        <h4><a asp-controller="Home" asp-action="courseDetail" class="text-black">ASP.Net Core6.0 從放棄到堅持放棄</a></h4>
-                        <div class="card-contentstyle">
-                            <p class="text-content">時數600小時</p>
-                            <p class="text-content">同學49人</p>
-                            <div class="teacher-content">
-                                <a href="#">
-                                    <div>
-                                        <img src="/images/img_2.jpg" alt="" class="img-littlelogo">
-                                        <span class="teacher-name">Liao</span>
-                                    </div>
-                                </a>
-                                <div class="price-content">
-                                    <p>NT$ 4900</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>          <div class="col-md-6 col-lg-3 mb-5">
-                <div class="card">
-                    <a asp-controller="Home" asp-action="courseDetail">
-                        <img src="/images/sq_img_1.jpg" alt="Image" class="img-fluid rounded mb-3">
-                    </a>
-                    <div class="card-body">
-                        <h4><a asp-controller="Home" asp-action="courseDetail" class="text-black">ASP.Net Core6.0 從放棄到堅持放棄</a></h4>
-                        <div class="card-contentstyle">
-                            <p class="text-content">時數600小時</p>
-                            <p class="text-content">同學49人</p>
-                            <div class="teacher-content">
-                                <a href="#">
-                                    <div>
-                                        <img src="/images/img_2.jpg" alt="" class="img-littlelogo">
-                                        <span class="teacher-name">Liao</span>
-                                    </div>
-                                </a>
-                                <div class="price-content">
-                                    <p>NT$ 4900</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>          <div class="col-md-6 col-lg-3 mb-5">
-                <div class="card">
-                    <a asp-controller="Home" asp-action="courseDetail">
-                        <img src="/images/sq_img_1.jpg" alt="Image" class="img-fluid rounded mb-3">
-                    </a>
-                    <div class="card-body">
-                        <h4><a asp-controller="Home" asp-action="courseDetail" class="text-black">ASP.Net Core6.0 從放棄到堅持放棄</a></h4>
-                        <div class="card-contentstyle">
-                            <p class="text-content">時數600小時</p>
-                            <p class="text-content">同學49人</p>
-                            <div class="teacher-content">
-                                <a href="#">
-                                    <div>
-                                        <img src="/images/img_2.jpg" alt="" class="img-littlelogo">
-                                        <span class="teacher-name">Liao</span>
-                                    </div>
-                                </a>
-                                <div class="price-content">
-                                    <p>NT$ 4900</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>          <div class="col-md-6 col-lg-3 mb-5">
-                <div class="card">
-                    <a asp-controller="Home" asp-action="courseDetail">
-                        <img src="/images/sq_img_1.jpg" alt="Image" class="img-fluid rounded mb-3">
-                    </a>
-                    <div class="card-body">
-                        <h4><a asp-controller="Home" asp-action="courseDetail" class="text-black">ASP.Net Core6.0 從放棄到堅持放棄</a></h4>
-                        <div class="card-contentstyle">
-                            <p class="text-content">時數600小時</p>
-                            <p class="text-content">同學49人</p>
-                            <div class="teacher-content">
-                                <a href="#">
-                                    <div>
-                                        <img src="/images/img_2.jpg" alt="" class="img-littlelogo">
-                                        <span class="teacher-name">Liao</span>
-                                    </div>
-                                </a>
-                                <div class="price-content">
-                                    <p>NT$ 4900</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>          <div class="col-md-6 col-lg-3 mb-5">
-                <div class="card">
-                    <a asp-controller="Home" asp-action="courseDetail">
-                        <img src="/images/sq_img_1.jpg" alt="Image" class="img-fluid rounded mb-3">
-                    </a>
-                    <div class="card-body">
-                        <h4><a asp-controller="Home" asp-action="courseDetail" class="text-black">ASP.Net Core6.0 從放棄到堅持放棄</a></h4>
-                        <div class="card-contentstyle">
-                            <p class="text-content">時數600小時</p>
-                            <p class="text-content">同學49人</p>
-                            <div class="teacher-content">
-                                <a href="#">
-                                    <div>
-                                        <img src="/images/img_2.jpg" alt="" class="img-littlelogo">
-                                        <span class="teacher-name">Liao</span>
-                                    </div>
-                                </a>
-                                <div class="price-content">
-                                    <p>NT$ 4900</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 mb-5">
-                <div class="card">
-                    <a asp-controller="Home" asp-action="courseDetail">
-                        <img src="/images/sq_img_1.jpg" alt="Image" class="img-fluid rounded mb-3">
-                    </a>
-                    <div class="card-body">
-                        <h4><a asp-controller="Home" asp-action="courseDetail" class="text-black">ASP.Net Core6.0 從放棄到堅持放棄</a></h4>
-                        <div class="card-contentstyle">
-                            <p class="text-content">時數600小時</p>
-                            <p class="text-content">同學49人</p>
-                            <div class="teacher-content">
-                                <a href="#">
-                                    <div>
-                                        <img src="/images/img_2.jpg" alt="" class="img-littlelogo">
-                                        <span class="teacher-name">Liao</span>
-                                    </div>
-                                </a>
-                                <div class="price-content">
-                                    <p>NT$ 4900</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 mb-5">
-                <div class="card">
-                    <a asp-controller="Home" asp-action="courseDetail">
-                        <img src="/images/sq_img_1.jpg" alt="Image" class="img-fluid rounded mb-3">
-                    </a>
-                    <div class="card-body">
-                        <h4><a asp-controller="Home" asp-action="courseDetail" class="text-black">ASP.Net Core6.0 從放棄到堅持放棄</a></h4>
-                        <div class="card-contentstyle">
-                            <p class="text-content">時數600小時</p>
-                            <p class="text-content">同學49人</p>
-                            <div class="teacher-content">
-                                <a href="#">
-                                    <div>
-                                        <img src="/images/img_2.jpg" alt="" class="img-littlelogo">
-                                        <span class="teacher-name">Liao</span>
-                                    </div>
-                                </a>
-                                <div class="price-content">
-                                    <p>NT$ 4900</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>          <div class="col-md-6 col-lg-3 mb-5">
-                <div class="card">
-                    <a asp-controller="Home" asp-action="courseDetail">
-                        <img src="/images/sq_img_1.jpg" alt="Image" class="img-fluid rounded mb-3">
-                    </a>
-                    <div class="card-body">
-                        <h4><a asp-controller="Home" asp-action="courseDetail" class="text-black">ASP.Net Core6.0 從放棄到堅持放棄</a></h4>
-                        <div class="card-contentstyle">
-                            <p class="text-content">時數600小時</p>
-                            <p class="text-content">同學49人</p>
-                            <div class="teacher-content">
-                                <a href="#">
-                                    <div>
-                                        <img src="/images/img_2.jpg" alt="" class="img-littlelogo">
-                                        <span class="teacher-name">Liao</span>
-                                    </div>
-                                </a>
-                                <div class="price-content">
-                                    <p>NT$ 4900</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>          <div class="col-md-6 col-lg-3 mb-5">
-                <div class="card">
-                    <a asp-controller="Home" asp-action="courseDetail">
-                        <img src="/images/sq_img_1.jpg" alt="Image" class="img-fluid rounded mb-3">
-                    </a>
-                    <div class="card-body">
-                        <h4><a asp-controller="Home" asp-action="courseDetail" class="text-black">ASP.Net Core6.0 從放棄到堅持放棄</a></h4>
-                        <div class="card-contentstyle">
-                            <p class="text-content">時數600小時</p>
-                            <p class="text-content">同學49人</p>
-                            <div class="teacher-content">
-                                <a href="#">
-                                    <div>
-                                        <img src="/images/img_2.jpg" alt="" class="img-littlelogo">
-                                        <span class="teacher-name">Liao</span>
-                                    </div>
-                                </a>
-                                <div class="price-content">
-                                    <p>NT$ 4900</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>          <div class="col-md-6 col-lg-3 mb-5">
-                <div class="card">
-                    <a asp-controller="Home" asp-action="courseDetail">
-                        <img src="/images/sq_img_1.jpg" alt="Image" class="img-fluid rounded mb-3">
-                    </a>
-                    <div class="card-body">
-                        <h4><a asp-controller="Home" asp-action="courseDetail" class="text-black">ASP.Net Core6.0 從放棄到堅持放棄</a></h4>
-                        <div class="card-contentstyle">
-                            <p class="text-content">時數600小時</p>
-                            <p class="text-content">同學49人</p>
-                            <div class="teacher-content">
-                                <a href="#">
-                                    <div>
-                                        <img src="/images/img_2.jpg" alt="" class="img-littlelogo">
-                                        <span class="teacher-name">Liao</span>
-                                    </div>
-                                </a>
-                                <div class="price-content">
-                                    <p>NT$ 4900</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>          <div class="col-md-6 col-lg-3 mb-5">
-                <div class="card">
-                    <a asp-controller="Home" asp-action="courseDetail">
-                        <img src="/images/sq_img_1.jpg" alt="Image" class="img-fluid rounded mb-3">
-                    </a>
-                    <div class="card-body">
-                        <h4><a asp-controller="Home" asp-action="courseDetail" class="text-black">ASP.Net Core6.0 從放棄到堅持放棄</a></h4>
-                        <div class="card-contentstyle">
-                            <p class="text-content">時數600小時</p>
-                            <p class="text-content">同學49人</p>
-                            <div class="teacher-content">
-                                <a href="#">
-                                    <div>
-                                        <img src="/images/img_2.jpg" alt="" class="img-littlelogo">
-                                        <span class="teacher-name">Liao</span>
-                                    </div>
-                                </a>
-                                <div class="price-content">
-                                    <p>NT$ 4900</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>          <div class="col-md-6 col-lg-3 mb-5">
-                <div class="card">
-                    <a asp-controller="Home" asp-action="courseDetail">
-                        <img src="/images/sq_img_1.jpg" alt="Image" class="img-fluid rounded mb-3">
-                    </a>
-                    <div class="card-body">
-                        <h4><a asp-controller="Home" asp-action="courseDetail" class="text-black">ASP.Net Core6.0 從放棄到堅持放棄</a></h4>
-                        <div class="card-contentstyle">
-                            <p class="text-content">時數600小時</p>
-                            <p class="text-content">同學49人</p>
-                            <div class="teacher-content">
-                                <a href="#">
-                                    <div>
-                                        <img src="/images/img_2.jpg" alt="" class="img-littlelogo">
-                                        <span class="teacher-name">Liao</span>
-                                    </div>
-                                </a>
-                                <div class="price-content">
-                                    <p>NT$ 4900</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>          <div class="col-md-6 col-lg-3 mb-5">
-                <div class="card">
-                    <a asp-controller="Home" asp-action="courseDetail">
-                        <img src="/images/sq_img_1.jpg" alt="Image" class="img-fluid rounded mb-3">
-                    </a>
-                    <div class="card-body">
-                        <h4><a asp-controller="Home" asp-action="courseDetail" class="text-black">ASP.Net Core6.0 從放棄到堅持放棄</a></h4>
-                        <div class="card-contentstyle">
-                            <p class="text-content">時數600小時</p>
-                            <p class="text-content">同學49人</p>
-                            <div class="teacher-content">
-                                <a href="#">
-                                    <div>
-                                        <img src="/images/img_2.jpg" alt="" class="img-littlelogo">
-                                        <span class="teacher-name">Liao</span>
-                                    </div>
-                                </a>
-                                <div class="price-content">
-                                    <p>NT$ 4900</p>
-                                </div>
+                            </a>
+                            <div class="price-content">
+                                <p>NT$ {{item.price}}</p>
                             </div>
                         </div>
                     </div>
@@ -442,3 +79,35 @@
 
     </div>
 </section>
+
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script>
+        const webApi = "https://localhost:7240"
+        const appVue = new Vue({
+            el: "#appVue", // 綁定位置
+            name: "appVue",
+            data: {
+                dataList: [],
+            },
+            mounted: function () {
+                let _this = this;
+                _this.course();
+            },
+            methods: {
+                course: function () {
+                    let _this = this;
+                    axios.get(`${webApi}/api/Courses`) //地址
+                        .then(response => {
+                            console.log(response.data)
+                            _this.dataList = response.data;
+                            console.log(_this.datas)
+                        })
+                        .catch(err => console.log(err))
+                        .finally(console.log('完成'))
+                },
+            }
+        })
+    </script>
+}

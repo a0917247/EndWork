@@ -68,41 +68,90 @@
                     <!-- </div> -->
                 </nav>
             </div>
+
             <!-- Above is sidebar -->
-            <div class="col-lg-8 content mt-3 pt-lg-0 mt-lg-5 pb-2" id="appVue">
-                <form action="#" class="mx-0 box context p-4">
-                    <div class="row form-group ml-md-5">
-                        <h3 class="font-weight-bolder py-3">會員登錄</h3>
-                        <div class="col-md-12 mb-4">
-                            <label class="text-body h5" for="fname">帳號</label>
-                            <input type="text" id="fname" class="form-control col-md-7 col-12" placeholder="Email address" v-model="account">
+            <div class="col-lg-8 mt-lg-0 mt-5  mx-0 box context p-4 h-75">
+                <ul class="nav nav-tabs row" id="myTab" role="tablist">
+                    <li class="nav-item col-6 px-0 " role="presentation">
+                        <a class="nav-link active text-center w-100 border-bottom-0" id="candidate-tab" data-toggle="tab" href="#candidate" role="tab" data-bs-target="#candidate" aria-selected="true">求職登入</a>
+                    </li>
+                    <li class="nav-item  col-6 px-0 " role="presentation">
+                        <a class="nav-link text-center w-100 border-bottom-0" id="enterprise-tab" data-toggle="tab" href="#enterprise" role="tab" data-bs-target="#enterprise" aria-selected="true">徵才登入</a>
+                    </li>
+                </ul>
+
+
+                <div class="tab-content" id="appVue">
+                    <!-- Above is sidebar -->
+                    <!-- 求職端 -->
+
+                    <div class="tab-pane fade show active" id="candidate" role="tabpanel">
+                        <div class="col-lg-8 content mt-3 pt-lg-0 mt-lg-5 pb-2 w-100  mt-1 pl-5">
+
+                            <div class="row form-group ">
+                                <h3 class="font-weight-bolder py-3">求職登入</h3>
+                                <div class="col-12 mb-4">
+                                    <label class="text-body h5" for="fname">帳號</label>
+                                    <input type="text" class="form-control col-12" placeholder="Email address" v-model="Account">
+                                </div>
+                                <br><br>
+                                <div class="col-12 mb-3 mb-md-0">
+                                    <label class="text-body h5" for="fname">密碼</label>
+                                    <input type="text" class="form-control col-12" placeholder="Password" v-model="Password">
+                                </div>
+                            </div>
                         </div>
-                        <br><br>
-                        <div class="col-md-12 mb-3 mb-md-0">
-                            <label class="text-body h5" for="fname">密碼</label>
-                            <input type="password" id="fname" class="form-control col-md-7 col-12" placeholder="Password" v-model="password">
-                        </div>
-                    </div>
-                    <div class="row form-group text-right">
-                        <span class="ml-4 pl-5">
-                            <a href="" class="mr-3">忘記密碼</a>
-                            <a asp-controller="Home" asp-action="memberSignup" class="">註冊會員</a>
-                        </span>
-                            <div class="col-md-12 ">
+                        <div class="row form-group text-right mr-4">
+                            <span class="ml-4 pl-5">
+                                <a href="" class="mr-3">忘記密碼</a>
+                                <a asp-controller="Home" asp-action="memberSignup" class="">註冊會員</a>
+                            </span>
+                            <div class="col-12 w-100">
                                 <input type="submit" value="清除" class="btn px-4 slide-button m-2">
 
-                                <a asp-controller="Home" asp-action="memberCenter" class="btn btn-primary px-4 m-2">登入</a>
+                                <button class="btn btn-primary px-4 m-2 " @@click="Signin">登入</button>
                             </div>
-                        
+
+
+                        </div>
 
                     </div>
-                </form>
+
+                    <div class="tab-pane fade show " id="enterprise" role="tabpanel">
+                        <div class="col-lg-8 content mt-3 pt-lg-0 mt-lg-5 pb-2 w-100  mt-1 pl-5">
+
+                            <div class="row form-group ">
+                                <h3 class="font-weight-bolder py-3">徵才登入</h3>
+                                <div class="col-md-12 mb-4">
+                                    <label class="text-body h5" for="fname">帳號</label>
+                                    <input type="text" class="form-control  col-12" placeholder="Email address" v-model="EnpAccount">
+                                </div>
+                                <br><br>
+                                <div class="col-md-12 mb-3 mb-md-0">
+                                    <label class="text-body h5" for="fname">密碼</label>
+                                    <input type="text" class="form-control  col-12" placeholder="Password" v-model="EnpPassword">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group text-right mr-4">
+                            <span class="ml-4 pl-5">
+                                <a href="" class="mr-3">忘記密碼</a>
+                                <a asp-controller="Home" asp-action="memberSignup" class="">註冊會員</a>
+                            </span>
+                            <div class="col-12">
+                                <input type="submit" value="清除" class="btn px-4 slide-button m-2 ">
+
+                                <button class="btn btn-primary px-4 m-2" @@click="EnpSignin">登入</button>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
             </div>
-
-
         </div>
-    </div>
-   
 </section>
 
 @section Scripts{
@@ -117,8 +166,12 @@
             data: {
                 datas: [],
                 Id: null,
-                account: null,
-                password: null,
+                //求職端
+                Account: null,
+                Password: null,
+                //徵才端
+                EnpAccount: null,
+                EnpPassword: null
 
             },
             mounted: function () {
@@ -128,18 +181,46 @@
             methods: {
                 Signin: function () {
                     let _this = this;
-                    var inf = {};
-                    inf.Id = 0;
-                    inf.account = _this.account;
-                    inf.password = _this.password;
-                    axios.post(`${webApi}/api/LoginInformations`, inf)
+                    let login = {};
+                    login.Id = 0;
+                    login.Account = _this.Account;
+                    login.Password = _this.Password;
+                    axios.post(`${webApi}/api/Candidates/Login`, login)
                         .then(response => {
-                            window.location = "/Home/memberLogin";
+                            if (response.data.length > 0) {
+                                sessionStorage.setItem("Id", response.data[0].candidateId);
+                                sessionStorage.setItem("Name", response.data[0].name);
+                                window.location = "/Home/Index";
+                            }
+                            else {
+                                alert("帳號密碼輸入錯誤");
+                            }
+                        })
+                        .catch(err => console.log(err))
+                        .finally(console.log(response.data[0]))
+                },
+                EnpSignin: function () {
+                    let _this = this;
+                    let login = {};
+                    login.Id = 0;
+                    login.Account = _this.EnpAccount;
+                    login.Password = _this.EnpPassword;
+                    axios.post(`${webApi}/api/Enterprises/Login`, login)
+                        .then(response => {
+                            if (response.data.length > 0) {
+                                sessionStorage.setItem("Id", response.data[0].enterpriseId);
+                                sessionStorage.setItem("Name", response.data[0].name);
+                                window.location = "/Home/Index";
+                            }
+                            else {
+                                alert("帳號密碼輸入錯誤");
+                            }
                         })
                         .catch(err => console.log(err))
                         .finally(console.log('完成'))
                 },
-            }
+
+            },
         })
     </script>
     }
