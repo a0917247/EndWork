@@ -294,7 +294,8 @@
                     <div class="custom-pagination ml-auto">
                         <a href="#" class="prev">Prev</a>
                         <div class="d-inline-block" v-for="item in page">
-                            <a href="#" class="active" @@click="changepage(item)">{{item + 1}}</a>
+                            <a href="#" class="active" @@click="changepage(item)" v-if="item == tempitem">{{item + 1}}</a>
+                            <a href="#" @@click="changepage(item)" v-else>{{item + 1}}</a>
                         </div>
                         <a href="#" class="next">Next</a>
                     </div>
@@ -321,6 +322,7 @@
                 selectedCategory: "",
                 selectedArea: "",
                 temp: 0,
+                tempitem:0,
                 page: []
             },
             mounted: function () {
@@ -331,7 +333,7 @@
                     axios.get(`${webApi}/api/vacancies`)
                         .then(response => {
                             appVue.datas = response.data;
-                            this.temp = response.data.length; 
+                            this.temp = response.data.length;
                             this.countpage();
                             let arr = [];
                             for (let i = 0; i < 5; i++) {
@@ -358,6 +360,17 @@
                             .then(res => {
                                 this.datas = [];
                                 this.datas = res.data;
+                                this.temp = res.data.length;
+                                this.countpage();
+                                let arr = [];
+                                if (this.datas.length > 5) {
+                                    for (let i = 0; i < 5; i++) {
+                                        let item = {};
+                                        item = this.datas[i];
+                                        arr.push(item);
+                                    }
+                                    this.datas = arr;
+                                }
                             })
                         $('input').blur();
                     } else {
@@ -403,6 +416,7 @@
                     }
                 },//計算頁數
                 changepage(item) {
+                    this.tempitem = item;
                     let name = this.inputvalue.replace(/[\ !@@#$%^&*()_+|}{":?>~+\-*\/.';[\]\\]+/g, "");
                     let category = this.selectedCategory;
                     let workplace = this.selectedArea;
@@ -431,7 +445,7 @@
                                 this.datas = arr;
                             }
                         })
-                }
+                },
             },
             watch: {
                 picked: {
@@ -461,7 +475,8 @@
                     },
                     deep: true
                 },
-            }
+            },
+            
         })
 
     </script>
