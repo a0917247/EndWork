@@ -293,11 +293,8 @@
                 <div class="col-md-12 text-center">
                     <div class="custom-pagination ml-auto">
                         <a href="#" class="prev">Prev</a>
-                        <div class="d-inline-block">
-                            <a href="#" class="active">1</a>
-                            <a href="#">2</a>
-                            <a href="#">3</a>
-                            <a href="#">4</a>
+                        <div class="d-inline-block" v-for="item in page">
+                            <a href="#" class="active" @@click="changepage(item)">{{item + 1}}</a>
                         </div>
                         <a href="#" class="next">Next</a>
                     </div>
@@ -318,23 +315,31 @@
             name: "appVue",
             data: {
                 datas: [],
-                inputvalue: "", //第八行
+                inputvalue: "",
                 picked: "職缺",
                 boolean: false,
                 selectedCategory: "",
-                selectedArea: ""
+                selectedArea: "",
+                temp: 0,
+                page: []
             },
             mounted: function () {
-                let _this = this;
-                _this.Vacancy();
+                this.Vacancy();
             },
             methods: {
                 Vacancy: function () {
-                    let _this = this;
                     axios.get(`${webApi}/api/vacancies`)
                         .then(response => {
                             appVue.datas = response.data;
-                            console.log(appVue.datas);
+                            this.temp = response.data.length; 
+                            this.countpage();
+                            let arr = [];
+                            for (let i = 0; i < 5; i++) {
+                                let item = {};
+                                item = this.datas[i];
+                                arr.push(item);
+                            }
+                            this.datas = arr;
                         })
                         .catch(err => console.log(err))
                         .finally(console.log('完成'))
@@ -343,17 +348,16 @@
                     window.localStorage.removeItem("vanId");
                     window.localStorage.setItem("vanId", vacancyId);
                     let key = window.localStorage.getItem("vanId");
-                    console.log('跳轉頁面');
+                    console.log('跳轉頁面'); //從這裡開始寫
                     //window.location = "/Home/jobSingle";
                 },
                 add() {
-                    const _this = this;
                     if (this.inputvalue) {
-                        let name = _this.inputvalue.replace(/[\ !@@#$%^&*()_+|}{":?>~+\-*\/.';[\]\\]+/g, "");
+                        let name = this.inputvalue.replace(/[\ !@@#$%^&*()_+|}{":?>~+\-*\/.';[\]\\]+/g, "");
                         axios.get(`${webApi}/api/vacancies?name=${name}`)
                             .then(res => {
-                                appVue.datas = [];
-                                appVue.datas = res.data;
+                                this.datas = [];
+                                this.datas = res.data;
                             })
                         $('input').blur();
                     } else {
@@ -361,18 +365,25 @@
                     }
                 },
                 search() {
-                    let _this = this;
-                    let name = _this.inputvalue.replace(/[\ !@@#$%^&*()_+|}{":?>~+\-*\/.';[\]\\]+/g, "");
-                    let category = _this.selectedCategory;
-                    let workplace = _this.selectedArea;
+                    let name = this.inputvalue.replace(/[\ !@@#$%^&*()_+|}{":?>~+\-*\/.';[\]\\]+/g, "");
+                    let category = this.selectedCategory;
+                    let workplace = this.selectedArea;
                     let url = `${webApi}/api/vacancies?name=${name}&category=${category}&workplace=${workplace}`;
-                    if (this.inputvalue == "" && this.selectedCategory == "" && this.selectedArea == "") {
-                        _this.Vacancy();
-                    }
                     axios.get(url)
                         .then(res => {
-                            appVue.datas = [];
-                            appVue.datas = res.data;
+                            this.datas = [];
+                            this.datas = res.data;
+                            this.temp = res.data.length;
+                            this.countpage();
+                            let arr = [];
+                            if (this.datas.length > 5) {
+                                for (let i = 0; i < 5; i++) {
+                                    let item = {};
+                                    item = this.datas[i];
+                                    arr.push(item);
+                                }
+                                this.datas = arr;
+                            }
                         })
                 },
                 clear() {
@@ -380,6 +391,47 @@
                     this.selectedArea = '';
                     this.inputvalue = '';
                 },
+                countpage() {
+                    this.page = [];
+                    if (this.temp % 5 == 0) {
+                        this.temp = this.temp / 5;
+                    } else {
+                        this.temp = Math.floor(this.temp / 5) + 1;
+                    }
+                    for (let i = 0; i < this.temp; i++) {
+                        this.page[i] = i;
+                    }
+                },//計算頁數
+                changepage(item) {
+                    let name = this.inputvalue.replace(/[\ !@@#$%^&*()_+|}{":?>~+\-*\/.';[\]\\]+/g, "");
+                    let category = this.selectedCategory;
+                    let workplace = this.selectedArea;
+                    let url = `${webApi}/api/vacancies?name=${name}&category=${category}&workplace=${workplace}`;
+                    axios.get(url)
+                        .then(res => {
+                            appVue.datas = [];
+                            appVue.datas = res.data;
+                            this.temp = res.data.length;
+                            this.countpage();
+                            let arr = [];
+                            if ((item + 1) == this.page.length) {
+                                for (let i = item * 5; i < this.datas.length; i++) {
+                                    let item = {};
+                                    item = this.datas[i];
+                                    arr.push(item);
+                                }
+                                this.datas = arr;
+                            }
+                            else {
+                                for (let i = item * 5; i < (item + 1) * 5; i++) {
+                                    let item = {};
+                                    item = this.datas[i];
+                                    arr.push(item);
+                                }
+                                this.datas = arr;
+                            }
+                        })
+                }
             },
             watch: {
                 picked: {
