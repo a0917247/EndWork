@@ -302,13 +302,13 @@
         const appVue = new Vue({
             el: "#appVue",
             name: "appVue",
-            data:{
-                datas:[],
+            data: {
+                datas: [],
             },
-            mounted:function(){
+            mounted: function () {
                 this.Vacancy();
             },
-            methods:{
+            methods: {
                 Vacancy: function () {
                     //vanId => id;
                     let key = window.localStorage.getItem("vanId")

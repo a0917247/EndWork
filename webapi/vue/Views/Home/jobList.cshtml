@@ -292,12 +292,12 @@
             <div class="row pagination-wrap mt-5">
                 <div class="col-md-12 text-center">
                     <div class="custom-pagination ml-auto">
-                        <a href="#" class="prev">Prev</a>
+                        <a href="#" class="prev" @@click="prev">Prev</a>
                         <div class="d-inline-block" v-for="item in page">
                             <a href="#" class="active" @@click="changepage(item)" v-if="item == tempitem">{{item + 1}}</a>
                             <a href="#" @@click="changepage(item)" v-else>{{item + 1}}</a>
                         </div>
-                        <a href="#" class="next">Next</a>
+                        <a href="#" class="next" @@click="next">Next</a>
                     </div>
                 </div>
             </div>
@@ -322,39 +322,22 @@
                 selectedCategory: "",
                 selectedArea: "",
                 temp: 0,
-                tempitem:0,
+                tempitem: 0,
                 page: []
             },
             mounted: function () {
-                this.Vacancy();
+                this.search();
             },
             methods: {
-                Vacancy: function () {
-                    this.tempitem = 0;
-                    axios.get(`${webApi}/api/vacancies`)
-                        .then(response => {
-                            appVue.datas = response.data;
-                            this.temp = response.data.length;
-                            this.countpage();
-                            let arr = [];
-                            for (let i = 0; i < 5; i++) {
-                                let item = {};
-                                item = this.datas[i];
-                                arr.push(item);
-                            }
-                            this.datas = arr;
-                        })
-                        .catch(err => console.log(err))
-                        .finally(console.log('完成'))
-                },
                 jobsingle: function (vacancyId) {
                     window.localStorage.removeItem("vanId");
                     window.localStorage.setItem("vanId", vacancyId);
                     //let key = window.localStorage.getItem("vanId");
                     window.location = "/Home/jobSingle";
                 },
-                add() {
+                add: function () {
                     if (this.inputvalue) {
+                        this.tempitem = 0;
                         let name = this.inputvalue.replace(/[\ !@@#$%^&*()_+|}{":?>~+\-*\/.';[\]\\]+/g, "");
                         axios.get(`${webApi}/api/vacancies?name=${name}&category=${category}&workplace=${workplace}`)
                             .then(res => {
@@ -372,7 +355,6 @@
                                     this.datas = arr;
                                 }
                             })
-                        this.tempitem = 0;
                         $('input').blur();
                     } else {
                         $('input').blur();
@@ -400,6 +382,8 @@
                                 this.datas = arr;
                             }
                         })
+                        .catch(err => console.log(err))
+                        .finally(console.log('完成'))
                 },
                 clear() {
                     this.selectedCategory = '';
@@ -448,6 +432,26 @@
                             }
                         })
                 },
+                prev() {
+                    let item = this.tempitem;
+                    item++;
+                    if (item != 0) {
+                        item--;
+                        this.changepage(item);
+                    } else {
+                        item == 0
+                    }
+                },
+                next() {
+                    let item = this.tempitem;
+                    item++;
+                    if (item != this.page.length) {
+                        item++;
+                        this.changepage(item);
+                    } else {
+                        item = this.page.length
+                    }
+                }
             },
             watch: {
                 picked: {
@@ -463,7 +467,8 @@
                     handler(newval) {
                         this.search();
                     },
-                    deep: true
+                    deep: true,
+                    immediate: true,
                 },
                 selectedCategory: {
                     handler(newval) {
@@ -478,7 +483,7 @@
                     deep: true
                 },
             },
-            
+
         })
 
     </script>
