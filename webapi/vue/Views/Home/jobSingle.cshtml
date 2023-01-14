@@ -1,293 +1,326 @@
 ﻿    <!-- HOME start-->
-<section class="section-hero overlay inner-page bg-image " style="background-image: url('/images/hero_1.jpg');"
-         id="home-section">
-    <div class="container">
-        <div class="row mt-1 job-row d-flex justify-content-center">
-            <div class="col-12 col-lg-5 col-md-6 col-sm-6 text-center">
-                <input type="text" class="form-control">
+<div id="appVue">
+    <section class="section-hero overlay inner-page bg-image " style="background-image: url('/images/hero_1.jpg');"
+             id="home-section">
+        <div class="container">
+            <div class="row mt-1 job-row d-flex justify-content-center">
+                <div class="col-12 col-lg-5 col-md-6 col-sm-6 text-center">
+                    <input type="text" class="form-control">
+                </div>
+                <div class="col-12 col-lg-1 col-md-1 col-sm-4 mr-lg-5 d-flex">
+                    <a href="#">
+                        <button class="btn btn-primary"><i class="fa-solid fa-magnifying-glass ml-4 mr-4"></i></button>
+                    </a>
+                </div>
+                <div class="wrapper col-12 col-lg-3 d-flex col-md-6 justify-content-center text-center">
+                    <input type="radio" name="select" id="option-1" checked>
+                    <input type="radio" name="select" id="option-2">
+                    <label for="option-1" class="option option-1">
+                        <div class="dot"></div>
+                        <span>職缺</span>
+                    </label>
+                    <label for="option-2" class="option option-2">
+                        <div class="dot"></div>
+                        <span>公司</span>
+                    </label>
+                </div>
             </div>
-            <div class="col-12 col-lg-1 col-md-1 col-sm-4 mr-lg-5 d-flex">
-                <a href="#">
-                    <button class="btn btn-primary"><i class="fa-solid fa-magnifying-glass ml-4 mr-4"></i></button>
-                </a>
-            </div>
-            <div class="wrapper col-12 col-lg-3 d-flex col-md-6 justify-content-center text-center">
-                <input type="radio" name="select" id="option-1" checked>
-                <input type="radio" name="select" id="option-2">
-                <label for="option-1" class="option option-1">
-                    <div class="dot"></div>
-                    <span>職缺</span>
-                </label>
-                <label for="option-2" class="option option-2">
-                    <div class="dot"></div>
-                    <span>公司</span>
-                </label>
+            <div class="row mt-1 job-row2 d-flex justify-content-center">
+                <div class="col-lg-3 col-md-6 ">
+                    <div class="form-group">
+                        <select name="cause-category" class="form-control cause-category">
+                            <option value="0">行業別</option>
+                            <option value="1">服務業</option>
+                            <option value="2">商業</option>
+                            <option value="3">科技</option>
+                            <option value="4">製造</option>
+                            <option value="5">法律保險</option>
+                            <option value="6">藝文</option>
+                            <option value="7">餐飲</option>
+                            <option value="8">農林漁牧</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="form-group">
+                        <select name="cause-category" class="form-control cause-category">
+                            <option value="0">地區</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-2">
+                    <div>
+                        <a href="#">
+                            <p class="fa-solid x-mark">×</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 mt-lg-3 mt-md-2 text-sm-right">
+                    <div>
+                        <span class="fw-bold text-white">
+                            <a asp-controller="Home" asp-action="memberDetail" class="text-decoration-none text-white">
+                                修改會員資料<i class="fa-solid fa-chevron-right"></i>
+                            </a>
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row mt-1 job-row2 d-flex justify-content-center">
-            <div class="col-lg-3 col-md-6 ">
-                <div class="form-group">
-                    <select name="cause-category" class="form-control cause-category">
-                        <option value="0">行業別</option>
-                        <option value="1">服務業</option>
-                        <option value="2">商業</option>
-                        <option value="3">科技</option>
-                        <option value="4">製造</option>
-                        <option value="5">法律保險</option>
-                        <option value="6">藝文</option>
-                        <option value="7">餐飲</option>
-                        <option value="8">農林漁牧</option>
-                    </select>
+    </section>
+    <!-- home end -->
+
+    <section class="site-section">
+        <div class="container">
+            <div class="row align-items-center mb-5 context">
+                <div class="col-lg-8 mb-4 mb-lg-0">
+                    <div class="d-sm-flex xs-row align-items-center ">
+                        <figure class="figure p-2 d-inline-block mr-3 rounded col-xs-12">
+                            <img src="~/images/job_logo_5.jpg" alt="Image">
+                        </figure>
+                        <div class="job-context mt-3 col-xs-12">
+                            <h3 class="slide-h3 active">Firmware Engineer, Battery and Charging, Google Pixel</h3>
+                            <h4 class="ml-1d-flex row mt-2 ml-1">Google Taiwan</h4>
+                            <div class="row">
+                                <div class="pr-5 col-lg-4 col-md-6 col-12">
+                                    <i class="fa-regular fa-clock"></i><span class="fs-6 ml-2">幾小時前更新</span>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-12">
+                                    <i class="fa-solid fa-quote-left"></i><span class="fs-6 ml-2">科技</span>
+                                </div>
+                            </div>
+                            <div class="mt-lg-5 mt-3 mb-4">
+                                <p class="h5 text-black">月薪</p>
+                                <h2>NT$ 35000-38000</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="right col-12 mt-3 ml-2 ml-lg-o ml-sm-4 xs-row">
+                        <div class="py-1 d-lg-flex d-inline px-lg-0 px-sm-2">
+                            <i class="fa-solid fa-user"></i><span class="fs-6 ml-2">全職</span>
+                        </div>
+                        <div class="py-1 d-lg-flex d-inline px-lg-0 px-sm-2">
+                            <i class="fa-solid fa-location-dot"></i><span class="fs-6 ml-2">新北市</span>
+                        </div>
+                        <div class="py-1 d-lg-flex d-inline px-lg-0 px-sm-2">
+                            <i class="fa-solid fa-briefcase"></i><span class="fs-6 ml-2">不限年資</span>
+                        </div>
+                    </div>
+                    <div class="row justify-content-lg-start ml-lg-4 justify-content-end mr-5 mb-3">
+                        <div class=" my-2">
+                            <a href="#">
+                                <button class="btn btn-dark mx-1 btn-JS">
+                                    <i class="fa-regular fa-bookmark"></i><span class="ml-2">儲存</span>
+                                </button>
+                            </a>
+                        </div>
+                        <div class="my-2">
+                            <a href="job-apply.html">
+                                <button class="btn btn-primary mx-1 btn-JS">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i><span class="ml-2">立即應徵</span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="form-group">
-                    <select name="cause-category" class="form-control cause-category">
-                        <option value="0">地區</option>
-                    </select>
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+                    <div class="mb-5 mt-5">
+                        <h3 class="h5 d-flex align-items-center mb-4 text-primary">
+                            <span class="icon-align-left mr-3"></span>工作內容
+                        </h3>
+                        <ul class="list-unstyled m-0 p-0">
+                            <li class="d-flex align-items-start mb-2">
+                                <span class="icon-check_circle mr-2 text-muted"></span><span>Necessitatibus quibusdam facilis</span>
+                            </li>
+                            <li class="d-flex align-items-start mb-2">
+                                <span class="icon-check_circle mr-2 text-muted"></span><span>
+                                    Velit unde aliquam et voluptas reiciendis n
+                                    Velit unde aliquam et voluptas reiciendis non sapiente labore
+                                </span>
+                            </li>
+                            <li class="d-flex align-items-start mb-2">
+                                <span class="icon-check_circle mr-2 text-muted"></span><span>Commodi quae ipsum quas est itaque</span>
+                            </li>
+                            <li class="d-flex align-items-start mb-2">
+                                <span class="icon-check_circle mr-2 text-muted"></span><span>
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipisicing elit
+                                </span>
+                            </li>
+                            <li class="d-flex align-items-start mb-2">
+                                <span class="icon-check_circle mr-2 text-muted"></span><span>
+                                    Deleniti asperiores blanditiis nihil quia
+                                    officiis dolor
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-5">
+                        <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-book mr-3"></span>條件要求</h3>
+                        <ul class="list-unstyled m-0 p-0">
+                            <li class="d-flex align-items-start mb-2">
+                                <span class="icon-check_circle mr-2 text-muted"></span><span>Necessitatibus quibusdam facilis</span>
+                            </li>
+                            <li class="d-flex align-items-start mb-2">
+                                <span class="icon-check_circle mr-2 text-muted"></span><span>
+                                    Velit unde aliquam et voluptas reiciendis non
+                                    sapiente labore
+                                </span>
+                            </li>
+                            <li class="d-flex align-items-start mb-2">
+                                <span class="icon-check_circle mr-2 text-muted"></span><span>Commodi quae ipsum quas est itaque</span>
+                            </li>
+                            <li class="d-flex align-items-start mb-2">
+                                <span class="icon-check_circle mr-2 text-muted"></span><span>
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipisicing elit
+                                </span>
+                            </li>
+                            <li class="d-flex align-items-start mb-2">
+                                <span class="icon-check_circle mr-2 text-muted"></span><span>
+                                    Deleniti asperiores blanditiis nihil quia
+                                    officiis dolor
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-5">
+                        <h3 class="h5 d-flex align-items-center mb-4 text-primary">
+                            <span class="icon-turned_in mr-3"></span>公司福利
+                        </h3>
+                        <ul class="list-unstyled m-0 p-0">
+                            <li class="d-flex align-items-start mb-2">
+                                <span class="icon-check_circle mr-2 text-muted"></span><span>Necessitatibus quibusdam facilis</span>
+                            </li>
+                            <li class="d-flex align-items-start mb-2">
+                                <span class="icon-check_circle mr-2 text-muted"></span><span>
+                                    Velit unde aliquam et voluptas reiciendis non
+                                    sapiente labore
+                                </span>
+                            </li>
+                            <li class="d-flex align-items-start mb-2">
+                                <span class="icon-check_circle mr-2 text-muted"></span><span>Commodi quae ipsum quas est itaque</span>
+                            </li>
+                            <li class="d-flex align-items-start mb-2">
+                                <span class="icon-check_circle mr-2 text-muted"></span><span>
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipisicing elit
+                                </span>
+                            </li>
+                            <li class="d-flex align-items-start mb-2">
+                                <span class="icon-check_circle mr-2 text-muted"></span><span>
+                                    Deleniti asperiores blanditiis nihil quia
+                                    officiis dolor
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-5">
+                        <h3 class="h5 d-flex align-items-center mb-4 text-primary"><i class="fa-solid fa-phone mr-3"></i>聯絡方式</h3>
+                        <ul class="list-unstyled m-0 p-0">
+                            <li class="d-flex align-items-start mb-2">
+                                <span class="icon-check_circle mr-2 text-muted"></span><span>Necessitatibus quibusdam facilis</span>
+                            </li>
+                            <li class="d-flex align-items-start mb-2">
+                                <span class="icon-check_circle mr-2 text-muted"></span><span>
+                                    Velit unde aliquam et voluptas reiciendis non
+                                    sapiente labore
+                                </span>
+                            </li>
+                            <li class="d-flex align-items-start mb-2">
+                                <span class="icon-check_circle mr-2 text-muted"></span><span>Commodi quae ipsum quas est itaque</span>
+                            </li>
+                            <li class="d-flex align-items-start mb-2">
+                                <span class="icon-check_circle mr-2 text-muted"></span><span>
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipisicing elit
+                                </span>
+                            </li>
+                            <li class="d-flex align-items-start mb-2">
+                                <span class="icon-check_circle mr-2 text-muted"></span><span>
+                                    Deleniti asperiores blanditiis nihil quia
+                                    officiis dolor
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
+                <div class="col-lg-4">
+                    <div class="bg-light p-3 border rounded mb-4">
+                        <h3 class="text-primary  mt-3 h5 pl-3 mb-3 "><i class="fa-solid fa-building m"></i>公司簡介</h3>
+                        <ul class="list-unstyled pl-3 mb-0">
+                            <li class="mb-2"><strong class="text-black">Published on:</strong> April 14, 2019</li>
+                            <li class="mb-2"><strong class="text-black">Vacancy:</strong> 20</li>
+                            <li class="mb-2"><strong class="text-black">Employment Status:</strong> Full-time</li>
+                            <li class="mb-2"><strong class="text-black">Experience:</strong> 2 to 3 year(s)</li>
+                            <li class="mb-2"><strong class="text-black">Job Location:</strong> New ork City</li>
+                            <li class="mb-2"><strong class="text-black">Salary:</strong> $60k - $100k</li>
+                            <li class="mb-2"><strong class="text-black">Gender:</strong> Any</li>
+                            <li class="mb-2"><strong class="text-black">Application Deadline:</strong> April 28, 2019</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-light p-3 border rounded block-19999">
+                        <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Share</h3>
+                        <div class="px-3">
+                            <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-facebook"></span></a>
+                            <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-twitter"></span></a>
+                            <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-linkedin"></span></a>
+                            <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-pinterest"></span></a>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
-            <div class="col-lg-1 col-md-1 col-sm-2">
-                <div>
-                    <a href="#">
-                        <p class="fa-solid x-mark">×</p>
+            <div class="row mb-5 mt-5 justify-content-center">
+                <div class="col-6 col-lg-4">
+                    <a href="#" class="btn btn-block btn-dark btn-md"><i class="fa-regular fa-bookmark mr-3"></i></span>儲存</a>
+                </div>
+                <div class="col-6 col-lg-4">
+                    <a href="job-apply.html" class="btn btn-block btn-primary btn-md">
+                        <i class="fa-solid fa-arrow-up-right-from-square mr-3"></i>立即應徵
                     </a>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-3 mt-lg-3 mt-md-2 text-sm-right">
-                <div>
-                    <span class="fw-bold text-white">
-                        <a asp-controller="Home" asp-action="memberDetail" class="text-decoration-none text-white">
-                            修改會員資料<i class="fa-solid fa-chevron-right"></i>
-                        </a>
-                    </span>
-                </div>
-            </div>
         </div>
-    </div>
-</section>
-<!-- home end -->
+    </section>
+</div>
+@section Scripts{
 
-<section class="site-section">
-    <div class="container">
-        <div class="row align-items-center mb-5 context">
-            <div class="col-lg-8 mb-4 mb-lg-0">
-                <div class="d-sm-flex xs-row align-items-center ">
-                    <figure class="figure p-2 d-inline-block mr-3 rounded col-xs-12">
-                        <img src="~/images/job_logo_5.jpg" alt="Image">
-                    </figure>
-                    <div class="job-context mt-3 col-xs-12">
-                        <h3 class="slide-h3 active">Firmware Engineer, Battery and Charging, Google Pixel</h3>
-                        <h4 class="ml-1d-flex row mt-2 ml-1">Google Taiwan</h4>
-                        <div class="row">
-                            <div class="pr-5 col-lg-4 col-md-6 col-12">
-                                <i class="fa-regular fa-clock"></i><span class="fs-6 ml-2">幾小時前更新</span>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-12">
-                                <i class="fa-solid fa-quote-left"></i><span class="fs-6 ml-2">科技</span>
-                            </div>
-                        </div>
-                        <div class="mt-lg-5 mt-3 mb-4">
-                            <p class="h5 text-black">月薪</p>
-                            <h2>NT$ 35000-38000</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="right col-12 mt-3 ml-2 ml-lg-o ml-sm-4 xs-row">
-                    <div class="py-1 d-lg-flex d-inline px-lg-0 px-sm-2">
-                        <i class="fa-solid fa-user"></i><span class="fs-6 ml-2">全職</span>
-                    </div>
-                    <div class="py-1 d-lg-flex d-inline px-lg-0 px-sm-2">
-                        <i class="fa-solid fa-location-dot"></i><span class="fs-6 ml-2">新北市</span>
-                    </div>
-                    <div class="py-1 d-lg-flex d-inline px-lg-0 px-sm-2">
-                        <i class="fa-solid fa-briefcase"></i><span class="fs-6 ml-2">不限年資</span>
-                    </div>
-                </div>
-                <div class="row justify-content-lg-start ml-lg-4 justify-content-end mr-5 mb-3">
-                    <div class=" my-2">
-                        <a href="#">
-                            <button class="btn btn-dark mx-1 btn-JS">
-                                <i class="fa-regular fa-bookmark"></i><span class="ml-2">儲存</span>
-                            </button>
-                        </a>
-                    </div>
-                    <div class="my-2">
-                        <a href="job-apply.html">
-                            <button class="btn btn-primary mx-1 btn-JS">
-                                <i class="fa-solid fa-arrow-up-right-from-square"></i><span class="ml-2">立即應徵</span>
-                            </button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-7">
-                <div class="mb-5 mt-5">
-                    <h3 class="h5 d-flex align-items-center mb-4 text-primary">
-                        <span class="icon-align-left mr-3"></span>工作內容
-                    </h3>
-                    <ul class="list-unstyled m-0 p-0">
-                        <li class="d-flex align-items-start mb-2">
-                            <span class="icon-check_circle mr-2 text-muted"></span><span>Necessitatibus quibusdam facilis</span>
-                        </li>
-                        <li class="d-flex align-items-start mb-2">
-                            <span class="icon-check_circle mr-2 text-muted"></span><span>
-                                Velit unde aliquam et voluptas reiciendis n
-                                Velit unde aliquam et voluptas reiciendis non sapiente labore
-                            </span>
-                        </li>
-                        <li class="d-flex align-items-start mb-2">
-                            <span class="icon-check_circle mr-2 text-muted"></span><span>Commodi quae ipsum quas est itaque</span>
-                        </li>
-                        <li class="d-flex align-items-start mb-2">
-                            <span class="icon-check_circle mr-2 text-muted"></span><span>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit
-                            </span>
-                        </li>
-                        <li class="d-flex align-items-start mb-2">
-                            <span class="icon-check_circle mr-2 text-muted"></span><span>
-                                Deleniti asperiores blanditiis nihil quia
-                                officiis dolor
-                            </span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="mb-5">
-                    <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-book mr-3"></span>條件要求</h3>
-                    <ul class="list-unstyled m-0 p-0">
-                        <li class="d-flex align-items-start mb-2">
-                            <span class="icon-check_circle mr-2 text-muted"></span><span>Necessitatibus quibusdam facilis</span>
-                        </li>
-                        <li class="d-flex align-items-start mb-2">
-                            <span class="icon-check_circle mr-2 text-muted"></span><span>
-                                Velit unde aliquam et voluptas reiciendis non
-                                sapiente labore
-                            </span>
-                        </li>
-                        <li class="d-flex align-items-start mb-2">
-                            <span class="icon-check_circle mr-2 text-muted"></span><span>Commodi quae ipsum quas est itaque</span>
-                        </li>
-                        <li class="d-flex align-items-start mb-2">
-                            <span class="icon-check_circle mr-2 text-muted"></span><span>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit
-                            </span>
-                        </li>
-                        <li class="d-flex align-items-start mb-2">
-                            <span class="icon-check_circle mr-2 text-muted"></span><span>
-                                Deleniti asperiores blanditiis nihil quia
-                                officiis dolor
-                            </span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="mb-5">
-                    <h3 class="h5 d-flex align-items-center mb-4 text-primary">
-                        <span class="icon-turned_in mr-3"></span>公司福利
-                    </h3>
-                    <ul class="list-unstyled m-0 p-0">
-                        <li class="d-flex align-items-start mb-2">
-                            <span class="icon-check_circle mr-2 text-muted"></span><span>Necessitatibus quibusdam facilis</span>
-                        </li>
-                        <li class="d-flex align-items-start mb-2">
-                            <span class="icon-check_circle mr-2 text-muted"></span><span>
-                                Velit unde aliquam et voluptas reiciendis non
-                                sapiente labore
-                            </span>
-                        </li>
-                        <li class="d-flex align-items-start mb-2">
-                            <span class="icon-check_circle mr-2 text-muted"></span><span>Commodi quae ipsum quas est itaque</span>
-                        </li>
-                        <li class="d-flex align-items-start mb-2">
-                            <span class="icon-check_circle mr-2 text-muted"></span><span>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit
-                            </span>
-                        </li>
-                        <li class="d-flex align-items-start mb-2">
-                            <span class="icon-check_circle mr-2 text-muted"></span><span>
-                                Deleniti asperiores blanditiis nihil quia
-                                officiis dolor
-                            </span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="mb-5">
-                    <h3 class="h5 d-flex align-items-center mb-4 text-primary"><i class="fa-solid fa-phone mr-3"></i>聯絡方式</h3>
-                    <ul class="list-unstyled m-0 p-0">
-                        <li class="d-flex align-items-start mb-2">
-                            <span class="icon-check_circle mr-2 text-muted"></span><span>Necessitatibus quibusdam facilis</span>
-                        </li>
-                        <li class="d-flex align-items-start mb-2">
-                            <span class="icon-check_circle mr-2 text-muted"></span><span>
-                                Velit unde aliquam et voluptas reiciendis non
-                                sapiente labore
-                            </span>
-                        </li>
-                        <li class="d-flex align-items-start mb-2">
-                            <span class="icon-check_circle mr-2 text-muted"></span><span>Commodi quae ipsum quas est itaque</span>
-                        </li>
-                        <li class="d-flex align-items-start mb-2">
-                            <span class="icon-check_circle mr-2 text-muted"></span><span>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit
-                            </span>
-                        </li>
-                        <li class="d-flex align-items-start mb-2">
-                            <span class="icon-check_circle mr-2 text-muted"></span><span>
-                                Deleniti asperiores blanditiis nihil quia
-                                officiis dolor
-                            </span>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-            <div class="col-lg-4">
-                <div class="bg-light p-3 border rounded mb-4">
-                    <h3 class="text-primary  mt-3 h5 pl-3 mb-3 "><i class="fa-solid fa-building m"></i>公司簡介</h3>
-                    <ul class="list-unstyled pl-3 mb-0">
-                        <li class="mb-2"><strong class="text-black">Published on:</strong> April 14, 2019</li>
-                        <li class="mb-2"><strong class="text-black">Vacancy:</strong> 20</li>
-                        <li class="mb-2"><strong class="text-black">Employment Status:</strong> Full-time</li>
-                        <li class="mb-2"><strong class="text-black">Experience:</strong> 2 to 3 year(s)</li>
-                        <li class="mb-2"><strong class="text-black">Job Location:</strong> New ork City</li>
-                        <li class="mb-2"><strong class="text-black">Salary:</strong> $60k - $100k</li>
-                        <li class="mb-2"><strong class="text-black">Gender:</strong> Any</li>
-                        <li class="mb-2"><strong class="text-black">Application Deadline:</strong> April 28, 2019</li>
-                    </ul>
-                </div>
-
-                <div class="bg-light p-3 border rounded block-19999">
-                    <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Share</h3>
-                    <div class="px-3">
-                        <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-facebook"></span></a>
-                        <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-twitter"></span></a>
-                        <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-linkedin"></span></a>
-                        <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-pinterest"></span></a>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-        <div class="row mb-5 mt-5 justify-content-center">
-            <div class="col-6 col-lg-4">
-                <a href="#" class="btn btn-block btn-dark btn-md"><i class="fa-regular fa-bookmark mr-3"></i></span>儲存</a>
-            </div>
-            <div class="col-6 col-lg-4">
-                <a href="job-apply.html" class="btn btn-block btn-primary btn-md">
-                    <i class="fa-solid fa-arrow-up-right-from-square mr-3"></i>立即應徵
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
+    <script>
+        const webApi = "https://localhost:7240"
+        const appVue = new Vue({
+            el: "#appVue",
+            name: "appVue",
+            data:{
+                datas:[],
+            },
+            mounted:function(){
+                this.Vacancy();
+            },
+            methods:{
+                Vacancy: function () {
+                    //vanId => id;
+                    let key = window.localStorage.getItem("vanId")
+                    axios.get(`${webApi}/api/vacancies/1`)
+                        .then(res => {
+                            this.datas = res.data;
+                            console.log(this.datas);
+                        })
+                        .catch(err => console.log(err))
+                        .finally(console.log('完成'))
+                },
+            }
+        })
+    </script>
+}

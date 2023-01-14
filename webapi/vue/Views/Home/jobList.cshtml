@@ -330,6 +330,7 @@
             },
             methods: {
                 Vacancy: function () {
+                    this.tempitem = 0;
                     axios.get(`${webApi}/api/vacancies`)
                         .then(response => {
                             appVue.datas = response.data;
@@ -349,14 +350,13 @@
                 jobsingle: function (vacancyId) {
                     window.localStorage.removeItem("vanId");
                     window.localStorage.setItem("vanId", vacancyId);
-                    let key = window.localStorage.getItem("vanId");
-                    console.log('跳轉頁面'); //從這裡開始寫
-                    //window.location = "/Home/jobSingle";
+                    //let key = window.localStorage.getItem("vanId");
+                    window.location = "/Home/jobSingle";
                 },
                 add() {
                     if (this.inputvalue) {
                         let name = this.inputvalue.replace(/[\ !@@#$%^&*()_+|}{":?>~+\-*\/.';[\]\\]+/g, "");
-                        axios.get(`${webApi}/api/vacancies?name=${name}`)
+                        axios.get(`${webApi}/api/vacancies?name=${name}&category=${category}&workplace=${workplace}`)
                             .then(res => {
                                 this.datas = [];
                                 this.datas = res.data;
@@ -372,12 +372,14 @@
                                     this.datas = arr;
                                 }
                             })
+                        this.tempitem = 0;
                         $('input').blur();
                     } else {
                         $('input').blur();
                     }
                 },
                 search() {
+                    this.tempitem = 0;
                     let name = this.inputvalue.replace(/[\ !@@#$%^&*()_+|}{":?>~+\-*\/.';[\]\\]+/g, "");
                     let category = this.selectedCategory;
                     let workplace = this.selectedArea;
