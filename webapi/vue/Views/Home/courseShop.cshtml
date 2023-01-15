@@ -1,4 +1,5 @@
-﻿<section class="section-hero overlay inner-page bg-image" style="background-image: url('~/images/hero_1-1.jpg');" id="home-section">
+﻿<div id="appVue">
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('~/images/hero_1-1.jpg');" id="home-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-5">
@@ -6,25 +7,23 @@
                 <p class="font-weight-bold"><span class="cause-span1">今天</span><span class="cause-span2">上課 </span><span class="cause-span1">明天</span><span class="cause-span2">上工</span></p>
             </div>
             <div class="col-lg-5 col-md-4">
-                <input type="text" class="form-control form-control-lg col-search" placeholder="你想學些什麼">
+                <input type="text" class="form-control form-control-lg col-search" placeholder="你想學些什麼" v-model="inputvalue" @@keydown.enter="search" id="input">
                 <p>
-                    <button type="button" class="btn btn-outline-primary btn-sm">C#</button>
-                    <button type="button" class="btn btn-outline-primary btn-sm">JAVA</button>
-                    <button type="button" class="btn btn-outline-primary btn-sm">JavaScript</button>
+                    <button type="button" class="btn btn-outline-primary btn-sm" v-model="selectkeyword" @@keydown.enter="search">C#</button>
+                    <button type="button" class="btn btn-outline-primary btn-sm" v-model="selectkeyword" @@keydown.enter="search">JAVA</button>
+                    <button type="button" class="btn btn-outline-primary btn-sm" v-model="selectkeyword" @@keydown.enter="search">JavaScript</button>
                 </p>
             </div>
             <div class="col-lg-3 col-md-3">
                 <div class="form-group">
-                    <select name="cause-category" class="form-control cause-category">
-                        <option value="0">課程分類</option>
-                        <option value="1">音樂</option>
-                        <option value="2">語言</option>
-                        <option value="3">攝影</option>
-                        <option value="4">藝術</option>
-                        <option value="5">科技</option>
-                        <option value="6">運動</option>
-                        <option value="7">行銷</option>
-                        <option value="8">理財</option>
+                        <select name="cause-category" class="form-control cause-category" v-model="selectedCategory">
+                        <option value="">課程分類</option>
+                        <option value="音樂">音樂</option>
+                        <option value="語言">語言</option>
+                        <option value="藝術">藝術</option>
+                        <option value="科技">科技</option>
+                        <option value="運動">運動</option>
+                        <option value="理財">理財</option>
                     </select>
                 </div>
             </div>
@@ -33,7 +32,7 @@
 </section>
 
 <section class="site-section">
-    <div class="container" id="appVue">
+    <div class="container">
         <div class="row mb-5">
             <div class="card-group col-12 col-xl-3 col-md-6 mb-3" v-for="item in dataList">
                 <div class="card">
@@ -62,23 +61,22 @@
             </div>
         </div>
         <div class="row pagination-wrap mt-5">
-            <div class="col-md-12 text-center ">
+            <div class="col-md-12 text-center">
                 <div class="custom-pagination ml-auto">
-                    <a href="#" class="prev"><</a>
-                    <div class="d-inline-block">
-                        <a href="#" class="active">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                        <a href="#">5</a>
+                    <a href="#" class="prev">Prev</a>
+                    <div class="d-inline-block" v-for="item in page">
+                        <a href="#" class="active" @@click="changepage(item)" v-if="item == tempitem">{{item + 1}}</a>
+                        <a href="#" @@click="changepage(item)" v-else>{{item + 1}}</a>
                     </div>
-                    <a href="#" class="next">></a>
+                    <a href="#" class="next">Next</a>
                 </div>
             </div>
         </div>
 
     </div>
 </section>
+
+</div>
 
 @section Scripts{
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
@@ -90,6 +88,9 @@
             name: "appVue",
             data: {
                 dataList: [],
+                temp: 0,
+                tempitem: 0,
+                page: [],
             },
             mounted: function () {
                 let _this = this;
@@ -97,16 +98,73 @@
             },
             methods: {
                 course: function () {
-                    let _this = this;
                     axios.get(`${webApi}/api/Courses`) //地址
                         .then(response => {
-                            console.log(response.data)
-                            _this.dataList = response.data;
-                            console.log(_this.datas)
+                            this.dataList = response.data;
+                            this.temp = response.data.length;
+                            this.countpage();
+                            let arr = [];
+                            for (let i = 0; i < 5; i++) {
+                                let item = {};
+                                item = this.datas[i];
+                                arr.push(item);
+                            }
+                            this.dataList = arr;
                         })
                         .catch(err => console.log(err))
                         .finally(console.log('完成'))
                 },
+                countpage() {
+                    this.page = [];
+                    if (this.temp % 16 == 0) {
+                        this.temp = this.temp / 16;
+                    } else {
+                        this.temp = Math.floor(this.temp / 16) + 1;
+                    }
+                    for (let i = 0; i < this.temp; i++) {
+                        this.page[i] = i;
+                    }
+                },//計算頁數
+                changepage(item) {
+                    this.tempitem = item;
+                    let name = this.inputvalue.replace(/[\ !@@#$%^&*()_+|}{":?>~+\-*\/.';[\]\\]+/g, "");
+                    let category = this.selectedCategory;
+                    let workplace = this.selectedArea;
+                    let url = `${webApi}/api/course?courseId=${courseId}&keyword=${keyword}&category=${category}`;
+                    axios.get(url)
+                        .then(res => {
+                            appVue.dataList = [];
+                            appVue.dataList = res.data;
+                            this.temp = res.data.length;
+                            this.countpage();
+                            let arr = [];
+                            if ((item + 1) == this.page.length) {
+                                for (let i = item * 16; i < this.datas.length; i++) {
+                                    let item = {};
+                                    item = this.datas[i];
+                                    arr.push(item);
+                                }
+                                this.datas = arr;
+                            }
+                            else {
+                                for (let i = item * 16; i < (item + 1) * 16; i++) {
+                                    let item = {};
+                                    item = this.datas[i];
+                                    arr.push(item);
+                                }
+                                this.datas = arr;
+                            }
+                        })
+                },
+                search(){
+
+                }
+            },
+            watch;{
+                selectedCategory:{
+                    handler(newval){
+                    this.search();
+                }
             }
         })
     </script>

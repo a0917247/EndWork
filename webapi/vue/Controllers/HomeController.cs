@@ -142,6 +142,10 @@ namespace vue.Controllers
         {
             return View();
         }
+        public IActionResult payPage()
+        {
+            return View();
+        }
 
         //履歷
         public IActionResult CV()

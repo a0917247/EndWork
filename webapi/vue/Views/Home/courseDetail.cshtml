@@ -64,7 +64,7 @@
                     <h2>NT$ {{ dataList.price }}</h2>
                 </div>
                 <div class="col-lg-3 col-md-6 fw-bold buy-mess d-flex justify-content-center" style="border-left:#656565 1px solid;">
-                    <a v-vind:href="" class="btn btn-primary w-50 my-5 mx-1 text-center">立即購買</a>
+                    <a v-bind:href="'https://localhost:7158/Home/payPage?id='+ dataList.courseId" class="btn btn-primary w-50 my-5 mx-1 text-center">立即購買</a>
                     <a href="" class="btn btn-secondary w-25 my-5 mx-1 text-center"><i class="fa-solid fa-thumbtack"></i></a>
                 </div>
 

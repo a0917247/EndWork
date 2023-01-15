@@ -28,23 +28,21 @@
             <div class="row mt-1 job-row2 d-flex justify-content-center">
                 <div class="col-lg-3 col-md-6 ">
                     <div class="form-group">
-                        <select name="cause-category" class="form-control cause-category">
-                            <option value="0">行業別</option>
-                            <option value="1">服務業</option>
-                            <option value="2">商業</option>
-                            <option value="3">科技</option>
-                            <option value="4">製造</option>
-                            <option value="5">法律保險</option>
-                            <option value="6">藝文</option>
-                            <option value="7">餐飲</option>
-                            <option value="8">農林漁牧</option>
+                        <select name="cause-category" class="form-control cause-category" v-model="selectedCategory">
+                            <option value="">行業別</option>
+                            <option value="服務">服務</option>
+                            <option value="科技">科技</option>
+                            <option value="藝文">藝文</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="form-group">
-                        <select name="cause-category" class="form-control cause-category">
-                            <option value="0">地區</option>
+                        <select name="cause-category" class="form-control cause-category" v-model="selectedArea">
+                            <option value="">地區</option>
+                            <option value="台北">台北</option>
+                            <option value="新北">新北</option>
+                            <option value="高雄">高雄</option>
                         </select>
                     </div>
                 </div>
@@ -304,15 +302,17 @@
             name: "appVue",
             data: {
                 datas: [],
+                selectedCategory: "",
+                selectedArea: ""
             },
             mounted: function () {
                 this.Vacancy();
             },
             methods: {
                 Vacancy: function () {
-                    //vanId => id;
+                    // 雲端暫存資料 , vanId => id;
                     let key = window.localStorage.getItem("vanId")
-                    axios.get(`${webApi}/api/vacancies/1`)
+                    axios.get(`${webApi}/api/vacancies/2`)
                         .then(res => {
                             this.datas = res.data;
                             console.log(this.datas);

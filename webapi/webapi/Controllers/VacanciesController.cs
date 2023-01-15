@@ -12,7 +12,7 @@ using static System.Net.WebRequestMethods;
 
 namespace webapi.Controllers
 {
-    [EnableCors("AllowAny")]
+    [EnableCors("AllowAny")] 
     [Route("api/[controller]")]
     [ApiController]
     public class VacanciesController : ControllerBase
@@ -51,11 +51,11 @@ namespace webapi.Controllers
             {
                 result = result.Where(a => a.WorkName.Contains(name) || a.CompanyName.Contains(name));
             }
-            if (!string.IsNullOrWhiteSpace(category))
+            if (!string.IsNullOrWhiteSpace(category)) 
             {
                 result = result.Where(a => a.Category.Contains(category));
             }
-            if (!string.IsNullOrWhiteSpace(workplace))
+            if (!string.IsNullOrWhiteSpace(workplace)) 
             {
                 result = result.Where(a => a.WorkPlace.Contains(workplace));
             }
@@ -88,8 +88,7 @@ namespace webapi.Controllers
                          join etp in _context.Enterprise
                          on van.EnterpriseId equals etp.EnterpriseId
                          where van.VacancyId == id
-                         select new VacancyDTO
-                         {
+                         select new VacancyDTO {
                              VacancyId = van.VacancyId,
                              WorkName = van.WorkName,
                              WorkPlace = van.WorkPlace,
