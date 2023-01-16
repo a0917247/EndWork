@@ -117,17 +117,13 @@
                         <h5 class="display-5 fw-bolder mb-0 col-6 ml-3">適性測驗</h5>
                     </div>
                     <div class="d-flex row justify-content-center">
-                        <button class="mr-3 btn-test" v-on:click="prev"><i class="fa-solid fa-angle-left"></i></button>
+                        <button class="mr-3 btn-test" v-on:click="changeIndex(-1)"><i class="fa-solid fa-angle-left"></i></button>
                         <span class="h3 text-center">Question:</span>
-                        <div class="h3 text-center">{{count}}</div>
-                        <button class="ml-3 btn-test" v-on:click="next"><i class="fa-solid fa-angle-right"></i></button>
+                        <div class="h3 text-center">{{index+1}}</div>
+                        <button class="ml-3 btn-test" v-on:click="changeIndex(1)"><i class="fa-solid fa-angle-right"></i></button>
                     </div>
                     <div class="h5 mb-3 mx-5">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus aspernatur sapiente
-                        nobis eum neque ad quibusdam tenetur nostrum praesentium provident explicabo totam
-                        amet fugiat, ut iste enim eligendi? Nobis nisi sint repellat est voluptate ex esse.
-                        Atque iusto vitae perspiciatis ipsam sint, dolorem eos. At dolorem asperiores
-                        pariatur sapiente nostrum?
+                        {{datas[index].question}}
                     </div>
                     <div class="col-12 text-center">
                         <button class="mx-lg-5 rounded-circle slide-button no-border h4 p-3">Yes</button>
@@ -140,7 +136,7 @@
             </div>
         </div>
     </div>
-    
+
 </section>
 <!-- content end -->
 @section Scripts{
@@ -155,7 +151,7 @@
             data: {
                 datas: [],
                 temp: [],
-                count: 0,
+                index: 0,
                 name: "題目",
             },
             mounted: function () {
@@ -164,47 +160,21 @@
             },
             methods: {
                 GetQuestion: function () {
-                    let _this = this;
-                    axios
-                        .get(`${webApi}/api/AptitudeTests`)
-                        .then((response) => {
+                    axios.get(`${webApi}/api/AptitudeTests`)
+                        .then(response => {
                             appVue.datas = response.data;
-                            for (i = this.count; i < this.count + 1; i++) {
-                                this.temp[0] = this.datas[i];
-                                console.log(this.temp[0]);
-                            }
+                            console.log(appVue.datas);
                         })
-                        .catch((err) => console.log(err))
-                        .finally(console.log("完成"));
+                        .catch(err => console.log(err))
+                        .finally(console.log('完成'))
                 },
-                next() {
-                    // 下一題
-                    this.count++;
-                    if (this.count < 4) {
-                        for (i = this.count; i < this.count + 1; i++) {
-                            this.temp[0] = this.datas[i];
-                            console.log("題目內容" + this.temp[0]);
-                        }
-                    } else {
-                        this.count = 4;
-                    }
-                    console.log(this.count);
-                },
-                prev() {
-                    // 上一題
-                    this.count--;
-                    if (this.count > 0) {
-                        for (i = this.count; i > this.count - 1; i--) {
-                            this.temp[0] = this.datas[i];
-                            console.log("題目內容" + this.temp[0]);
-                        }
-                    } else {
-                        this.count = 0;
-                    }
-                    console.log(this.count);
-                },
-            },
-        });
+                changeIndex: function (change) {
+                    this.index = (this.index + change + this.datas.length) % this.datas.length
+
+                }
+
+            }
+        })
     </script>
 }
 

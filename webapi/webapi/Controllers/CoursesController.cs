@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 //using webapi.DTO;
 using webapi.Models;
+using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
 namespace webapi.Controllers
 {
@@ -25,7 +26,7 @@ namespace webapi.Controllers
 
         // GET: api/Courses
         [HttpGet]
-        public async Task<IEnumerable<CourseDetailDTO>> GetCourse()
+        public async Task<IEnumerable<CourseDetailDTO>> GetCourse(string? keyword,string?category)
         {
             var result = _context.Course.Join(_context.Teacher, x => x.TeacherId, y => y.TeacherId, (cou, tea) => new CourseDetailDTO
             {
@@ -39,8 +40,18 @@ namespace webapi.Controllers
                 CourseIntro = cou.CourseIntro,
                 CourseLength = cou.CourseLength,
                 CourseImg = cou.img,
+                keyword = cou.Keyword,
+                category = cou.Category,
 
             });
+            if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                result = result.Where(x=>x.keyword.Contains(keyword));
+            }
+            if (!string.IsNullOrWhiteSpace(category))
+            {
+                result = result.Where(x => x.category.Contains(category));
+            }
             return result;
         }
 

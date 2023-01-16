@@ -94,7 +94,7 @@
                                         <i class="fa-solid fa-sack-dollar"></i><span class="fs-6 ml-2">{{data.salary}}</span>
                                     </div>
                                     <div class="py-1 d-lg-flex d-inline px-lg-0 px-sm-2">
-                                        <i class="fa-solid fa-briefcase"></i><span class="fs-6 ml-2">{{data.seniority}}年</span>
+                                        <i class="fa-solid fa-briefcase"></i><span class="fs-6 ml-2">{{data.seniority}}</span>
                                     </div>
                                     <div class="py-1 d-lg-flex d-inline px-lg-0 px-sm-2">
                                         <i class="fa-solid fa-share-nodes"></i><span class="fs-6 ml-2">{{data.shift}}</span>
@@ -372,14 +372,21 @@
                             this.datas = res.data;
                             this.temp = res.data.length;
                             this.countpage();
+                            console.log(this.datas.length)
                             let arr = [];
                             if (this.datas.length > 5) {
                                 for (let i = 0; i < 5; i++) {
                                     let item = {};
+                                    if(this.datas[i].seniority == 0){
+                                        this.datas[i].seniority = '不限年資';
+                                    }else{
+                                        this.datas[i].seniority = this.datas[i].seniority + '年';
+                                    }
                                     item = this.datas[i];
                                     arr.push(item);
                                 }
                                 this.datas = arr;
+                                console.log(this.datas)
                             }
                         })
                         .catch(err => console.log(err))
@@ -434,22 +441,16 @@
                 },
                 prev() {
                     let item = this.tempitem;
-                    item++;
                     if (item != 0) {
                         item--;
                         this.changepage(item);
-                    } else {
-                        item == 0
                     }
                 },
                 next() {
                     let item = this.tempitem;
                     item++;
                     if (item != this.page.length) {
-                        item++;
                         this.changepage(item);
-                    } else {
-                        item = this.page.length
                     }
                 }
             },

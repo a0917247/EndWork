@@ -13,5 +13,7 @@
         public string? CourseImg { get; set; }
         public string? img { get; set; }
         public int? CourseId { get; set; }
+        public string? keyword { get; set; }
+        public string? category { get; set; }
     }
 }
