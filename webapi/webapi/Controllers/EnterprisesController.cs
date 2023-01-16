@@ -29,18 +29,19 @@ namespace webapi.Controllers
             return await _context.Enterprise.ToListAsync();
         }
 
-        // GET: api/Enterprises/5
+        // GET:     
         [HttpGet("{id}")]
-        public async Task<ActionResult<Enterprise>> GetEnterprise(int id)
+        public async Task<IEnumerable<EnterpriseDTO>> GetEnterprise(int id)
         {
-            var enterprise = await _context.Enterprise.FindAsync(id);
-
-            if (enterprise == null)
-            {
-                return NotFound();
-            }
-
-            return enterprise;
+            var result = from van in _context.Vacancy
+                         join etp in _context.Enterprise
+                         on van.EnterpriseId equals etp.EnterpriseId
+                         where van.EnterpriseId == id
+                         select new EnterpriseDTO
+                         {
+                             VacancyId = van.VacancyId,
+                         };
+            return result;
         }
 
         // PUT: api/Enterprises/5

@@ -104,7 +104,8 @@ namespace webapi.Controllers
                              Info = etp.Info,
                              img = etp.Img,
                              UniformNumbers = etp.UniformNumbers,
-                             Employee = etp.Employee
+                             Employee = etp.Employee,
+                             EnterpriseId = etp.EnterpriseId
                          };
             return result.SingleOrDefault();
         } //完成

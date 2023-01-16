@@ -372,7 +372,6 @@
                             this.datas = res.data;
                             this.temp = res.data.length;
                             this.countpage();
-                            console.log(this.datas.length)
                             let arr = [];
                             if (this.datas.length > 5) {
                                 for (let i = 0; i < 5; i++) {
@@ -386,7 +385,6 @@
                                     arr.push(item);
                                 }
                                 this.datas = arr;
-                                console.log(this.datas)
                             }
                         })
                         .catch(err => console.log(err))
