@@ -16,10 +16,13 @@ namespace webapi.Models
         public string Cellphone { get; set; }
         public DateTime? Birth { get; set; }
         public string Address { get; set; }
+        public string Schoolname { get; set; }
         public string Education { get; set; }
         public int? Seniority { get; set; }
-        public int? Status { get; set; }
+        public string Status { get; set; }
         public string Img { get; set; }
         public string Autobiography { get; set; }
+        public string Workexperience { get; set; }
+        public string Workexname { get; set; }
     }
 }

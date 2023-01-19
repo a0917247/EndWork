@@ -126,8 +126,8 @@
                         {{datas[index].question}}
                     </div>
                     <div class="col-12 text-center">
-                        <button class="mx-lg-5 rounded-circle slide-button no-border h4 p-3">Yes</button>
-                        <button class="mx-lg-5 rounded-circle h4 p-3 slide-button">No</button>
+                        <button class="mx-lg-5 rounded-circle slide-button no-border h4 p-3" v-on:click="yes">Yes</button>
+                        <button class="mx-lg-5 rounded-circle h4 p-3 slide-button" v-on:click="no">No</button>
                     </div>
                     <div class="text-right">
                         <a asp-controller="Home" asp-action="testResult">查看結果</a>
@@ -150,9 +150,9 @@
             name: "appVue",
             data: {
                 datas: [],
-                temp: [],
                 index: 0,
-                name: "題目",
+                //name: "題目",
+                point:0,
             },
             mounted: function () {
                 let _this = this;
@@ -170,8 +170,15 @@
                 },
                 changeIndex: function (change) {
                     this.index = (this.index + change + this.datas.length) % this.datas.length
-
-                }
+                },
+                yes: function () {
+                    this.point+=1;
+                    console.log(this.point)
+                },
+                no: function () {
+                    this.pint+=0;
+                    console.log(this.point)
+                },
 
             }
         })

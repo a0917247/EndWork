@@ -29,13 +29,16 @@
                         </div>
                         <div class="form-group ">
                             <div class="d-flex col-4 justify-content-between">
-                                <label>
-                                    <input id="title" type="radio" name="radio" checked />
-                                    <span>工作經驗</span>
+                                @* <label>
+                                <input id="title" type="radio" name="radio" checked />
+                                <span>工作經驗</span>
                                 </label>
                                 <label>
-                                    <input type="radio" name="radio" />
-                                    <span>面試經驗分享</span>
+                                <input type="radio" name="radio" />
+                                <span>面試經驗分享</span>
+                                </label>*@
+                                <label>
+                                    <span>工作經驗/面試經驗分享</span>
                                 </label>
                             </div>
                         </div>
@@ -43,13 +46,13 @@
                             <textarea id="content" rows="12" name="content" class="form-control" aria-label="With textarea" v-model="Contents"></textarea>
                         </div>
                         <div class="my-5 row justify-content-center">
-                            <button type="submit" class="btn btn-dark btn-JS mx-1 mx-lg-3" lay-filter="*" @@click="clean">全部清除</button>
+                            <button type="button" class="btn btn-dark btn-JS mx-1 mx-lg-3" lay-filter="*" @@click="clean">全部清除</button>
                             <button type="button" id="post" class="btn btn-primary btn-JS mx-1 mx-lg-3" lay-filter="*" @@click="insert">發送</button>
 
                         </div>
                     </form>
                 </div>
-            </div>item
+            </div>
             <div class="comments"></div>
         </div>
     </section>
@@ -72,29 +75,8 @@
             },
             mounted: function () {
                 let _this = this;
-                _this.Platforms();
             },
             methods: {
-                Platforms: function () {
-                    let _this = this;
-                    var request = {};
-                    request.ArticleName = _this.ArticleName;
-                    request.Contents = _this.Contents;
-
-                    axios.post(`${webApi}/api/Platforms`)
-                        .then(response => {
-                            appVue.datas = response.data;
-                            console.log(_this.datas);
-                        })
-                        .catch(err => console.log(err))
-                        .finally(console.log('完成'))
-                },
-                //add() {
-                //    alert('你好');
-                //},
-                showModal: function () {
-                    $("#insertModal").modal("show");
-                },
                 insert: function () {
                     let _this = this;
                     var request = {};
@@ -105,8 +87,10 @@
                     });
                 },
                 clean: function () {
-                    request.ArticleName = "";
-                    request.Contents = "";
+                    let _this = this;
+                    console.log("ok")
+                    _this.ArticleName = null
+                    _this.Contents = null;
 
                 },
             }

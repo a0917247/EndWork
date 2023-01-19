@@ -12,80 +12,140 @@
 <!-- home end -->
 
 <div id="printVue">
-<!-- content start -->
-<section class="site-section block__18514 pt-4" id="next-section">
-    <div class="container h-100">
-        <div class="row">
-            <!-- leftslide start -->
-            <div class="col-lg-7 pay-content mt-5 pt-5 pt-lg-0 mt-lg-0 pb-2">
-                <div class="context  w-100 p-3 mb-4">
-                    <div class="item row pt-4">
-                        <h3 class="display-5 fw-bolder mb-0 col-6 ml-3">付款資訊</h3>
-                    </div>
-                    <ul class="list-unstyled block__47528 mb-0 ml-4">
-                        <div class="row justify-content-left">
-                            <span class=" font-weight-bold col-4">訂單編號 Order No.</span>
-                            <span class=" align-content-center col-8">22258189646162</span>
+    <!-- content start -->
+    <section class="site-section block__18514 pt-4" id="next-section">
+        <div class="container h-100">
+            <div class="row">
+                <!-- leftslide start -->
+                <div class="col-lg-7 pay-content mt-5 pt-5 pt-lg-0 mt-lg-0 pb-2">
+                    <div class="context  w-100 p-3 mb-4">
+                        <div class="item row pt-4">
+                            <h3 class="display-5 fw-bolder mb-0 col-12 ml-3">確認訂單</h3>
                         </div>
-                        <div class="row justify-content-left">
-                            <span class=" font-weight-bold col-4">購買內容</span>
-                            <span class=" align-content-center col-8">{{ dataList.courseName }}</span>
+                        <ul class="list-unstyled block__47528 mb-0 ml-4">
+                            <div class="row mb-2">
+                                <span class=" font-weight-bold col-4">購買人姓名</span>
+                                <div class="col-8">
+                                    <input type="text" class="useless w-75" name="name" disabled :value="buyerList.name">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <span class=" font-weight-bold col-4">購買人帳號</span>
+                                <div class="col-8">
+                                    <input type="text" disabled class="useless w-75" name="name" disabled :value="buyerList.account">
+                                </div>
+                            </div>
+                        </ul>
+                        <hr />
+                        <ul class="list-unstyled block__47528 mb-0 ml-4">
+                            <div class="row">
+                                <p class="col-lg-4 col-sm-5 col-12 pt-4 pl-5">購買課程</p>
+                                <h5 class="font-weight-bold mb-0 col-sm-7 col-12 pt-4 text-right mb-4 pr-4">{{ courseList.courseName }}</h5>
+                                <p class="col-lg-4 col-sm-5 col-12 pl-5">單位：新台幣 NT$</p>
+                                <p class="font-weight-bold col-sm-7 col-12 text-right lead">{{ courseList.price }} 元</p>
+                            </div>
+                        </ul>
+                        <hr style="height:3px; color: #e2e2e2;background-color: #e2e2e2; " />
+                        <div class="accordion col-11 justify-content-center" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header btn-primary" id="headingTwo" style="background-color:#0085ff" @@click="insert">
+                                    <h2 class="mb-0 ">
+                                        <button class="btn btn-block text-left collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            確認訂單
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseTwo" class="collapse pt-3" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="row justify-content-right">
+                                            <div class="col-12" id="payment-button"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </ul>
-                    <hr />
-                    <ul class="list-unstyled block__47528 mb-0 ml-4">
-                        <div class="row">
-                            <p class="col-11 text-right">單位：新台幣 NT$</p>
-                            <p class="font-weight-bold col-11 text-right lead">{{ dataList.price }}</p>
-                        </div>
-                    </ul>
-                    <hr style="height:2px;color: #e2e2e2;background-color: #e2e2e2; " />
-                    <div class="row justify-content-right">
-                        <div class="col-12" id="payment-button"></div>
+
                     </div>
                 </div>
+                <!-- leftslide end -->
             </div>
-            <!-- leftslide end -->
         </div>
-    </div>
-</section>
-<!-- content end -->
+    </section>
+    <!-- content end -->
 </div>
 
 @section Scripts{
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=Ab4yDn4BMS6wkUCy-BZqqV0fw_NM9UPmGc1IeZsn5N51HjT98IzI5Ha4bXbzX_n4qVPcbsVwJyENYyk3"></script>
     <script>
         const webApi = "https://localhost:7240"
         const printVue = new Vue({
             el: "#printVue", // 綁定位置
             name: "printVue",
             data: {
-                dataList: [],
+                courseList: [],
+                buyerList:[],
 
             },
             mounted: function () {
-                const _this = this;
-                _this.course();
+                this.course();
+                this.candidate();
             },
             methods: {
                 course: function () {
-                    const _this = this;
-                    //let getUrlString = location.href;
-                    //let url = new URL(getUrlString);
                     const courseId = new URL(location.href).searchParams.get('id');
                     axios.get(`${webApi}/api/Courses/${courseId}`)
                         .then(response => {
-                            _this.dataList = response.data[0];
-                            console.log(_this.dataList)
+                            this.courseList = response.data[0];
+                            console.log(this.courseList)
                         })
                         .catch(err => console.log(err))
                         .finally(console.log('完成'))
                 },
-                ordernum(){
-
-                }
+                candidate(){
+                    const candidateId = sessionStorage.getItem('Id')
+                    console.log(candidateId)
+                    axios.get(`${webApi}/api/Candidates/${candidateId}`)
+                        .then(response => {
+                            this.buyerList = response.data[0];
+                            console.log(this.buyerList)
+                        })
+                        .catch(err => console.log(err))
+                        .finally(console.log('完成'))
+                },
+                insert: function () {
+                    var request = {};
+                    request.CandidateId = this.buyerList.candidateId;
+                    request.courseId = this.courseList.courseId;
+                    axios.post(`${webApi}/api/Orders`, request).then(response => {
+                        window.location = "/Home/Orders";
+                    });
+                },
             }
         })
+    </script>
+    <script>
+        // Render the PayPal button into #paypal-button-container
+        paypal.Buttons({
+            // Set up the transaction
+            createOrder: function (data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '88.44'
+                        }
+                    }]
+                });
+            },
+
+            // Finalize the transaction
+            onApprove: function (data, actions) {
+                return actions.order.capture().then(function (orderData) {
+                    console.log('Capture result', orderData,
+                        JSON.stringify(orderData, null, 2));
+                });
+            }
+        }).render('#payment-button');
     </script>
 }

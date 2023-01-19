@@ -12,7 +12,7 @@
 <!-- home end -->
 
 <section class="site-section block__18514 pt-4" id="next-section">
-    <div class="container h-100">
+    <div class="container h-100" id="appVue">
         <div class="row">
             <!-- Below is sidebar -->
             <div class="col-xs-12 col-md-10 col-lg-4 mt-lg-5">
@@ -207,66 +207,39 @@
             el: "#appVue",
             name: "appVue",
             data: {
-                datas: [],
-                Id: null,
-                account: null,
-                password: null,
-                email: null,
-                phone: null,
+                interestDatas: [],
+                Id: sessionStorage.getItem("Id"),
+                status: 0,
 
             },
             mounted: function () {
                 let _this = this;
-
+                _this.Information();
             },
             methods: {
-                Signup: function () {
+                Information: function () {
                     let _this = this;
-                    var inf = {};
-                    inf.Id = 0;
-                    inf.account = _this.account;
-                    inf.password = _this.password;
-                    inf.email = _this.email;
-                    inf.phone = _this.phone;
-                    axios.post(`${webApi}/api/LoginInformations`, inf)
+                    axios.get(`${webApi}/api/Interests`, {
+                        params: {
+                            id: _this.Id,
+                            status: _this.status,
+                        }
+                    })
                         .then(response => {
-
-                            if (response.data == "此帳號已登入") {
-                                alert(response.data);
-                            }
-                            else {
-
-                                window.location = "/Home/memberLogin";
-
-                            }
-
+                            _this.interestDatas = response.data;
+                            console.log(_this.interestDatas);
                         })
                         .catch(err => console.log(err))
-                        .finally(console.log('完成'))
-                },
-            }
-
-
-                            const app = new Vue({
-                el: "#app",
-                name: "app",
-                data: {
-                    Id: sessionStorage.getItem("Id"),
-                    Name: sessionStorage.getItem("Name"),
+                        .finally(console.log('完成'));
                 },
 
-            })
-                            const vue = new Vue({
-                el: "#vue",
-                name: "vue",
-                data: {
-                    Id: sessionStorage.getItem("Id"),
-                    Name: sessionStorage.getItem("Name"),
-                },
-
-            })
-
+            },
         })
+
+
+
+
+
     </script>
     }
 

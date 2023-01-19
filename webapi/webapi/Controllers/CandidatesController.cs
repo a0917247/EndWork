@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,37 +25,69 @@ namespace webapi.Controllers
         }
 
         // GET: api/Candidates
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Candidate>>> GetCandidate()
+        [HttpGet("Id{Id}")]
+        public async Task<IEnumerable<CandidateDTO>> GetInterest(int Id)
         {
-            return await _context.Candidate.ToListAsync();
+            return _context.Candidate.Where(c => c.CandidateId == Id).Join(_context.Interest, c => c.CandidateId, i => i.CandidateId, (c, i) => new CandidateDTO
+            {
+                CandidateId = c.CandidateId,
+                //會員中心內容(關注、感興趣...)
+                EnterpriseId = i.EnterpriseId,
+                VacancyId = i.VacancyId,
+                interestStatus = i.InterestStatus,
+
+            });
         }
 
         // GET: api/Candidates/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Candidate>> GetCandidate(int id)
+        public async Task<IEnumerable<Candidate>> GetCandidate(int? id)
         {
-            var candidate = await _context.Candidate.FindAsync(id);
 
-            if (candidate == null)
+            return _context.Candidate.Where(c => c.CandidateId == id).Select(c => new Candidate
             {
-                return NotFound();
-            }
+                CandidateId = c.CandidateId,
+                Account = c.Account,
+                Password = c.Password,
+                Name = c.Name,
+                Email = c.Email,
+                Cellphone = c.Cellphone,
+                Birth = c.Birth,
+                Address = c.Address,
+                Education = c.Education,
+                Schoolname = c.Schoolname,
+                Seniority = c.Seniority,
+                Status = c.Status,
+                Img = c.Img,
+                Autobiography = c.Autobiography,
+                Workexname = c.Workexname,
+                Workexperience = c.Workexperience,
+                
+            });
 
-            return candidate;
         }
 
         // PUT: api/Candidates/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCandidate(int id, Candidate candidate)
+        public async Task<String> PutCandidate(int id, Candidate candidate)
         {
-            if (id != candidate.CandidateId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(candidate).State = EntityState.Modified;
+            //if (id != candidate.CandidateId)
+            //{
+            //    return "ID不正確!";
+            //}
+            Candidate c =  await _context.Candidate.FindAsync(candidate.CandidateId);
+            c.Name = candidate.Name;
+            c.Email = candidate.Email;
+            c.Cellphone = candidate.Cellphone;
+            c.Birth = candidate.Birth;
+            c.Status =candidate.Status;
+            c.Workexname = candidate.Workexname;
+            c.Schoolname = candidate.Schoolname;
+            c.Education = candidate.Education;
+            c.Autobiography = candidate.Autobiography;
+            c.Workexperience = candidate.Workexperience;
+            _context.Entry(c).State = EntityState.Modified;
 
             try
             {
@@ -64,7 +97,7 @@ namespace webapi.Controllers
             {
                 if (!CandidateExists(id))
                 {
-                    return NotFound();
+                    return "找不到欲修改的記錄!";
                 }
                 else
                 {
@@ -72,7 +105,7 @@ namespace webapi.Controllers
                 }
             }
 
-            return NoContent();
+            return "修改成功!";
         }
 
         // POST: api/Candidates

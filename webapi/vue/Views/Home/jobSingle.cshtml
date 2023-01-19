@@ -73,22 +73,21 @@
                 <div class="col-lg-8 mb-4 mb-lg-0">
                     <div class="d-md-flex d-flex-column align-items-center ">
                         <figure class="figure p-2 d-inline-block mr-3 rounded col-12 col-md-2">
-                            <img src="~/images/job_logo_5.jpg" alt="Image">
+                            <img :src="datas.img" alt="Image">
                         </figure>
                         <div class="job-context mt-3 col-12 col-md-10 pl-md-5">
                             <h3 class="slide-h3 active">{{datas.workName}}</h3>
-                            <h4 class="ml-1d-flex row mt-2 ml-1">Google Taiwan</h4>
+                            <h4 class="ml-1d-flex row mt-2 ml-1">{{datas.companyName}}</h4>
                             <div class="row">
                                 <div class="pr-5 col-lg-4 col-md-6 col-12">
                                     <i class="fa-regular fa-clock"></i><span class="fs-6 ml-2">幾小時前更新</span>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-12">
-                                    <i class="fa-solid fa-quote-left"></i><span class="fs-6 ml-2">科技</span>
+                                    <i class="fa-solid fa-quote-left"></i><span class="fs-6 ml-2">{{datas.category}}</span>
                                 </div>
                             </div>
                             <div class="mt-lg-5 mt-3 mb-4">
-                                <p class="h5 text-black">月薪</p>
-                                <h2>NT$ 35000-38000</h2>
+                                <h2>{{salary}}</h2>
                             </div>
                         </div>
                     </div>
@@ -99,10 +98,10 @@
                             <i class="fa-solid fa-user"></i><span class="fs-6 ml-2">全職</span>
                         </div>
                         <div class="py-1 d-lg-flex d-inline px-lg-0 px-sm-2">
-                            <i class="fa-solid fa-location-dot"></i><span class="fs-6 ml-2">新北市</span>
+                            <i class="fa-solid fa-location-dot"></i><span class="fs-6 ml-2">{{datas.workPlace}}</span>
                         </div>
                         <div class="py-1 d-lg-flex d-inline px-lg-0 px-sm-2">
-                            <i class="fa-solid fa-briefcase"></i><span class="fs-6 ml-2">不限年資</span>
+                            <i class="fa-solid fa-briefcase"></i><span class="fs-6 ml-2">{{seniority}}</span>
                         </div>
                     </div>
                     <div class="row justify-content-lg-start ml-lg-4 justify-content-end mr-5 mb-3">
@@ -254,14 +253,14 @@
                     <div class="bg-light p-3 border rounded mb-4">
                         <h3 class="text-primary  mt-3 h5 pl-3 mb-3 "><i class="fa-solid fa-building m"></i>公司簡介</h3>
                         <ul class="list-unstyled pl-3 mb-0">
-                            <li class="mb-2"><strong class="text-black">Published on:</strong> April 14, 2019</li>
-                            <li class="mb-2"><strong class="text-black">Vacancy:</strong> {{length}}</li>
-                            <li class="mb-2"><strong class="text-black">Employment Status:</strong> Full-time</li>
-                            <li class="mb-2"><strong class="text-black">Experience:</strong> 2 to 3 year(s)</li>
-                            <li class="mb-2"><strong class="text-black">Job Location:</strong> New ork City</li>
-                            <li class="mb-2"><strong class="text-black">Salary:</strong> $60k - $100k</li>
-                            <li class="mb-2"><strong class="text-black">Gender:</strong> Any</li>
-                            <li class="mb-2"><strong class="text-black">Application Deadline:</strong> April 28, 2019</li>
+                            <!--<li class="mb-2"><strong class="text-black">Published on:</strong> April 14, 2019</li>-->
+                            <li class="mb-2"><strong class="text-black">目前職缺: </strong> {{length}}</li>
+                            <!--<li class="mb-2"><strong class="text-black">Employment Status:</strong> Full-time</li>-->
+                            <li class="mb-2"><strong class="text-black">年資:</strong>{{seniority}}</li>
+                            <li class="mb-2"><strong class="text-black">工作地點:</strong>{{datas.workPlace}}</li>
+                            <li class="mb-2"><strong class="text-black">Salary:</strong>{{salary}}</li>
+                            <li class="mb-2"><strong class="text-black">Gender:</strong>不拘</li>
+                            <!--<li class="mb-2"><strong class="text-black">Application Deadline:</strong> April 28, 2019</li>-->
                         </ul>
                     </div>
 
@@ -304,8 +303,8 @@
                 datas: [],
                 selectedCategory: "",
                 selectedArea: "",
-                length:0,
-                enterprise:0
+                length: 0,
+                enterprise: 0
             },
             mounted: function () {
                 this.Vacancy();
@@ -324,7 +323,19 @@
                         .finally(console.log('完成'))
                 },
             },
-            watch:{
+            computed:{
+                salary:function(){
+                    return this.datas.salary + ' / 月';
+                }, 
+                seniority:function(){
+                    if (this.datas.seniority > 0) {
+                        return this.datas.seniority + ' 年';
+                    }else{
+                        return '不限年資';
+                    }
+                }
+            },
+            watch: {
                 enterprise: {
                     handler(newval) {
                         axios.get(`${webApi}/api/Enterprises/` + newval)
@@ -334,7 +345,7 @@
                     }
                 },
             }
-            
+
         })
     </script>
 }

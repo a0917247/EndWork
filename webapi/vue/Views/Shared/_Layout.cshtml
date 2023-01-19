@@ -84,8 +84,13 @@
                                 <a href="post-job.html"><span class="mr-2">+</span> 信箱</a>
                             </li>
                             <li class="d-lg-none" id="app">
-                                <a class="h4 active" asp-area="" asp-controller="Home" asp-action="memberLogin" v-if="Id === null">登入/註冊</a>
-                                <a class="h4 active" asp-area="" asp-controller="Home" asp-action="memberLogin" v-else>登出</a>
+                                <div v-if="Id === null">
+                                <a class="h4 active" asp-area="" asp-controller="Home" asp-action="memberLogin">登入/註冊</a>
+                                </div>
+                                <div v-else>
+                                <a class="h4 active" asp-area="" asp-controller="Home" asp-action="memberCenter">會員中心</a>
+                                <a class="h4 active" asp-area="" asp-controller="Home" asp-action="memberLogin">登出</a>
+                                </div>
                             </li>
                         </ul>
                     </nav>
@@ -208,6 +213,7 @@
         </footer>
 
         <!-- SCRIPTS -->
+
         <script src="~/js/jquery.min.js"></script>
         <script src="~/js/bootstrap.bundle.min.js"></script>
         <script src="~/js/isotope.pkgd.min.js"></script>
@@ -227,6 +233,7 @@
 
         <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
+
         @await RenderSectionAsync("Scripts", required: false)
         <script>
             const app = new Vue({

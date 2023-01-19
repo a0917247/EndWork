@@ -1,4 +1,5 @@
-﻿<section class="section-hero overlay inner-page bg-image" style="background-image: url('~/images/hero_1-1.jpg');" id="home-section">
+﻿<div id="appVue">
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('/images/hero_1-1.jpg');" id="home-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-5">
@@ -8,9 +9,9 @@
             <div class="col-lg-5 col-md-4">
                 <input type="text" class="form-control form-control-lg col-search" placeholder="你想學些什麼" v-model="inputvalue" @@keydown.enter="search" id="input">
                 <p>
-                    <button type="button" class="btn btn-outline-primary btn-sm" v-model="selectedKeyword" @@click="search" value="C#">C#</button>
-                    <button type="button" class="btn btn-outline-primary btn-sm" v-model="selectedKeyword" @@click="search" value="JAVA">JAVA</button>
-                    <button type="button" class="btn btn-outline-primary btn-sm" v-model="selectedKeyword" @@click="search" value="JavaScript">JavaScript</button>
+                    <button type="button" class="btn btn-outline-primary btn-sm" @@click="hitcourse" value="C#">C#</button>
+                    <button type="button" class="btn btn-outline-primary btn-sm" @@click="hitcourse" value="JAVA">JAVA</button>
+                    <button type="button" class="btn btn-outline-primary btn-sm" @@click="hitcourse" value="JavaScript">JavaScript</button>
                 </p>
             </div>
             <div class="col-lg-3 col-md-3">
@@ -31,7 +32,7 @@
 </section>
 
 <section class="site-section">
-    <div class="container" id="appVue">
+    <div class="container">
         <div class="row mb-5">
             <div class="card-group col-12 col-xl-3 col-md-6 mb-3" v-for="item in dataList">
                 <div class="card">
@@ -43,7 +44,7 @@
                     </div>
                     <div class="card-footer">
                         <p class="text-content">時數{{item.courseLength}}小時</p>
-                        <p class="text-content">同學49人</p>
+                        <p class="text-content">同學{{item.studentCount}}人</p>
                         <div class="teacher-content">
                             <a href="#">
                                 <div>
@@ -77,6 +78,7 @@
 
     </div>
 </section>
+</div>
 
 @section Scripts{
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
@@ -88,8 +90,8 @@
             name: "appVue",
             data: {
                 dataList: [],
+                inputvalue:"",
                 selectedCategory : "",
-                selectedKeyword : "",
             },
             mounted: function () {
                 this.course();
@@ -106,7 +108,7 @@
                 },
                 search : function () {
                     console.log(this.inputvalue)
-                    if (this.inputvalue!="" || this.selectedKeyword!="") {
+                    if (this.inputvalue != "" || this.selectedKeyword != "") {
                         let keyword = this.inputvalue.replace(/[\ !@@#$%^&*()_+|}{":?>~+\-*\/.';[\]\\]+/g, "");
                         let category = this.selectedCategory;
                         axios.get(`${webApi}/api/Courses?keyword=${keyword}&category=${category}`)
@@ -119,6 +121,16 @@
                     }else{
                         $('input').blur();
                     }
+                },
+                hitcourse: function (e) {
+                    let keyword = e.target.value
+                    axios.get(`${webApi}/api/Courses?keyword=${keyword}`) //地址
+                        .then(response => {
+                            console.log(response.data)
+                            this.dataList = response.data;
+                        })
+                        .catch(err => console.log(err))
+                        .finally(console.log('完成'))
                 },
 
             },

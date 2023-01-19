@@ -1,4 +1,5 @@
-﻿<section class="section-hero overlay inner-page bg-image " style="background-image: url('/images/hero_1.jpg');"
+﻿<div id="appVue">
+<section class="section-hero overlay inner-page bg-image " style="background-image: url('/images/hero_1.jpg');"
          id="home-section">
     <div class="container">
         <div class="row">
@@ -17,15 +18,16 @@
                 <div class="context w-100 pt-2">
                     <div class="item row pt-4">
                         <div class="col-7">
-                            <h3 class="font-weight-bolder col-10">緯謙科技股份有限公司</h3>
+                                <h3 class="font-weight-bolder col-10">{{datas.articleName}}</h3>
                         </div>
                         <div class="col-5 d-lg-flex row justify-content-end ml-md-0 pr-4">
                             <div class="col-3"></div>
-                            <div class="col-9 align-content-end">
-                                <script class="t1" type="text/javascript" text-align:right>
+                            <div class="col-9 align-content-end" >
+                                @*<script class="t1" type="text/javascript" text-align:right>
                                     var myDate = new Date();
                                     document.write(myDate.toLocaleString())
-                                </script>
+                                </script>*@
+                                {{datas.updateTime}}
                             </div>
                             <div class="col-6 text-end mr-md-3">
                                 <a href="#" class="btn btn-primary"><i class="fa-solid fa-pen"></i></a>
@@ -34,20 +36,9 @@
                     </div>
                     <div class="item row px-5">
                         <div class="col-12">
-                            <pre>
-優點
-卑微到只能共享緯創的福利
-缺點
-這家公司從2021年11月開始, 新進人員在試用期間一律要考過微軟AZ900的證照, 不管你是哪一個職務那怕是HR, 財會人員, 行銷人員, 甚至是助理,
-通通都得考過AZ900證照考不過的下場是
-1. 延長試用期3個月, 再考不過就請你走人
-2. 先核准通過試用, 一個月內再考不過也是請你走人
-原本想說慣老闆有什麼偉大的理想, 要求全員都要考過AZ900, 沒想到只是為了貪圖微軟的補助, 才要求全員都要考過AZ900; 公司好像是窮到快餓死一樣,
-必須要靠微軟的少少補助才存活得下去
-人生苦短, 在台北市好的工作很多, 非IT人員沒有必要為了養活這家公司, 而浪費生命去準備考一張和自己專業能力無關的證照, 未來從這家公司離職後,
-AZ900對於非IT人員完全沒有任何加分的作用
-況且考過AZ900, 慣老闆也不會幫你加薪
-                  </pre>
+                            <p>{{datas.contents}}
+
+                            </p>
                             <div class="heart"></div>
                         </div>
                     </div>
@@ -55,10 +46,11 @@ AZ900對於非IT人員完全沒有任何加分的作用
                     <div class="col-12">
                         <span>
                             <p>
-                                此公司的特色就是:年年虧損, 離職率高, 什麼都想做甚麼都不奇怪
+                                @*此公司的特色就是:年年虧損, 離職率高, 什麼都想做甚麼都不奇怪*@
+                                    {{datas.ReplyMessage}}
                             </p>
                         </span>
-                        <div>1樓</div>
+                            <div>{{datas.Floor}}</div>
                         <hr>
                         <span>
                             <p>
@@ -77,14 +69,17 @@ AZ900對於非IT人員完全沒有任何加分的作用
                     </div>
                     <hr>
                     <div class="input-group col-12 my-4">
-                        <textarea type="text" name="userid" class="form-control mx-2" placeholder="留下你的想法..."></textarea>
-                        <button type="submit" class="b2">發送</button>
+                            <textarea v-model="ReplyMessage" type="text" name="userid" class="form-control mx-2" placeholder="留下你的想法..."></textarea>
+                            <button type="submit" class="btn btn-primary b2" @@click="reply">發送</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+</div>
+
+
 @section Scripts{
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
@@ -92,27 +87,40 @@ AZ900對於非IT人員完全沒有任何加分的作用
     <script>
         const webApi = "https://localhost:7240"
         const appVue = new Vue({
-            el: "#appVue",
+            el: "#appVue", // 綁定位置
             name: "appVue",
             data: {
                 datas: [],
-                inputvalue: "",
+                articleName: "",
+                contents: "",
+                updateTime:"",
+                replyarticle: null,
             },
             mounted: function () {
-                let _this = this;
-                _this.Platforms();
+                const _this = this;
+                _this.course();
             },
             methods: {
-                Platforms: function () {
+                course: function () {
                     let _this = this;
-                    axios.get(`${webApi}/api/Platforms`)
+                    //let getUrlString = location.href;
+                    //let url = new URL(getUrlString);
+                    let ArticleId = new URL(location.href).searchParams.get('id');
+                    axios.get(`${webApi}/api/Platforms/${ArticleId}`)
                         .then(response => {
-                            //appVue.datas = response.data; 比較慢
-                            _this.datas = response.data;
-                            console.log(_this.datas);
+                            this.datas = response.data[0];
+                            console.log(this.datas)
                         })
                         .catch(err => console.log(err))
                         .finally(console.log('完成'))
+                },
+                reply: function () {
+                    let _this = this;
+                    var request = {};
+                    request.ReplyMessage = _this.ReplyMessage;
+                    axios.post(`${webApi}/api/Reply`, request).then(response => {
+                        window.location = "/Home/platformArticle";
+                    });
                 },
             }
         })

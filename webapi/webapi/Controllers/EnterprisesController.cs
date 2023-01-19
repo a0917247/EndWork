@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using webapi.Models;
 
 namespace webapi.Controllers
@@ -24,9 +27,33 @@ namespace webapi.Controllers
 
         // GET: api/Enterprises
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Enterprise>>> GetEnterprise()
+        public async Task<IEnumerable<EnterpriseDTO>> GetEnterprise(string? name,string? category,string? address)
         {
-            return await _context.Enterprise.ToListAsync();
+            var result = _context.Enterprise.Select(x => new EnterpriseDTO
+            {
+                EnterpriseId = x.EnterpriseId,
+                Address = x.Address,
+                Category = x.Category,
+                CompanyName = x.CompanyName,
+                Img = x.Img,
+                Info = x.Info,
+                Employee = x.Employee
+
+            });
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                result = result.Where(a => a.CompanyName.Contains(name) || a.CompanyName.Contains(name));
+            }
+            if (!string.IsNullOrWhiteSpace(category))
+            {
+                result = result.Where(a => a.Category.Contains(category));
+            }
+            if (!string.IsNullOrWhiteSpace(address))
+            {
+                result = result.Where(a => a.Address.Contains(address));
+            }
+
+            return await Task.FromResult(result);
         }
 
         // GET:     
@@ -78,7 +105,7 @@ namespace webapi.Controllers
         // POST: api/Enterprises
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<string> PostEnterprise([FromBody]Enterprise enterprise)
+        public async Task<string> PostEnterprise([FromBody] Enterprise enterprise)
         {
             bool exists = _context.Enterprise.Any(e => e.Account == enterprise.Account);
             if (exists == true)

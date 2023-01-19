@@ -116,12 +116,12 @@
                     <div class="container ">
                         <div class="row mb-5  ">
                             <!--The first article-->
-                            <div class="col-md-6 col-lg-4 mb-5 " v-for="data in datas">
-                                <a asp-controller="Home" asp-action="sourcePage"><img :src="data.img" alt="Image" class="img-fluid rounded mb-4" /></a>
+                            <div class="col-md-6 col-lg-4 mb-5 " v-for="data in datalist">
+                                <a v-bind:href="'https://localhost:7158/Home/sourcePage?id='+data.articleId"><img :src="data.img" alt="Image" class="img-fluid rounded mb-4" /></a>
 
                                 </a>
                                 <h3>
-                                    <a href="blog-single.html" class="text-black">{{data.title}}</a>
+                                    <a v-bind:href="'https://localhost:7158/Home/sourcePage?id='+data.articleId" class="text-black">{{data.title}}</a>
                                 </h3>
                                 <div>{{data.update}} <span class="mx-2">|</span> <a href="#">{{data.author}}</a></div>
                             </div>
@@ -130,14 +130,13 @@
                         <div class="row pagination-wrap mt-5">
                             <div class="col-md-12 text-center">
                                 <div class="custom-pagination ml-auto">
-                                    <a href="#" class="prev">Prev</a>
-                                    <div class="d-inline-block">
-                                        <a href="#" class="active">1</a>
-                                        <a href="#">2</a>
-                                        <a href="#">3</a>
-                                        <a href="#">4</a>
+                                    <a href="#" class="prev" >Prev</a>
+                                    <div class="d-inline-block" v-for="item in sliced">
+                                        <!--算頁數-->
+                                        <a href="#" class="active" v-if="currentpage == item" @@click="click(item)">{{item + 1}}</a>
+                                        <a href="#" v-else @@click="click(item)">{{item + 1}}</a>
                                     </div>
-                                    <a href="#" class="next">Next</a>
+                                    <a href="#" class="next" >Next</a>
                                 </div>
                             </div>
                         </div>
@@ -155,7 +154,12 @@
             el: "#appVue",
             name: "appVue",
             data: {
-                datas: [],
+                datalist: [],
+                pageData: [],
+                dataLength: 0,//資料長度
+                pagesize: 0, //頁數
+                sliced: [], //切分頁
+                currentpage: 0
             },
             mounted: function () {
                 let _this = this;
@@ -164,14 +168,66 @@
             methods: {
                 Source: function () {
                     let _this = this;
+                    let item = 0;
                     axios.get(`${webApi}/api/Articles`)
                         .then(response => {
-                            appVue.datas = response.data;
-                            console.log(_this.datas);
+                            //appVue.datas = response.data;
+                            this.dataLength = response.data.length;
+                            console.log(response.data); //8筆
+                            this.PageContent();
+                            let arr = [];
+
+                            // 一頁n筆資料 , n = 6為例
+                            // 第一頁 1  - 6 ,  0  < 5    第一頁 => item = 0   , item * 6   <  (item + 1) * 6 => 0 < 6
+                            // 第二頁 6  - 10,  5  < 10   第二頁 => item = 1   , item * 6   <  (item + 1) * 6 => 6 < 12　
+                            // 第三頁 11 - 15,  10 < 15   第三頁 => item = 2   , item * 6   <  (item + 1) * 6 => 12 < 18
+
+                            for (let i = item * 6; i < (item + 1) * 6; i++) {
+                                let item = {};
+                                item = response.data[i];//6筆
+                                arr.push(item);
+                            }
+                            this.datalist = arr;
+                            console.log(this.datalist)//6筆
                         })
                         .catch(err => console.log(err))
                         .finally(console.log('完成'))
                 },
+                PageContent: function () { // 頁數長度
+                    this.pagesize = Math.ceil(this.dataLength / 6); //無條件進位
+                    for (let i = 0; i < this.pagesize; i++) {
+                        this.sliced[i] = i;
+                    }//[0,1]
+                },
+                click: function (item) {
+                    let currnetpage = item ;
+                    this.currentpage = currnetpage;
+                    axios.get(`${webApi}/api/Articles`)
+                        .then(response => {
+                            this.datalist = [];
+                            this.dataLength = response.data.length;
+                            console.log(response.data); //8筆
+                            this.PageContent();
+                            let arr = [];
+                            let item = {};
+                            if (this.pagesize == (currnetpage + 1)) {
+                                for (let i = currnetpage * 6; i < response.data.length; i++) {
+                                    item = response.data[i];//6筆
+                                    arr.push(item);
+                                }
+                            } else {
+                                for (let i = currnetpage * 6; i < (currnetpage + 1) * 6; i++) {
+                                    item = response.data[i];//6筆
+                                    arr.push(item);
+                                }
+                            }
+                            this.datalist = arr;
+                            console.log(this.datalist)//6筆
+                        })
+                }
+                //Pagination: function () {
+                //    this.sliced = this.datas.slice((this.currentpage * this.pagesize) - this.pagesize, (this.currentpage * this.pagesize))
+                //}
             }
         })
     </script>

@@ -19,7 +19,7 @@
         public string? Info { get; set; }
         public string? UniformNumbers { get; set; }
         public string? Employee { get; set; }
-        public int VacancyId { get; set; }
-        public int EnterpriseId { get; internal set; }
+        public int? VacancyId { get; set; }
+        public int? EnterpriseId { get; set; }
     }
 }

@@ -11,6 +11,6 @@ namespace webapi.Models
         public string ArticleName { get; set; }
         public int? AuthorId { get; set; }
         public string Contents { get; set; }
-        public DateTime? UpdateTime { get; set; }
+        public DateTime UpdateTime { get; set; }
     }
 }

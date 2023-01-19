@@ -7,9 +7,10 @@ namespace webapi.Models
 {
     public partial class Interest
     {
-        public int CandidateId { get; set; }
-        public int EnterpriseId { get; set; }
+        public int Id { get; set; }
+        public int? CandidateId { get; set; }
+        public int? EnterpriseId { get; set; }
         public int? VacancyId { get; set; }
-        public int? Status { get; set; }
+        public int? InterestStatus { get; set; }
     }
 }

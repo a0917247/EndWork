@@ -3,17 +3,19 @@
     <div class="container">
         <div class="row">
             <div class="col-md-7">
-                <h1 class="text-white font-weight-bold">會員中心</h1>
-                <div class="custom-breadcrumbs">
+                <h1 class="text-white font-weight-bold">個人資料</h1>
+                <div class="custom-breadcrumbs ml-2">
+                    <a class="h4 active text-white" asp-area="" asp-controller="Home" asp-action="memberCenter"><strong>返回中心</strong></a>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </section>
 <!-- home end -->
 
 <section class="site-section block__18514 pt-4" id="next-section">
-    <div class="container h-100">
+    <div class="container h-100" id="appVue">
         <div class="row">
             <!-- Below is sidebar -->
             <div class="col-xs-12 col-md-10 col-lg-4 mt-lg-5">
@@ -30,13 +32,15 @@
                                 <div class="head"></div>
                                 <div class="mb-3 border navbar-nav box">
                                     <div class="p-3 w-100">
-                                        <figure class="figure ml-2">
-                                            <img src="https://picsum.photos/250/250/?random=10"
-                                                 class="figure-img img-fuild rounded-circle  w-50  ">
-                                            <h3 class="display-6 slide-h3 mt-1">使用者 您好</h3>
+                                        <figure class="figure ml-2 ">
+                                            <div style="object-fit:cover;width:100px;height:100px;">
+                                                <img :src="datas[0].img"
+                                                     class="figure-img img-fuild rounded-circle h-100 w-100">
+                                            </div>
+                                            <h3 class="display-6 slide-h3 mt-1" v-once>{{datas[0].name}} 您好</h3>
                                         </figure>
-                                        <div>手機:</div>
-                                        <div>信箱:</div>
+                                        <div>手機: {{datas[0].cellphone}}</div>
+                                        <div>信箱: {{datas[0].email}}</div>
                                         <div class="item text-end align-content-end mb-0">
                                             <div class="text-right mr-3 fw-bold">
                                                 <a asp-controller="Home" asp-action="memberDetail">
@@ -113,16 +117,47 @@
                 <!-- Above is sidebar -->
 
             </div>
-            <div class="col-xs-12 col-md-12 col-lg-8 mt-lg-5">
+            <div class="col-xs-12 col-md-12 col-lg-8 mt-lg-5" v-if="datas.Edit == false">
                 <div class="context border  w-100 p-3 mb-4">
                     <div class="item row pt-2">
                         <h2 class="display-5 fw-bolder mb-2 col-6">個人資訊</h2>
-
                     </div>
                     <hr>
-                    <div class="item pb-0">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea eum quam
-                        facilis eos odio beatae illum, perspiciatis id molestiae voluptatem?
+                    <div class="row mt-2">
+                        <div class="col-3 text-left pr-4">
+                            <div class="item pb-0 ml-2">
+                                姓名
+                            </div>
+                            <div class="item pb-0 ml-2">
+                                生日
+                            </div>
+                            <div class="item pb-0 ml-2">
+                                信箱
+                            </div>
+                            <div class="item pb-0 ml-2">
+                                手機
+                            </div>
+                            <div class="item pb-0 ml-2">
+                                就業狀態
+                            </div>
+                        </div>
+                        <div class="col-9 text-left">
+                            <div class="item pb-0 ml-2">
+                                {{datas[0].name}}
+                            </div>
+                            <div class="item pb-0 ml-2">
+                                {{birth}}
+                            </div>
+                            <div class="item pb-0 ml-2">
+                                {{datas[0].email}}
+                            </div>
+                            <div class="item pb-0 ml-2">
+                                {{datas[0].cellphone}}
+                            </div>
+                            <div class="item pb-0 ml-2">
+                                {{datas[0].status}}
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -131,16 +166,14 @@
                         <h2 class="display-5 fw-bolder mb-2 col-6">工作經歷</h2>
                         <figure class="w-100 ml-3">
                             <hr>
-                            <img src="https://picsum.photos/100/100/?random=10" class="float-left mr-3">
+                            <img src="https://picsum.photos/140/140/?random=10" class="float-left mr-3">
                             <figcaption>
-
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                Maxime, corrupti
-                                distinctio dolore repellat corporis nulla consequuntur nostrum
-                                laboriosam
-                                molestiae doloribus perspiciatis totam esse veritatis expedita,
-                                atque dicta,
-                                ullam necessitatibus exercitationem.
+                                <div class="h3">
+                                    {{datas[0].workexname}}
+                                </div>
+                                <div>
+                                    {{datas[0].workexperience}}
+                                </div>
                             </figcaption>
                     </div>
 
@@ -151,58 +184,391 @@
                         <h2 class="display-5 fw-bolder mb-2 col-6">學歷</h2>
                         <figure class="w-100 ml-3">
                             <hr>
-                            <img src="https://picsum.photos/100/100/?random=10" class="float-left mr-3">
+                            <img src="https://picsum.photos/140/140/?random=10" class="float-left mr-3">
                             <figcaption>
-
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                Maxime, corrupti
-                                distinctio dolore repellat corporis nulla consequuntur nostrum
-                                laboriosam
-                                molestiae doloribus perspiciatis totam esse veritatis expedita,
-                                atque dicta,
-                                ullam necessitatibus exercitationem.
+                                <div class="h3">
+                                    {{datas[0].schoolname}}
+                                </div>
+                                <div>
+                                    {{datas[0].education}}
+                                </div>
                             </figcaption>
 
                     </div>
 
                 </div>
-                <div class="context border w-100 p-3 mb-4">
+                <div class="context border w-100 p-3 mb-4 ">
                     <div class="item row pt-2">
                         <h2 class="display-5 fw-bolder mb-2 col-6">技能</h2>
 
                     </div>
                     <hr>
                     <div class="item pb-0">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea eum quam
-                        facilis eos odio beatae illum, perspiciatis id molestiae voluptatem?
-                    </div>
-
-                </div>
-                <div class="context border w-100 p-3 mb-4">
-                    <div class="item row pt-2">
-                        <h2 class="display-5 fw-bolder mb-2 col-6">求職條件</h2>
-                    </div>
-                    <hr>
-                    <div class="item pb-0">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea eum quam
-                        facilis eos odio beatae illum, perspiciatis id molestiae voluptatem?
+                        <div class="d-flex">
+                            <div v-for="item in skillName">
+                                <div class="w-auto mx-2">
+                                    <div class="border px-2 rounded">{{item}}</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
                 <div class="context border w-100 p-3 mb-4">
                     <div class="item row pt-2">
                         <h2 class="display-5 fw-bolder mb-2 col-6">自傳</h2>
                     </div>
                     <hr>
                     <div class="item pb-0">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea eum quam
-                        facilis eos odio beatae illum, perspiciatis id molestiae voluptatem?
+                        {{datas[0].autobiography}}
                     </div>
                 </div>
-                <div class="d-flex justify-content-end mb-4">
-                    <button class="btn px-4 slide-button m-2 w-25"><a>編輯資料</a></button>
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-12 col-lg-8 mt-lg-5" v-else>
+                <div class="context border  w-100 p-3 mb-4">
+                    <div class="item row pt-2">
+                        <h2 class="display-5 fw-bolder mb-2 col-6">個人資訊</h2>
+                    </div>
+                    <hr>
+                    <div class="row mt-2">
+                        <div class="col-3 text-left pr-4">
+                            <div class="item pb-0 ml-2">
+                                姓名
+                            </div>
+                            <div class="item pb-0 ml-2">
+                                生日
+                            </div>
+                            <div class="item pb-0 ml-2">
+                                信箱
+                            </div>
+                            <div class="item pb-0 ml-2">
+                                手機
+                            </div>
+                            <div class="item pb-0 ml-2">
+                                就業狀態
+                            </div>
+                        </div>
+                        <div class="col-9 text-left">
+                            <div class="item pb-0 ml-2">
+                                <input type="text" v-model="datas[0].name" />
+                            </div>
+                            <div class="item pb-0 ml-2">
+                                <input type="text" v-model="birth" />
+                            </div>
+                            <div class="item pb-0 ml-2">
+                                <input type="text" v-model="datas[0].email" />
+                            </div>
+                            <div class="item pb-0 ml-2">
+                                <input type="text" v-model="datas[0].cellphone" />
+                            </div>
+                            <div class="item pb-0 ml-2">
+                                <input type="text" v-model="datas[0].status" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="context border  w-100 p-3 mb-4">
+                    <div class="item row pt-2">
+                        <h2 class="display-5 fw-bolder mb-2 col-6">工作經歷</h2>
+                        <figure class="w-100 ml-3">
+                            <hr>
+                            <img src="https://picsum.photos/140/140/?random=10" class="float-left mr-3">
+                            <figcaption>
+                                <div class="h3">
+                                    <input type="text" v-model="datas[0].workexname" class=" w-50" />
+                                </div>
+                                <div class="item pb-0">
+                                    <textarea class="w-auto" cols="30" rows="5" v-model="datas[0].workexperience" style="resize:none;"></textarea>
+                                </div>
+                            </figcaption>
+                    </div>
+
+
+                </div>
+                <div class="context border w-100 p-3 mb-4">
+                    <div class="item row pt-2">
+                        <h2 class="display-5 fw-bolder mb-2 col-6">學歷</h2>
+                        <figure class="w-100 ml-3">
+                            <hr>
+                            <img src="https://picsum.photos/140/140/?random=10" class="float-left mr-3">
+                            <figcaption>
+                                <div class="h3">
+                                    <input type="text" v-model="datas[0].schoolname" class=" w-50" />
+                                </div>
+                                <div class="item pb-0">
+                                    <textarea class="w-auto" cols="30" rows="5" v-model="datas[0].education" style="resize:none;"></textarea>
+                                </div>
+
+                    </div>
+
+                </div>
+                <div class="context border w-100 p-3 mb-4 ">
+                    <div class="item row pt-2">
+                        <h2 class="display-5 fw-bolder mb-2 col-6">技能</h2>
+
+                    </div>
+                    <hr>
+                    <div class="item pb-0">
+                        <div class="d-flex w-100 flex-nowrap">
+                            <div v-for="item in skillName">
+                                <div class="w-auto mx-2">
+                                    <div class="border px-2 rounded" v-if="skillEdit == false" @@click="changeSkill">{{item}}</div>
+                                    <input type="text" class="w-75 preSkill" list="skill" :id="item" :placeholder="item" :id="item.skillId" v-else @@keydown.enter="back" />
+                                    <datalist id="skill">
+                                        <option v-for="skillName in skillDropDown" :value="skillName">{{skillName}}</option>
+                                    </datalist>
+                                </div>
+                            </div>
+                            <div class="w-auto mx-2">
+                                <input type="text" class="w-75" v-model="newSkill" list="newskill" id="Skill" @@keydown.enter="addNewSkill" />
+                                <datalist id="newskill">
+                                    <option v-for="skillName in skillDropDown" :value="skillName">{{skillName}}</option>
+                                </datalist>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="context border w-100 p-3 mb-4">
+                    <div class="item row pt-2">
+                        <h2 class="display-5 fw-bolder mb-2 col-6">自傳</h2>
+                    </div>
+                    <hr>
+                    <div class="item pb-0">
+                        <textarea class="w-100" cols="30" rows="10" v-model="datas[0].autobiography"></textarea>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div class="d-flex justify-content-end mb-4" v-if="datas.Edit == false">
+            <button class="btn px-4 slide-button m-2 w-25" @@click="Edit">編輯資料</button>
+        </div>
+        <div class="d-flex justify-content-end mb-4" v-else>
+            <button class="btn px-4 slide-button m-2 w-25" @@click="Cancel">取消</button>
+            <button class="btn px-4 slide-button m-2 w-25" @@click="Save">修改完成</button>
+        </div>
+
+
+
     </div>
-    </section>
+</section>
+
+@* <div class="context border w-100 p-3 mb-4">
+                <div class="item row pt-2">
+                <h2 class="display-5 fw-bolder mb-2 col-6">求職條件</h2>
+                </div>
+                <hr>
+                <div class="item pb-0">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea eum quam
+                facilis eos odio beatae illum, perspiciatis id molestiae voluptatem?
+                </div>
+                </div>*@
+
+@section Scripts{
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
+
+    <script>
+        const webApi = "https://localhost:7240"
+        const appVue = new Vue({
+            el: "#appVue",
+            name: "appVue",
+            data: {
+                datas: {},
+                oldDatas: {},
+                oldSkill: [],
+                skillDatas: [],
+                skillName: [],
+                Id: sessionStorage.getItem("Id"),
+                newSkill: null,
+                newskill: [],
+                skillSource: [],
+                birth: null,
+                skillEdit: false,
+                skillId: [],
+
+
+            },
+            mounted: function () {
+                let _this = this;
+                _this.Login();
+                _this.Skill();
+            },
+            methods: {
+                Login: function () {
+                    let _this = this;
+                    axios.get(`${webApi}/api/Candidates/${this.Id}`)
+                        .then(res => {
+                            _this.datas = res.data;
+                            _this.datas.Edit = false;
+                            _this.birth = _this.datas[0].birth.split('T', 6)[0];
+                            _this.oldDatas = _this.datas;
+
+                        })
+                        .catch(err => console.log(err))
+                        .finally(console.log('完成'));
+
+                    axios.get(`${webApi}/api/CandidateSkills/${this.Id}`)
+                        .then(res => {
+                            _this.skillDatas = res.data;
+                            for (var i = 0; i < _this.skillDatas.length; i++) {
+                                _this.skillName.push(_this.skillDatas[i].skillName);
+                            }
+
+                        })
+                        .catch(err => console.log(err))
+                        .finally(console.log('完成'));
+                },
+                Edit: function () {
+                    let _this = this;
+                    _this.newSkill = null;
+                    axios.get(`${webApi}/api/Candidates/${this.Id}`)
+                        .then(res => {
+                            _this.datas = res.data;
+                            _this.birth = _this.datas[0].birth.split('T', 6)[0];
+                            _this.datas.Edit = true;
+
+                        })
+                        .catch(err => console.log(err))
+                        .finally(console.log('完成'));
+
+                },
+                Cancel: function () {
+                    let _this = this;
+                    _this.datas = {};
+                    _this.skillName = [];
+                    _this.Login();
+                },
+                addNewSkill: function () {
+                    _this = this;
+                    _this.skillName.push(_this.newSkill);
+                    _this.newSkill = null;
+                },
+                changeSkill: function () {
+                    _this = this;
+                    _this.skillEdit = true;
+
+                },
+                back: function () {
+
+
+                },
+                Save: async function (item) {
+                    _this = this;
+                    var request = {};
+                    var skill = {};
+                    let oldSkill = [];
+                    let old;
+
+                    request.CandidateId = _this.Id;
+                    request.Name = _this.datas[0].name;
+                    request.Email = _this.datas[0].email;
+                    request.Cellphone = _this.datas[0].cellphone;
+                    request.Birth = _this.birth;
+                    request.Status = _this.datas[0].status;
+                    request.Workexname = _this.datas[0].workexname;
+                    request.Workexperience = _this.datas[0].workexperience;
+                    request.Schoolname = _this.datas[0].schoolname;
+                    request.Education = _this.datas[0].education;
+                    request.Autobiography = _this.datas[0].autobiography;
+
+                    try {
+                        let res = await axios.put(`${webApi}/api/Candidates/${this.Id}`, request)
+                        alert(res.data);
+                    }
+                    catch (err) {
+                        console.log(err);
+                    }
+                    finally {
+                        console.log('完成');
+                    }
+
+
+                    // 技能修改及新增
+                    if (_this.skillEdit == true) {
+                        old = document.querySelectorAll('.preSkill');
+                        for (var i = 0; i < old.length; i++) {
+                            if (old[i].value.length > 0) {
+                                oldSkill.push(old[i].value);
+                            }
+                            else {
+                                oldSkill.push(old[i].id);
+                            }
+                        }
+                        skill.skillName = oldSkill;
+                    }
+                    else {
+                        skill.skillName = _this.skillName;
+                    }
+
+                    skill.CandidateId = _this.Id;
+
+                    console.log(skill);
+
+                    try {
+                        let resSkill = await axios.post(`${webApi}/api/CandidateSkills`, skill)
+
+                    }
+                    catch (err) {
+                        console.log(err);
+                    }
+                    finally {
+                        location.reload();
+                    }
+
+
+                    //_this.datas = {};
+                    //_this.skillName = [];
+
+                },
+                Skill: function () {
+                    _this = this;
+                    _this.skillSource = [];
+                    axios.get(`${webApi}/api/Skills`)
+                        .then(res => {
+                            for (var i = 0; i < res.data.length; i++) {
+                                _this.skillSource.push(res.data[i]);
+                            }
+                        })
+                        .catch(err => console.log(err))
+                        .finally(console.log('完成'));
+                },
+            },
+            computed: {
+                skillDropDown() {
+                    let sd = [];
+
+                    for (let sk of this.skillSource) {
+                        let isAdd = true;
+
+                        for (let sn of this.skillName) {
+                            if (sk.skillName == sn) {
+                                isAdd = false;
+                            }
+                        }
+
+                        if (isAdd) {
+                            sd.push(sk.skillName);
+                        }
+                    }
+                    //for (let sk of this.skillSource) {
+                    //    if (this.skillName.some(y => y == sk.skillName)) {
+                    //        sd.push(sk.skillName);
+                    //    }
+                    //}
+                    //let items = this.skillSource.map(x => x.skillName).filter(x => !this.skillName.some(y => y == x));
+                    //console.log(items);
+                    return sd;
+                }
+            }
+        })
+
+
+
+    </script>
+                }

@@ -17,9 +17,7 @@
                         </div>
                         <div class="col-lg-4 col-md-12 pt-3 film-intro">
                             <h3>課程簡介</h3><hr>
-                            <h5>
-                                {{ dataList.courseIntro }}
-                            </h5>
+                            <h5 v-html="dataList.courseIntro"></h5>
                         </div>
                     </div>
                 </div>
@@ -64,7 +62,8 @@
                     <h2>NT$ {{ dataList.price }}</h2>
                 </div>
                 <div class="col-lg-3 col-md-6 fw-bold buy-mess d-flex justify-content-center" style="border-left:#656565 1px solid;">
-                    <a v-bind:href="'https://localhost:7158/Home/payPage?id='+ dataList.courseId" class="btn btn-primary w-50 my-5 mx-1 text-center">立即購買</a>
+                    <a @@click="gopage" class="btn btn-primary w-50 my-5 mx-1 text-center">立即購買</a>
+                    @*<a v-bind:href="'https://localhost:7158/Home/payPage?id='+ dataList.courseId" class="btn btn-primary w-50 my-5 mx-1 text-center">立即購買</a>*@
                     <a href="" class="btn btn-secondary w-25 my-5 mx-1 text-center"><i class="fa-solid fa-thumbtack"></i></a>
                 </div>
 
@@ -107,10 +106,10 @@
                     <div class="col-lg-4 ml-auto cause-title">
                         <div class="title my-lg-2">關於老師</div>
                         <div class="ml-4 my-2">
-                            <img src="/images/991223.jpg" class="img-littlelogo mb-lg-3" style="height: 150px;width: 150px;">
+                            <img :src="dataList.teacherImg" class="img-littlelogo mb-lg-3" style="height: 150px;width: 150px;">
                         </div>
-                        <p class="lead ml-3">{{ dataList.teacherName }}</p>
-                        <p class="lead ml-3">{{ dataList.teacherIntro }}</p>
+                        <h3 class="lead ml-3">{{ dataList.teacherName }}</h3>
+                        <p class="lead ml-3">{{ dataList.intro }}</p>
                     </div>
                     <div class="col-12 cause-need" style="height: 50px;">
                     </div>
@@ -131,7 +130,6 @@
             name: "appVue",
             data: {
                 dataList: [],
-
             },
             mounted: function () {
                 const _this = this;
@@ -147,11 +145,22 @@
                         .then(response => {
                             _this.dataList = response.data[0];
                             console.log(_this.dataList)
+                            console.log(_this.dataList.courseIntro)
                         })
                         .catch(err => console.log(err))
                         .finally(console.log('完成'))
                 },
-            }
+                gopage() {
+                    const candidateId = sessionStorage.getItem('Id')
+                    const courseId = this.dataList.courseId
+                    if (candidateId != null) {
+                        location.href = 'https://localhost:7158/Home/payPage?id=' + courseId
+                    }
+                    else {
+                        location.href = 'https://localhost:7158/Home/memberLogin'
+                    }
+                },
+            },
         })
     </script>
 }

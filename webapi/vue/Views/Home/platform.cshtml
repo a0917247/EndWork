@@ -121,9 +121,11 @@
                         <div class="item row pt-4">
                             <div class="col-12 justify-content-between">
                                 <li class="d-flex justify-content-between">
-                                    <form action="" class="fly-search">
-                                        <input class="layui-input" autocomplete="off" placeholder="搜索内容🔎" type="text" name="q">
-                                    </form>
+                                    <div action="" class="fly-search">
+                                        <input class="layui-input" autocomplete="off" placeholder="搜索内容🔍" type="text" v-model="inputvalue" id="input" @@keydown.enter="search">
+                                        @*<button type="button" class="btn btn-primary" @@click="filterPlatformDTOes"><i class="fa-solid fa-magnifying-glass ml-4 mr-4"></i></button>*@
+
+                                    </div>
                                     <a asp-controller="Home" asp-action="platformPost" class="btn btn-primary">發文分享<i class="fa-solid fa-pen mx-2"></i></a>
                                 </li>
                             </div>
@@ -131,17 +133,16 @@
                                 <ul class="fly-list">
                                     <li id="posttitle" class="d-flex justify-content-between">
                                         <div>
-                                            <h4 class="fly-tip">
-                                                <a class="a1" asp-controller="Home" asp-action="platformArticle">{{data.articleName}}</a>
-                                            </h4>
+                                            <a class="h4 fly-tip a1" v-bind:href="'https://localhost:7158/Home/platformArticle?id='+data.articleId">{{data.articleName}}</a>
                                         </div>
                                         <div>
                                             <p>
                                                 <span>
-                                                    time
+                                                    @*time*@
+                                                    <i class="un">{{data.updateTime}}</i>
                                                 </span>
                                                 <span class="fly-list-hint">
-                                                    <i class="un" title="回答">💬3</i>
+                                                    @*<i class="un" title="回答">💬3</i>*@
                                                 </span>
                                             </p>
                                         </div>
@@ -149,28 +150,6 @@
                                 </ul>
                                 <hr>
                             </div>
-                            @* <div class="col-12 py-5" style="height:35px" v-for="data in datas">
-                            <ul class="fly-list">
-                            <li id="posttitle" class="d-flex justify-content-between">
-                            <div>
-                            <h4 class="fly-tip">
-                            <a class="a1" asp-controller="Home" asp-action="platformArticle">{{data.articleName}}</a>
-                            </h4>
-                            </div>
-                            <div>
-                            <p>
-                            <span>
-                            time
-                            </span>
-                            <span class="fly-list-hint">
-                            <i class="un" title="回答">💬3</i>
-                            </span>
-                            </p>
-                            </div>
-                            </li>
-                            </ul>
-                            <hr>
-                            </div>*@
                         </div>
                     </div>
                 </div>
@@ -178,6 +157,7 @@
         </div>
     </section>
 </div>
+
 <!-- content end -->
 @section Scripts{
 
@@ -191,6 +171,11 @@
             data: {
                 datas: [],
                 inputvalue: "",
+                updateTime: "",
+                //selectedArticleName: "",
+                //selectedKeyword: "",
+                //PlatformDTOes:[],
+                //Filter: "",
             },
             mounted: function () {
                 let _this = this;
@@ -207,6 +192,31 @@
                         })
                         .catch(err => console.log(err))
                         .finally(console.log('完成'))
+                },
+                search: function () {
+                    //alert('你好繼宣');
+                    if (this.inputvalue) {
+                        let name = this.inputvalue.replace(/[\ !@@#$%^&*()_+|}{":?>~+\-*\/.';[\]\\]+/g, "");
+                        //let ArticleName = this.selectedArticleName;
+                        axios.get(`${webApi}/api/Platforms?name=${name}`)
+                            .then(response => {
+                                this.datas = response.data;
+                                console.log(response.data)
+                            })
+                            .catch(err => console.log(err))
+                            .finally(console.log('完成'))
+                    } else {
+                        _this.Platforms();
+                        $('input').blur();
+                    }
+                },
+            },
+            watch: {
+                inputvalue: {
+                    handler(newval) {
+                        this.Platforms();
+                    },
+                    deep: true
                 },
             }
         })

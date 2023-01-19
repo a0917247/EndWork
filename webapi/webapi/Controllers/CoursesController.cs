@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 //using webapi.DTO;
 using webapi.Models;
 using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
@@ -28,22 +29,44 @@ namespace webapi.Controllers
         [HttpGet]
         public async Task<IEnumerable<CourseDetailDTO>> GetCourse(string? keyword,string?category)
         {
-            var result = _context.Course.Join(_context.Teacher, x => x.TeacherId, y => y.TeacherId, (cou, tea) => new CourseDetailDTO
-            {
-                CourseId = cou.CourseId,
-                CourseName = cou.CourseName,
-                Price = cou.Price,
-                TeacherName = tea.Name,
-                TeacherImg = tea.img,
-                Intro = tea.Intro,
-                CourseReqire = cou.CourseReqire,
-                CourseIntro = cou.CourseIntro,
-                CourseLength = cou.CourseLength,
-                CourseImg = cou.img,
-                keyword = cou.Keyword,
-                category = cou.Category,
+            var result = from c in _context.Course
+                         join t in _context.Teacher on c.TeacherId equals t.TeacherId
+                         join co in _context.CourseOrder on c.CourseId equals co.CourseId
+                         group new { c, t } by new
+                         {
+                             c.CourseId,
+                             c.CourseName,
+                             c.Price,
+                             t.TeacherId,
+                             t.Name,
+                             t.Img,
+                             t.Intro,
+                             c.CourseReqire,
+                             c.CourseIntro,
+                             c.CourseLength,
+                             c.CourseImg,
+                             c.Keyword,
+                             c.Category
+                         } into g
+                         select new CourseDetailDTO()
+                         {
+                             CourseId = g.Key.CourseId,
+                             CourseName = g.Key.CourseName,
+                             Price = g.Key.Price,
+                             TeacherId = g.Key.TeacherId,
+                             TeacherName = g.Key.Name,
+                             TeacherImg = g.Key.Img,
+                             Intro = g.Key.Intro,
+                             CourseReqire = g.Key.CourseReqire,
+                             CourseIntro = g.Key.CourseIntro,
+                             CourseLength = g.Key.CourseLength,
+                             CourseImg = g.Key.CourseImg,
+                             keyword = g.Key.Keyword,
+                             category = g.Key.Category,
+                             studentCount = g.Count()
+                         };
 
-            });
+
             if (!string.IsNullOrWhiteSpace(keyword))
             {
                 result = result.Where(x=>x.keyword.Contains(keyword));
@@ -59,20 +82,44 @@ namespace webapi.Controllers
         [HttpGet("{id}")]
         public async Task<IEnumerable<CourseDetailDTO>> GetCourse(int id)
         {
-            var result = _context.Course.Join(_context.Teacher, x => x.TeacherId, y => y.TeacherId, (cou, tea) => new CourseDetailDTO
-            {
-                CourseId = cou.CourseId,
-                CourseName = cou.CourseName,
-                Price = cou.Price,
-                TeacherName = tea.Name,
-                TeacherImg = tea.img,
-                Intro = tea.Intro,
-                CourseReqire = cou.CourseReqire,
-                CourseIntro = cou.CourseIntro,
-                CourseLength = cou.CourseLength,
-                CourseImg = cou.img,
 
-            }).Where(x=>x.CourseId==id);
+            var result = from c in _context.Course
+                         join t in _context.Teacher on c.TeacherId equals t.TeacherId
+                         join co in _context.CourseOrder on c.CourseId equals co.CourseId
+                         where c.CourseId == id
+                         group new { c, t } by new
+                         {
+                             c.CourseId,
+                             c.CourseName,
+                             c.Price,
+                             t.TeacherId,
+                             t.Name,
+                             t.Img,
+                             t.Intro,
+                             c.CourseReqire,
+                             c.CourseIntro,
+                             c.CourseLength,
+                             c.CourseImg,
+                             c.Keyword,
+                             c.Category
+                         } into g
+                         select new CourseDetailDTO()
+                         {
+                             CourseId = g.Key.CourseId,
+                             CourseName = g.Key.CourseName,
+                             Price = g.Key.Price,
+                             TeacherId = g.Key.TeacherId,
+                             TeacherName = g.Key.Name,
+                             TeacherImg = g.Key.Img,
+                             Intro = g.Key.Intro,
+                             CourseReqire = g.Key.CourseReqire,
+                             CourseIntro = g.Key.CourseIntro,
+                             CourseLength = g.Key.CourseLength,
+                             CourseImg = g.Key.CourseImg,
+                             keyword = g.Key.Keyword,
+                             category = g.Key.Category,
+                             studentCount = g.Count()
+                         };
 
             return result;
         }

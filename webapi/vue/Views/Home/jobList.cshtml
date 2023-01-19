@@ -78,7 +78,7 @@
                                                 <a class="ml-3 font-weight-bold active" asp-area="" asp-controller="Home" asp-action="jobSingle" :id="data.vacancyId" v-on:click="jobsingle(data.vacancyId)">{{data.workName}}</a>
                                             </li>
                                         </ul>
-                                        <p class="ml-3 card-text">
+                                        <p class="ml-3 card-text ellipsis2">
                                             {{data.info}}
                                         </p>
                                     </div>
@@ -306,7 +306,6 @@
 </div>
 <!-- content end -->
 @section Scripts{
-
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
     <script>
@@ -376,9 +375,9 @@
                             if (this.datas.length > 5) {
                                 for (let i = 0; i < 5; i++) {
                                     let item = {};
-                                    if(this.datas[i].seniority == 0){
+                                    if (this.datas[i].seniority == 0) {
                                         this.datas[i].seniority = '不限年資';
-                                    }else{
+                                    } else {
                                         this.datas[i].seniority = this.datas[i].seniority + '年';
                                     }
                                     item = this.datas[i];
@@ -450,6 +449,29 @@
                     if (item != this.page.length) {
                         this.changepage(item);
                     }
+                },
+                companysearch() {
+                    this.tempitem = 0;
+                    let name = this.inputvalue.replace(/[\ !@@#$%^&*()_+|}{":?>~+\-*\/.';[\]\\]+/g, "");
+                    let category = this.selectedCategory;
+                    let address = this.selectedArea;
+                    let url = `${webApi}/api/Enterprises?name=${name}&category=${category}&address=${address}`;
+                    axios.get(url)
+                        .then(res => {
+                            this.datas = [];
+                            this.datas = res.data;
+                            this.temp = res.data.length;
+                            this.countpage();
+                            let arr = [];
+                            if (this.datas.length > 5) {
+                                for (let i = 0; i < 5; i++) {
+                                    let item = {};
+                                    item = this.datas[i];
+                                    arr.push(item);
+                                }
+                                this.datas = arr;
+                            }
+                        })
                 }
             },
             watch: {
@@ -457,8 +479,10 @@
                     handler(newval) {
                         if (newval == '公司') {
                             this.boolean = true;
+                            this.companysearch();
                         } else {
                             this.boolean = false;
+                            this.search();
                         }
                     }
                 },

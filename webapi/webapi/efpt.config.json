@@ -111,7 +111,7 @@
          "ObjectType": 0
       }
    ],
-   "UiHint": "triangle05.triangle",
+   "UiHint": "triangle06.Triangle",
    "UncountableWords": null,
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": false,

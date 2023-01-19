@@ -1960,7 +1960,7 @@ h1, h2, h3, h4 {
     text-transform: uppercase;
 }
 
-    .filters .btn:hover, .filters .btn:focus, .filters .btn:active ,.btn:hover a{
+    .filters .btn:hover, .filters .btn:focus, .filters .btn:active, .btn:hover a {
         border-color: transparent !important;
         background: rgba(52, 58, 64, 0.3) !important;
         color: #000;
@@ -2801,18 +2801,19 @@ a {
     color: #656565;
 }
 
-a:hover {
-    color: #0085FF;
-    text-decoration:none;
-}
+    a:hover {
+        color: #0085FF;
+        text-decoration: none;
+    }
 
 .slide-button:hover {
     background-color: #0085FF;
     color: white;
 }
-.slide-button:hover a {
-     color: white;
- }
+
+    .slide-button:hover a {
+        color: white;
+    }
 
 /* 輪播器 */
 .carousel-item {
@@ -2888,3 +2889,49 @@ a:hover {
     }
 }
 /* 輪播器 */
+
+/* 輸入框*/
+input {
+    caret-color: #0085ff; /* 指定色 */
+    outline: none; /* 外框效果 */
+    border: #A4A4A4 solid 1px;
+    border-radius: 3px;
+}
+input.useless {
+    background-color: #eee;
+    color: #898989;
+}
+
+/* 修改框 */
+textarea {
+    caret-color: #0085ff; /* 指定色 */
+    outline: none; /* 外框效果 */
+    border: #A4A4A4 solid 1px;
+    border-radius: 3px;
+}
+
+.btn-primary{
+    background-color:#0085ff;
+    color:#fff;
+}
+
+input {
+    caret-color: #0085ff; /* 指定色 */
+    outline: none; /* 外框效果 */
+    border: #A4A4A4 solid 1px;
+    border-radius: 3px;
+}
+
+input.useless {
+    background-color: #eee;
+    color: #898989;
+}
+
+.ellipsis2 {
+    overflow: hidden;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3; /*行數*/
+    -webkit-box-orient: vertical;
+    white-space: normal;
+}

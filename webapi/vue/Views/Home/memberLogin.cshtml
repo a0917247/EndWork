@@ -12,10 +12,10 @@
 <!-- home end -->
 
 <section class="site-section block__18514 pt-4" id="next-section">
-    <div class="container h-100">
+    <div class="container h-100 pt-3">
         <div class="row">
             <!-- Below is sidebar -->
-            <div class="col-xs-12 col-md-10 col-lg-4 mt-lg-5">
+            <div class="col-xs-12 col-md-10 col-lg-4">
                 <nav class="navbar navbar-expand-lg navbar-light pl-lg-5 py-0">
                     <!-- <a class="navbar-brand" href="#">Liya rescue</a> -->
                     <button class="navbar-toggler mb-2" type="button" data-toggle="collapse"
@@ -221,6 +221,44 @@
                 },
 
             },
+        })
+
+        //const newVue = new Vue({
+        //    el: "#newVue",
+        //    name: "newVue",
+        //    data: {
+
+        //    },
+        //    methods: {
+
+        //    },
+        //},
+        //        })
+
+
+        const app = new Vue({
+            el: "#app",
+            name: "app",
+            data: {
+                Id: sessionStorage.getItem("Id"),
+                Name: sessionStorage.getItem("Name"),
+            },
+
+        })
+        const vue = new Vue({
+            el: "#vue",
+            name: "vue",
+            data: {
+                Id: sessionStorage.getItem("Id"),
+                Name: sessionStorage.getItem("Name"),
+            },
+            methods: {
+                signOut: function () {
+                    sessionStorage.clear();
+                    window.location = "/Home/Index";
+                },
+            },
+
         })
     </script>
     }
